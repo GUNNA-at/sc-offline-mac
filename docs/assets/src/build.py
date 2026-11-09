@@ -177,7 +177,8 @@ def cover(theme):
     d.arrow(sx + 150, sy + 8, "up", ink, 9)
     for yy in (sy, sy + 8):
         d.line(sx + 130, yy, sx + 160, yy, ink, 1)
-    d.text(840, sy - 44, "PAGE 16 KB", CB, 24, anchor="end")
+    d.text(840, sy - 62, "PAGE", CB, 24, anchor="end")
+    d.text(840, sy - 36, "16 KB", CB, 24, anchor="end")
     d.save(f"cover-{theme}.svg")
 
 

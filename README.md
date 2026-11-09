@@ -351,14 +351,16 @@ Lift ................... SPACE, THEN W
 
 **What each step gave.**
 
-| Step | Runs | Calm view | City in view |
+| Step | Runs | Calm | City |
 |:--|:--|:--|:--|
-| As found | first session, m1, m2, m10 | 3 to 6 | not measured |
+| As found | m1, m2, m10 | 3 to 6 | – |
 | winegrid | m11 to m13 | 25 to 30 | 10 to 15 |
-| Lean profile, vertical sync off | m14, m15 | 31 to 35 | 8 to 15 |
-| Patched MoltenVK | m18, m19 | not measured | 14 to 29 |
-| Squeezer | m20 | not measured | 25 to 31 in a light city view |
+| Lean profile, sync off | m14, m15 | 31 to 35 | 8 to 15 |
+| Patched MoltenVK | m18, m19 | – | 14 to 29 |
+| Squeezer | m20 | – | 25 to 31 |
 | Today | m21 to m23 | 20 to 35 | 16 to 25 |
+
+Calm is a room with no city in view; City is a view with the city in it. A dash means not measured. The 3 in the first row is the owner's own first session, before run m1; the squeezer's 25 to 31 was a light city view.
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-6-dark.svg"><img src="docs/assets/tab-6-light.svg" width="28" height="28" align="absmiddle" alt="Section 6."></picture> Weight and balance
 
@@ -371,10 +373,7 @@ An aircraft handbook has a chapter on how much the machine may carry and where. 
   </picture>
   <br>
   Figure 6-1. Loading graph.
-</p> As found the game needed 44 to 59 GB of memory on a Mac that has 24, at 3 to 6 FPS. With winegrid and the patched MoltenVK it needs 26 to 33 GB, at 10 to 30 FPS with paging in busy views. With the squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches again sits in swap, at 20 to 50 FPS.">
-</picture>
-
-Figure 6-1. Loading graph.
+</p>
 
 **Why it was overloaded.** Under Rosetta the game works in 4 KB pages; the Mac's memory comes in 16 KB pages. Wine commits memory the way Windows programs ask for it, and this game asks for its heap one 4 KB page at a time. Each of those pieces ended up as its own kernel object, rounded up to 16 KB. A million of them turned 21 GB of data into 35 to 50 GB of demand.
 

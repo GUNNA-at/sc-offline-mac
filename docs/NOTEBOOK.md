@@ -429,7 +429,7 @@ Reported: "my mouse is not working" in the M menu, and a take-off hail from the 
   loaded, `creative 1.0.0 native loaded`. macfix.log: `sc-offline 0.7.7 found`, padfix installed, the game's window found,
   mod code 17-21 runs/s idle (33-72 with the menu open). World after 305 s; squeeze 1 at 17:22:54 (6.2 GB to swap).
   At 17:25: paging 238 decompressions/s, swap 10.4 GB, disk free 12 GB.
-- Standing in the hab after leaving the bed, the mod's menu open: 35 FPS (28.6 ms), the highest hab reading of the day.
+- Standing in the hab after leaving the bed, the mod's menu open: 35 FPS (28.6 ms), the highest hab reading of the day (Entered after the session, from the screenshot taken at 17:23.)
 - The new commands answer in the plugin build (`!pose`, `!find Spaceport_interior -> loaded`, `!seats x -> no such ship
   loaded`).
 - Menu from a cold start, injected pointer: `M`, one click on "God mode" -> `creative.status -> god on` (god mode is off at
