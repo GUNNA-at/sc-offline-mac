@@ -89,10 +89,10 @@ index 664276b..763df23 100644
  			}
              case kMVKGraphicsStageRasterization:
 diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
-index 76ca788..c0ec512 100644
+index 76ca788..b8c7776 100644
 --- a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
 +++ b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
-@@ -237,6 +237,33 @@ protected:
+@@ -237,6 +237,37 @@ protected:
  /*** Holds a collection of active queries for each query pool. */
  typedef std::unordered_map<MVKQueryPool*, MVKSmallVector<uint32_t, kMVKDefaultQueryCount>> MVKActivatedQueries;
  
@@ -116,17 +116,21 @@ index 76ca788..c0ec512 100644
 +	kMVKLiveCounterTessRestarts,	/**< Metal render passes ended and started again for a tessellated draw. */
 +	kMVKLiveCounterTessSplits,		/**< MTLCommandBuffer pairs opened for tessellation compute. */
 +	kMVKLiveCounterAsyncSubmits,	/**< Queue submissions handed to the dispatch queue. */
++	kMVKLiveCounterFrames,			/**< Frames presented. */
 +	kMVKLiveCounterCount
 +} MVKLiveCounter;
 +
 +bool mvkLiveSwitch(MVKLiveSwitch sw);
 +void mvkLiveCount(MVKLiveCounter counter);
++/** Adds the time the GPU spent executing one MTLCommandBuffer, and notes why a tessellated draw could not run ahead (a bit mask). */
++void mvkLiveGPUTime(double seconds);
++void mvkLiveWhyNot(uint32_t reasonBits);
 +
 +
  /** 
   * MVKCommandEncoder uses a visitor design pattern iterate the commands in a MVKCommandBuffer, 
   * tracking and caching dynamic encoding state, and encoding the commands onto Metal MTLCommandBuffers.
-@@ -336,6 +363,26 @@ public:
+@@ -336,6 +367,26 @@ public:
  	/** Called by each graphics draw command to establish any outstanding state just prior to performing the draw. */
  	void finalizeDrawState(MVKGraphicsStage stage);
  
@@ -153,7 +157,7 @@ index 76ca788..c0ec512 100644
      /** Called by each compute dispatch command to establish any outstanding state just prior to performing the dispatch. */
      void finalizeDispatchState();
  
-@@ -400,7 +447,7 @@ public:
+@@ -400,7 +451,7 @@ public:
  	void prepareDraw() { _state.prepareDraw(_mtlRenderEncoder, *this); }
  
  	/** Prepares the Metal compute pipeline state to dispatch the given stage of the Vulkan render pipeline. */
@@ -162,7 +166,7 @@ index 76ca788..c0ec512 100644
  
  	/** Prepares the Metal compute pipeline state to dispatch the given stage of the Vulkan render pipeline. */
  	void prepareComputeDispatch() { _state.prepareComputeDispatch(_mtlComputeEncoder, *this); }
-@@ -518,6 +565,13 @@ public:
+@@ -518,6 +569,13 @@ public:
  protected:
      void addActivatedQueries(MVKQueryPool* pQueryPool, uint32_t query, uint32_t queryCount);
      void finishQueries();
@@ -177,10 +181,10 @@ index 76ca788..c0ec512 100644
  	void clearRenderArea(MVKCommandUse cmdUse);
  	bool hasMoreMultiviewPasses();
 diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
-index 8c24deb..e437abb 100644
+index 8c24deb..814c9b7 100644
 --- a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
 +++ b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
-@@ -26,6 +26,56 @@
+@@ -26,6 +26,64 @@
  #include "MVKCmdDraw.h"
  #include "MVKCmdRendering.h"
  #include <sys/mman.h>
@@ -196,6 +200,8 @@ index 8c24deb..e437abb 100644
 +static std::atomic<uint64_t> _mvkLiveNextCheck{0};
 +static std::atomic<uint64_t> _mvkLiveNextReport{0};
 +static std::atomic<uint32_t> _mvkLiveCounters[kMVKLiveCounterCount];
++static std::atomic<uint64_t> _mvkLiveGPUNanos{0};
++static std::atomic<uint32_t> _mvkLiveWhyNot{0};
 +
 +static void mvkLiveRefresh(uint64_t now) {
 +	static const char* names[kMVKLiveSwitchCount] = { "tess-prepass", "async-submit" };
@@ -218,10 +224,14 @@ index 8c24deb..e437abb 100644
 +	if (now >= report && _mvkLiveNextReport.compare_exchange_strong(report, now + 5000000000ull)) {
 +		uint32_t c[kMVKLiveCounterCount];
 +		for (uint32_t i = 0; i < kMVKLiveCounterCount; i++) { c[i] = _mvkLiveCounters[i].exchange(0, std::memory_order_relaxed); }
-+		if (c[kMVKLiveCounterTessDraws] || c[kMVKLiveCounterAsyncSubmits]) {
-+			fprintf(stderr, "[mvk-live] last 5 s: %u tessellated draws, %u render pass restarts for them, %u command buffer splits, %u async submits | tess-prepass %s, async-submit %s\n",
-+					c[kMVKLiveCounterTessDraws], c[kMVKLiveCounterTessRestarts], c[kMVKLiveCounterTessSplits], c[kMVKLiveCounterAsyncSubmits],
-+					(bits & (1u << kMVKLiveSwitchTessPrepass)) ? "on" : "off", (bits & (1u << kMVKLiveSwitchAsyncSubmit)) ? "on" : "off");
++		uint64_t gpuNanos = _mvkLiveGPUNanos.exchange(0, std::memory_order_relaxed);
++		uint32_t whyNot = _mvkLiveWhyNot.exchange(0, std::memory_order_relaxed);
++		uint32_t frames = c[kMVKLiveCounterFrames];
++		if (frames) {
++			fprintf(stderr, "[mvk-live] %u frames: gpu %.1f ms per frame | per frame %.1f tessellated draws, %.1f render pass restarts for them, %.1f command buffer splits, %.1f async submits | tess-prepass %s (why not: 0x%x), async-submit %s\n",
++					frames, gpuNanos / 1e6 / frames, (double)c[kMVKLiveCounterTessDraws] / frames, (double)c[kMVKLiveCounterTessRestarts] / frames,
++					(double)c[kMVKLiveCounterTessSplits] / frames, (double)c[kMVKLiveCounterAsyncSubmits] / frames,
++					(bits & (1u << kMVKLiveSwitchTessPrepass)) ? "on" : "off", whyNot, (bits & (1u << kMVKLiveSwitchAsyncSubmit)) ? "on" : "off");
 +		}
 +	}
 +}
@@ -234,10 +244,12 @@ index 8c24deb..e437abb 100644
 +}
 +
 +void mvkLiveCount(MVKLiveCounter counter) { _mvkLiveCounters[counter].fetch_add(1, std::memory_order_relaxed); }
++void mvkLiveGPUTime(double seconds) { if (seconds > 0) { _mvkLiveGPUNanos.fetch_add((uint64_t)(seconds * 1e9), std::memory_order_relaxed); } }
++void mvkLiveWhyNot(uint32_t reasonBits) { _mvkLiveWhyNot.fetch_or(reasonBits, std::memory_order_relaxed); }
  
  using namespace std;
  
-@@ -310,6 +360,7 @@
+@@ -310,6 +368,7 @@
  		clearPrefilledMTLCommandBuffer();
  	} else {
  		MVKCommandEncoder encoder(this);
@@ -245,7 +257,7 @@ index 8c24deb..e437abb 100644
  		encoder.encode(cmdBuffSubmit->getActiveMTLCommandBuffer(), pEncodingContext);
  	}
  
-@@ -464,6 +515,7 @@
+@@ -464,6 +523,7 @@
  
  void MVKCommandEncoder::endEncoding() {
  	endCurrentMetalEncoding();
@@ -253,7 +265,7 @@ index 8c24deb..e437abb 100644
  	finishQueries();
  }
  
-@@ -553,6 +605,7 @@
+@@ -553,6 +613,7 @@
  }
  
  void MVKCommandEncoder::beginNextSubpass(MVKCommand* subpassCmd, VkSubpassContents contents) {
@@ -261,7 +273,7 @@ index 8c24deb..e437abb 100644
  	if (hasMoreMultiviewPasses()) {
  		beginNextMultiviewPass();
  	} else {
-@@ -958,7 +1011,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+@@ -958,7 +1019,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
  }
  
  void MVKCommandEncoder::finalizeDrawState(MVKGraphicsStage stage) {
@@ -270,7 +282,7 @@ index 8c24deb..e437abb 100644
          // Must happen before switching encoders.
          encodeStoreActions(true);
      }
-@@ -966,11 +1019,90 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+@@ -966,11 +1027,94 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
  		prepareDraw();
  		_occlusionQueryState.encode(_mtlRenderEncoder, this);
  	} else {
@@ -294,9 +306,12 @@ index 8c24deb..e437abb 100644
 +bool MVKCommandEncoder::beginTessellatedDraw(bool canRunAhead) {
 +	mvkLiveCount(kMVKLiveCounterTessDraws);
 +	_isEncodingTessPrepass = false;
-+	if ( !(canRunAhead && _cmdBuffSubmit && mvkLiveSwitch(kMVKLiveSwitchTessPrepass)) ||
-+		isUsingMetalArgumentBuffers() || _cmdBuffer->_hasStageCounterTimestampCommand ||
-+		(getSubpass() && getSubpass()->isMultiview()) ) {
++	// Why not: 1 the draw depends on compute work of its own, 2 no queue submission (prefilling), 4 the switch is off,
++	// 8 Metal argument buffers are in use (their fences are per MTLCommandBuffer), 16 a multiview subpass.
++	uint32_t whyNot = (canRunAhead ? 0 : 1) | (_cmdBuffSubmit ? 0 : 2) | (mvkLiveSwitch(kMVKLiveSwitchTessPrepass) ? 0 : 4) |
++					  (isUsingMetalArgumentBuffers() ? 8 : 0) | ((getSubpass() && getSubpass()->isMultiview()) ? 16 : 0);
++	if (whyNot) {
++		mvkLiveWhyNot(whyNot);
 +		mvkLiveCount(kMVKLiveCounterTessRestarts);
 +		return false;
 +	}
@@ -304,6 +319,7 @@ index 8c24deb..e437abb 100644
 +		if (_mtlRenderEncoder) { encodeStoreActions(true); }
 +		endCurrentMetalEncoding();
 +		closeTessellationPrepass();
++		_stageCountersMTLFence = nil;		// it belongs to the MTLCommandBuffer about to be committed, which releases it
 +		_mtlTessCmdBuffer = _cmdBuffSubmit->beginPrepassMTLCommandBuffer();		// retained for us
 +		_mtlCmdBuffer = _cmdBuffSubmit->getActiveMTLCommandBuffer();			// not retained
 +		_cmdBuffer->setMetalObjectLabel(_mtlCmdBuffer, _cmdBuffer->_debugName);
@@ -362,7 +378,7 @@ index 8c24deb..e437abb 100644
  // Clears the render area of the framebuffer attachments.
  void MVKCommandEncoder::clearRenderArea(MVKCommandUse cmdUse) {
  
-@@ -1034,6 +1166,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+@@ -1034,6 +1178,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
  
  	encodeStoreActions();
  	endMetalRenderEncoding();
@@ -370,7 +386,7 @@ index 8c24deb..e437abb 100644
  	MVKRenderPass *renderPass = _pEncodingContext->getRenderPass();
  	if (renderPass) { renderPass->encodeSubpassDependencyBarriers(this, VK_SUBPASS_EXTERNAL); }
  	if ( !mvkIsAnyFlagEnabled(_pEncodingContext->getRenderingFlags(), VK_RENDERING_SUSPENDING_BIT) ) {
-@@ -1358,6 +1491,7 @@ static bool shouldStartNewEncoder(MVKCommandUse prev, MVKCommandUse next) {
+@@ -1358,6 +1503,7 @@ static bool shouldStartNewEncoder(MVKCommandUse prev, MVKCommandUse next) {
  }
  
  MVKCommandEncoder::~MVKCommandEncoder() {
@@ -418,7 +434,7 @@ index b18549c..99e1b52 100644
  	void finish() override;
  	virtual void submitCommandBuffers() {}
 diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
-index dec4b45..3ef2b40 100644
+index dec4b45..d4823e4 100644
 --- a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
 +++ b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
 @@ -84,7 +84,14 @@
@@ -437,6 +453,15 @@ index dec4b45..3ef2b40 100644
  		std::unique_lock lock(_execQueueMutex);
  		_execQueueJobCount++;
  
+@@ -178,7 +185,7 @@
+ 	addPerformanceInterval(getPerformanceStats().queue.retrieveMTLCommandBuffer, startTime);
+ 	NSString* mtlCmdBuffLabel = getMTLCommandBufferLabel(cmdUse);
+ 	setMetalObjectLabel(mtlCmdBuff, mtlCmdBuffLabel);
+-	[mtlCmdBuff addCompletedHandler: ^(id<MTLCommandBuffer> mtlCB) { handleMTLCommandBufferError(mtlCB); }];
++	[mtlCmdBuff addCompletedHandler: ^(id<MTLCommandBuffer> mtlCB) { mvkLiveGPUTime(mtlCB.GPUEndTime - mtlCB.GPUStartTime); handleMTLCommandBufferError(mtlCB); }];
+ 
+ 	if ( !mtlCmdBuff ) { reportError(VK_ERROR_OUT_OF_POOL_MEMORY, "%s could not be acquired.", mtlCmdBuffLabel.UTF8String); }
+ 	return mtlCmdBuff;
 @@ -300,9 +307,10 @@
  	_name = name;
  }
@@ -469,3 +494,11 @@ index dec4b45..3ef2b40 100644
  // Commits the current active MTLCommandBuffer, if it exists, and sets a new active MTLCommandBuffer.
  void MVKQueueCommandBufferSubmission::setActiveMTLCommandBuffer(id<MTLCommandBuffer> mtlCmdBuff) {
  
+@@ -713,6 +734,7 @@
+ // If the semaphores are not encodable, wait on them inline after presenting.
+ // The semaphores know what to do.
+ VkResult MVKQueuePresentSurfaceSubmission::execute() {
++	mvkLiveCount(kMVKLiveCounterFrames);
+ 	// MTLCommandBuffer retain references to avoid rare case where objects are destroyed too early.
+ 	// Although testing could not determine which objects were being lost, queue present MTLCommandBuffers
+ 	// are used only once per frame, and retain so few objects, that blanket retention is still performant.
