@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-A kit of fixes and scripts, published as research, for running Star Citizen offline and single-player on Macs with Apple silicon, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. On the one machine tested so far, a MacBook Pro 16-inch with an M4 Pro and 24 GB, it took the game from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view. The game was failing on memory, not on graphics speed, and the cause is one every Mac with Apple silicon shares: memory comes in 16 KB pages, and the game asks for it 4 KB at a time. This handbook says what the kit does, where its limits are, and [how to set it up](#-normal-procedures).
+A kit of fixes and scripts, published as research, for running Star Citizen offline and single-player on Macs with Apple silicon, through [CrossOver](https://www.codeweavers.com/crossover) and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. On the one machine tested so far, a MacBook Pro 16-inch with an M4 Pro and 24 GB, it took the game from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view. The game was failing on memory, not on graphics speed, and the cause is one every Mac with Apple silicon shares: memory comes in 16 KB pages, and the game asks for it 4 KB at a time. This handbook says what the kit does, where its limits are, and [how to set it up](#-normal-procedures).
 
 ## Notice
 
@@ -41,7 +41,7 @@ Power on, clearance from the tower, the door opens, lift-off, out over the city 
 | 1 | [General](#-general) | What is in the kit and where each part sits |
 | 2 | [Limitations](#-limitations) | Offline and research only, which Macs it applies to, what was tested, what is not verified |
 | 3 | [Emergency procedures](#-emergency-procedures) | The frame rate collapses, the menu ignores the mouse, the game dies while loading |
-| 4 | [Normal procedures](#-normal-procedures) | Setup from an empty bottle, starting the game, the first take-off |
+| 4 | [Normal procedures](#-normal-procedures) | Where to get the mod and CrossOver, setup from an empty bottle, starting the game, the first take-off |
 | 5 | [Performance](#-performance) | Frame rates by scene, with conditions, and what each fix gave |
 | 6 | [Weight and balance](#-weight-and-balance) | Where the memory goes, before and after |
 | 7 | [Systems](#-systems) | How each fix works, its log, how to remove it |
@@ -50,7 +50,7 @@ Power on, clearance from the tower, the door opens, lift-off, out over the city 
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-1-dark.svg"><img src="docs/assets/tab-1-light.svg" width="28" height="28" align="absmiddle" alt="Section 1."></picture> General
 
-The kit does not contain the game, CrossOver or the mod. You bring your own copies of those. The kit adds seven parts around them, each with a script that installs it and a way to take it out again.
+The kit does not contain the game, CrossOver or the mod. You bring your own copies of those; the official sources of the mod and CrossOver are listed in [Section 4](#before-you-start). The kit adds seven parts around them, each with a script that installs it and a way to take it out again.
 
 <p align="center">
   <picture>
@@ -201,6 +201,18 @@ brew install mingw-w64 vulkan-headers
 
 The memory line is the test machine's, not a tested minimum. What to expect with more or less is in [Section 6](#-weight-and-balance).
 
+The kit contains no copy of the mod, CrossOver or Wine. These are their official sources.
+
+| Item | Official source |
+|:--|:--|
+| sc-offline mod | [Release 0.7.7](https://github.com/scuba-sc/sc-offline/releases/tag/v0.7.7) of [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, on GitHub |
+| CrossOver | [CodeWeavers](https://www.codeweavers.com/crossover), its maker |
+| Wine | [WineHQ](https://www.winehq.org/), the project's home. CrossOver already contains it |
+
+Take `sc-offline-v0.7.7.zip` from the mod's release, not GitHub's source code archive. macfix is tied to that version ([Section 2](#-limitations)).
+
+CrossOver is a paid product with a free trial. Wine needs no download of its own: CrossOver contains its own build, that build is the one the kit patches, and CodeWeavers publishes [its source](https://www.codeweavers.com/crossover/source). Wine from WineHQ without CrossOver has not been tried, and the install scripts expect CrossOver in the Applications folder.
+
 ### The bottle and the game
 
 ```
@@ -225,7 +237,7 @@ boot_map .......................... PU
 Game path ........................ SET
 ```
 
-Unpack it to `C:\users\crossover\sc-offline` in the bottle. [`config/sc-offline.ini.example`](config/sc-offline.ini.example) shows the values used.
+Unpack `sc-offline-v0.7.7.zip` from [the mod's release](https://github.com/scuba-sc/sc-offline/releases/tag/v0.7.7) to `C:\users\crossover\sc-offline` in the bottle. [`config/sc-offline.ini.example`](config/sc-offline.ini.example) shows the values used.
 
 ### The graphics layer
 
@@ -572,7 +584,7 @@ The cover and figures are drawn by [`docs/assets/src/build.py`](docs/assets/src/
 
 GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one. The licence covers what was written for this repository. The game imagery in [`docs/media`](docs/media) is not ours to license. The [Notice](#notice) says why the work is published; it adds no condition to the licence.
 
-This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, and Wine as shipped in CrossOver by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
+This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, and [Wine](https://www.winehq.org/) as shipped in [CrossOver](https://www.codeweavers.com/crossover) by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
 
 ### Log of revisions
 
@@ -580,4 +592,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 |:--|:--|:--|
 | 1 | 9 November 2026 | First issue |
 | 2 | 9 November 2026 | Live settings, the upscaler and the `pretty` profile; a second MoltenVK patch that changed nothing measurable and is off by default |
-| 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only |
+| 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only. Official sources of the mod, CrossOver and Wine listed |
