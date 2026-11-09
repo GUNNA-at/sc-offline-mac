@@ -1235,3 +1235,28 @@
          thread cpu  53.1%  pri 36T  sys 1:39.40  user 36:43.22
 18:37:43 WORLD game mem/compressed: 27G 19G   | free 0.5GB swap 9781.12M compressor 33.8GB held in 4.9GB | cpu 672.9%
          gpu: busy 57% (tiler 18%, renderer 56%) | parameter buffer 97 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 14  compress 0  swapin 1  swapout 0  pagein 44
+         thread cpu  58.3%  pri 63R  sys 2:40.14  user 48:41.86
+         thread cpu  57.2%  pri 36T  sys 1:40.06  user 37:00.39
+         thread cpu  54.4%  pri 36T  sys 1:40.18  user 37:01.44
+         thread cpu  52.3%  pri 36T  sys 1:40.45  user 36:58.80
+         thread cpu  50.8%  pri 36T  sys 1:39.98  user 36:58.46
+         thread cpu  48.4%  pri 36T  sys 1:40.31  user 36:55.64
+18:38:17 WORLD game mem/compressed: 27G 19G   | free 0.5GB swap 9781.12M compressor 33.8GB held in 4.9GB | cpu 664.9%
+         gpu: busy 54% (tiler 17%, renderer 53%) | parameter buffer 97 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 28  compress 0  swapin 3  swapout 0  pagein 48
+         thread cpu  60.6%  pri 63R  sys 2:41.10  user 49:01.63
+         thread cpu  59.2%  pri 36T  sys 1:40.82  user 37:18.49
+         thread cpu  57.8%  pri 36T  sys 1:41.22  user 37:16.57
+         thread cpu  57.1%  pri 36T  sys 1:40.94  user 37:19.37
+         thread cpu  52.8%  pri 36T  sys 1:40.91  user 37:19.82
+         thread cpu  50.7%  pri 36T  sys 1:40.74  user 37:16.52
+18:38:51 WORLD game mem/compressed: 27G 19G   | free 0.3GB swap 9765.12M compressor 33.8GB held in 4.9GB | cpu 697.2%
+         gpu: busy 57% (tiler 17%, renderer 56%) | parameter buffer 103 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 84  compress 0  swapin 15  swapout 0  pagein 82
+         thread cpu  58.7%  pri 63R  sys 2:42.09  user 49:21.13
+         thread cpu  55.6%  pri 36T  sys 1:41.99  user 37:34.46
+         thread cpu  55.2%  pri 36T  sys 1:41.71  user 37:37.35
+         thread cpu  54.3%  pri 36T  sys 1:41.52  user 37:34.17
+         thread cpu  54.1%  pri 36T  sys 1:41.59  user 37:36.40
+         thread cpu  52.2%  pri 36T  sys 1:41.69  user 37:37.70

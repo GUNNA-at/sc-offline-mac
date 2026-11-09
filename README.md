@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac from 3 to 6 frames per second to 20 to 53 indoors and 16 to 25 with a city in view, offline and single-player, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. The game was failing on memory, not on graphics speed. This handbook says what the machine does, where its limits are, and [how to set it up](#normal-procedures).
+A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac from 3 to 6 frames per second to 20 to 53 indoors and 16 to 25 with a city in view, offline and single-player, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. The game was failing on memory, not on graphics speed. This handbook says what the machine does, where its limits are, and [how to set it up](#-normal-procedures).
 
 ## Performance specifications
 
@@ -19,7 +19,7 @@ A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac 
 | Take-off: clearance from the tower to hangar door open | about 12 seconds |
 | Network access of the game process | none: a macOS sandbox profile denies it |
 
-One machine, one evening: runs m21 to m23, 9 November 2026. Conditions are in [Section 5](#performance).
+One machine, one evening: runs m21 to m23, 9 November 2026. Conditions are in [Section 5](#-performance).
 
 <p align="center">
   <img src="docs/media/takeoff.webp" width="600" alt="An animated sequence from the pilot seat: the hangar door opens onto the city, the ship lifts off and flies out over it at night.">
@@ -33,15 +33,15 @@ Power on, clearance from the tower, the door opens, lift-off, out over the city 
 
 | No. | Section | You will find |
 |:-:|:--|:--|
-| 1 | [General](#general) | What is in the kit and where each part sits |
-| 2 | [Limitations](#limitations) | Offline only, the hardware and versions this was measured on, what is not verified |
-| 3 | [Emergency procedures](#emergency-procedures) | The frame rate collapses, the menu ignores the mouse, the game dies while loading |
-| 4 | [Normal procedures](#normal-procedures) | Setup from an empty bottle, starting the game, the first take-off |
-| 5 | [Performance](#performance) | Frame rates by scene, with conditions, and what each fix gave |
-| 6 | [Weight and balance](#weight-and-balance) | Where 24 GB goes, before and after |
-| 7 | [Systems](#systems) | How each fix works, its log, how to remove it |
-| 8 | [Handling, service and maintenance](#handling-service-and-maintenance) | After an update of CrossOver, the mod or the game |
-| 9 | [Supplements](#supplements) | Test tools, the lab notebook, licence, credits |
+| 1 | [General](#-general) | What is in the kit and where each part sits |
+| 2 | [Limitations](#-limitations) | Offline only, the hardware and versions this was measured on, what is not verified |
+| 3 | [Emergency procedures](#-emergency-procedures) | The frame rate collapses, the menu ignores the mouse, the game dies while loading |
+| 4 | [Normal procedures](#-normal-procedures) | Setup from an empty bottle, starting the game, the first take-off |
+| 5 | [Performance](#-performance) | Frame rates by scene, with conditions, and what each fix gave |
+| 6 | [Weight and balance](#-weight-and-balance) | Where 24 GB goes, before and after |
+| 7 | [Systems](#-systems) | How each fix works, its log, how to remove it |
+| 8 | [Handling, service and maintenance](#-handling-service-and-maintenance) | After an update of CrossOver, the mod or the game |
+| 9 | [Supplements](#-supplements) | Test tools, the lab notebook, licence, credits |
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-1-dark.svg"><img src="docs/assets/tab-1-light.svg" width="28" height="28" align="absmiddle" alt="Section 1."></picture> General
 
@@ -99,7 +99,7 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 **Version locks.**
 
 - macfix works by address inside the mod's `dinput8.dll` 0.7.7. On any other build it checks, logs that it found something else, and does nothing.
-- A CrossOver update replaces the patched `ntdll.so` and MoltenVK. Run the install scripts again ([Section 8](#handling-service-and-maintenance)).
+- A CrossOver update replaces the patched `ntdll.so` and MoltenVK. Run the install scripts again ([Section 8](#-handling-service-and-maintenance)).
 
 **Not verified.**
 
