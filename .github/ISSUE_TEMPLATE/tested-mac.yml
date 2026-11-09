@@ -1,0 +1,85 @@
+name: Report a tested configuration
+description: You ran the kit on a Mac. Say which one and what happened, whether it worked or not.
+title: "Tested: "
+labels: ["tested configuration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The handbook has one tested configuration so far: a MacBook Pro 16-inch, M4 Pro, 24 GB. Each report adds one. A failure is as useful as a success.
+
+        Offline operation only. Reports about the official servers are closed unread.
+
+        Logs carry your user name in their paths. Take it out before you paste.
+  - type: input
+    id: mac
+    attributes:
+      label: Mac
+      description: Model and year, as About This Mac names it.
+      placeholder: MacBook Pro 16-inch, 2024
+    validations:
+      required: true
+  - type: input
+    id: chip
+    attributes:
+      label: Chip
+      placeholder: M4 Pro
+    validations:
+      required: true
+  - type: input
+    id: memory
+    attributes:
+      label: Memory
+      placeholder: 24 GB
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS
+      placeholder: "26.2"
+    validations:
+      required: true
+  - type: input
+    id: crossover
+    attributes:
+      label: CrossOver
+      placeholder: "26.3"
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Game and mod
+      placeholder: LIVE 4.10.2, sc-offline 0.7.7
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - In the world and playable
+        - In the world, too slow to play
+        - Exits while loading
+        - Does not start
+        - Setup failed
+    validations:
+      required: true
+  - type: textarea
+    id: frames
+    attributes:
+      label: Frame rates
+      description: Scene, profile, and the reading of the game's own counter. Section 5 of the handbook lists the scenes measured so far.
+      placeholder: |
+        Spaceport hall, pretty profile: 47 to 56
+        Terrace outside the habs, night: 24 to 30
+  - type: textarea
+    id: swap
+    attributes:
+      label: Memory and swap
+      description: Swap used while playing (Activity Monitor, Memory tab), and the last lines of /private/tmp/sc-squeezer.log if the squeezer ran.
+  - type: textarea
+    id: notes
+    attributes:
+      label: What you changed, and anything else

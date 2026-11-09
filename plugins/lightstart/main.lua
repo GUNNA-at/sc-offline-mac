@@ -1,5 +1,5 @@
 -- lightstart: sc-offline Lua plugin for machines short on memory.
--- A landing zone such as Orison needs more memory than a 24 GB Mac has, and the frame rate collapses while its data is
+-- A landing zone such as Orison needs more memory than the 24 GB test Mac has, and the frame rate collapses while its data is
 -- touched every frame. This script waits until you are in the world, then uses the mod's own commands to put you in
 -- the pilot seat of a ship high over a moon: quantum.travel <place>, spawn.ship <class>, crew.sit pilot, crew.power_on.
 -- It counts as done when the game reports that you are aboard a ship, and tries again if the spawn sequence pulls you

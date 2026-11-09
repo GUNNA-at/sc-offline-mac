@@ -56,7 +56,11 @@ static void spoof(VkPhysicalDeviceProperties *p) {
     if (!getenv("MVKSHIM_KEEP_VENDOR")) { p->vendorID = 0x1002; p->deviceID = 0x66af; }
     p->deviceType = VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
     if (!getenv("MVKSHIM_KEEP_VENDOR")) p->driverVersion = (2u << 22) | (0u << 12) | 283u;   /* AMD-style 2.0.283 */
-    if (!getenv("MVKSHIM_KEEP_NAME")) snprintf(p->deviceName, sizeof(p->deviceName), "AMD Radeon VII (MoltenVK %u.%u on Apple M4 Pro)", VK_API_VERSION_MAJOR(p->apiVersion), VK_API_VERSION_MINOR(p->apiVersion));
+    if (!getenv("MVKSHIM_KEEP_NAME") && strncmp(p->deviceName, "AMD Radeon VII", 14)) {
+        char real[VK_MAX_PHYSICAL_DEVICE_NAME_SIZE];   /* the chip's own name as MoltenVK reports it, "Apple M4 Pro" on the test machine: kept in the new name so logs say what is really there */
+        snprintf(real, sizeof real, "%s", p->deviceName);
+        snprintf(p->deviceName, sizeof(p->deviceName), "AMD Radeon VII (MoltenVK %u.%u on %.180s)", VK_API_VERSION_MAJOR(p->apiVersion), VK_API_VERSION_MINOR(p->apiVersion), real);
+    }
 }
 
 static void VKAPI_CALL shim_gpdp(VkPhysicalDevice pd, VkPhysicalDeviceProperties *props) {

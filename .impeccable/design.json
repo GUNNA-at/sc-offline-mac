@@ -354,7 +354,7 @@
       {
         "name": "cover",
         "value": "880",
-        "purpose": "The cover plate (880 x 620) and the hatched rule (880 x 14)."
+        "purpose": "The cover plate (880 x 700) and the hatched rule (880 x 14)."
       },
       {
         "name": "figure",
@@ -459,14 +459,14 @@
       "refersTo": "placard",
       "description": "Solid ink box with one line of tracked bold capitals; used once, on the cover, for the standing rule. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
       "html": "<div class=\"ds-placard\">OFFLINE OPERATION ONLY</div>",
-      "css": ".ds-placard { width: 432px; height: 56px; line-height: 56px; background: #1f2328; color: #ffffff; font: 700 25px/56px Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-align: center; border-radius: 0; }"
+      "css": ".ds-placard { width: 466px; height: 56px; line-height: 56px; background: #1f2328; color: #ffffff; font: 700 25px/56px Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-align: center; border-radius: 0; }"
     },
     {
       "name": "Data plate",
       "kind": "custom",
       "refersTo": "cover-plate",
       "description": "Label, dot leader, value: Courier Bold label, Courier value on a shared left edge, rows 37 apart. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
-      "html": "<dl class=\"ds-plate\"><div class=\"ds-plate-row\"><dt>MACHINE</dt><i></i><dd>MacBook Pro 16-inch, M4 Pro</dd></div><div class=\"ds-plate-row\"><dt>MEMORY</dt><i></i><dd>24 GB</dd></div><div class=\"ds-plate-row\"><dt>CROSSOVER</dt><i></i><dd>26.3</dd></div></dl>",
+      "html": "<dl class=\"ds-plate\"><div class=\"ds-plate-row\"><dt>TESTED ON</dt><i></i><dd>MacBook Pro 16-inch, M4 Pro</dd></div><div class=\"ds-plate-row\"><dt>MEMORY</dt><i></i><dd>24 GB</dd></div><div class=\"ds-plate-row\"><dt>CROSSOVER</dt><i></i><dd>26.3</dd></div></dl>",
       "css": ".ds-plate { margin: 0; font: 24px/37px Courier, 'Courier New', monospace; color: #1f2328; } .ds-plate-row { display: flex; width: 180px; position: relative; white-space: nowrap; } .ds-plate-row dt { font-weight: 700; padding-right: 12px; } .ds-plate-row i { border-bottom: 1.5px dotted #59636e; height: 22px; flex: 1; } .ds-plate-row dd { position: absolute; left: 192px; margin: 0; }"
     },
     {
@@ -504,7 +504,7 @@
   ],
   "narrative": {
     "northStar": "The Pilot's Operating Handbook",
-    "overview": "The README is the operating handbook for one machine: a 24 GB Apple Silicon Mac flying Star Citizen offline. It documents that machine the way pilots document an aircraft, with a cover that carries a data plate, numbered sections on thumb tabs, limitations, emergency and normal procedures as challenge-and-response checklists, and performance figures that state their conditions. The light theme is the printed page, ink on paper. The dark theme is the instrument face, light markings on a dark ground.\n\nThe surface is github.com, so the system has exactly two layers. GitHub owns everything Markdown renders: the body face and its sizes, heading sizes and their rules, table borders and striping, code-block grounds and their monospace face, link colour, alert colours and icons, the column width and every breakpoint. None of those are tokens here and none may be overridden. The project owns the SVG figures in `docs/assets/`, drawn by `docs/assets/src/build.py`, and the conventions for how Markdown is written. Every token in this file is a value in that script; the figures' two palettes are GitHub's own light and dark page colours, so a figure sits on the page as if printed on it.\n\nLettering in figures is Helvetica and Courier converted to outlines, because an SVG shown through an image tag cannot load fonts. One image file serves desktop and phone, so lettering is sized for the phone: the cover is shown at about 0.41 of its drawn size there and a figure at 0.6, which puts the smallest lettering at about 10 px.",
+    "overview": "The README is an operating handbook written the way a real one is: for a type, and flight-tested on one airframe. The type is every Mac with Apple silicon flying Star Citizen offline; the airframe is the one machine it has run on, a MacBook Pro 16-inch with an M4 Pro and 24 GB. The line under the title names the type, the data plate names the airframe (TESTED ON), and every figure with numbers says whose numbers they are. It documents the machine the way pilots document an aircraft, with a cover that carries a data plate, numbered sections on thumb tabs, limitations, emergency and normal procedures as challenge-and-response checklists, and performance figures that state their conditions. The light theme is the printed page, ink on paper. The dark theme is the instrument face, light markings on a dark ground.\n\nThe surface is github.com, so the system has exactly two layers. GitHub owns everything Markdown renders: the body face and its sizes, heading sizes and their rules, table borders and striping, code-block grounds and their monospace face, link colour, alert colours and icons, the column width and every breakpoint. None of those are tokens here and none may be overridden. The project owns the SVG figures in `docs/assets/`, drawn by `docs/assets/src/build.py`, and the conventions for how Markdown is written. Every token in this file is a value in that script; the figures' two palettes are GitHub's own light and dark page colours, so a figure sits on the page as if printed on it.\n\nLettering in figures is Helvetica and Courier converted to outlines, because an SVG shown through an image tag cannot load fonts. One image file serves desktop and phone, so lettering is sized for the phone: the cover is shown at about 0.41 of its drawn size there and a figure at 0.6, which puts the smallest lettering at about 10 px.",
     "keyCharacteristics": [
       "Ink and paper, plus an instrument-marking code (green, yellow, red) that appears only where it encodes a measurement or a limit.",
       "Two faces with fixed jobs: Helvetica Bold capitals name things, Courier states data.",
@@ -516,7 +516,7 @@
     "rules": [
       {
         "name": "The Marking Code Rule",
-        "body": "Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: 24 GB INSTALLED). Everything else is ink on paper.",
+        "body": "Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: TEST MACHINE, 24 GB). Everything else is ink on paper.",
         "section": "colors"
       },
       {

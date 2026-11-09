@@ -1,6 +1,6 @@
 ---
 name: sc-offline-mac
-description: The operating handbook for one machine, a 24 GB Apple Silicon Mac flying Star Citizen offline; a README on github.com whose design lives in outlined SVG figures and Markdown conventions.
+description: The operating handbook for a type and the one airframe that has flown, Star Citizen offline on Macs with Apple silicon, tested on a 24 GB M4 Pro; a README on github.com whose design lives in outlined SVG figures and Markdown conventions.
 colors:
   ink: "#1f2328"
   paper: "#ffffff"
@@ -85,7 +85,7 @@ components:
     typography: "{typography.cover-title}"
     rounded: "{rounded.none}"
     width: "880px"
-    height: "620px"
+    height: "700px"
     padding: "40px"
   thumb-tab:
     backgroundColor: "{colors.ink}"
@@ -116,14 +116,14 @@ components:
     textColor: "{colors.paper}"
     typography: "{typography.placard}"
     rounded: "{rounded.none}"
-    width: "432px"
+    width: "466px"
     height: "56px"
   placard-dark:
     backgroundColor: "{colors.ink-dark}"
     textColor: "{colors.paper-dark}"
     typography: "{typography.placard}"
     rounded: "{rounded.none}"
-    width: "432px"
+    width: "466px"
     height: "56px"
   kit-part:
     backgroundColor: "{colors.ink}"
@@ -155,7 +155,7 @@ components:
 
 **Creative North Star: "The Pilot's Operating Handbook"**
 
-The README is the operating handbook for one machine: a 24 GB Apple Silicon Mac flying Star Citizen offline. It documents that machine the way pilots document an aircraft, with a cover that carries a data plate, numbered sections on thumb tabs, limitations, emergency and normal procedures as challenge-and-response checklists, and performance figures that state their conditions. The light theme is the printed page, ink on paper. The dark theme is the instrument face, light markings on a dark ground.
+The README is an operating handbook written the way a real one is: for a type, and flight-tested on one airframe. The type is every Mac with Apple silicon flying Star Citizen offline; the airframe is the one machine it has run on, a MacBook Pro 16-inch with an M4 Pro and 24 GB. The line under the title names the type, the data plate names the airframe (TESTED ON), and every figure with numbers says whose numbers they are. It documents the machine the way pilots document an aircraft, with a cover that carries a data plate, numbered sections on thumb tabs, limitations, emergency and normal procedures as challenge-and-response checklists, and performance figures that state their conditions. The light theme is the printed page, ink on paper. The dark theme is the instrument face, light markings on a dark ground.
 
 The surface is github.com, so the system has exactly two layers. GitHub owns everything Markdown renders: the body face and its sizes, heading sizes and their rules, table borders and striping, code-block grounds and their monospace face, link colour, alert colours and icons, the column width and every breakpoint. None of those are tokens here and none may be overridden. The project owns the SVG figures in `docs/assets/`, drawn by `docs/assets/src/build.py`, and the conventions for how Markdown is written. Every token in this file is a value in that script; the figures' two palettes are GitHub's own light and dark page colours, so a figure sits on the page as if printed on it.
 
@@ -178,7 +178,7 @@ Two palettes of the same eight roles, one per GitHub theme; each figure is built
 - **Paper** (`paper`, `paper-dark`): the ground, equal to GitHub's page colour in that theme. Also the lettering colour on any ink-filled shape, and the knock-out patch laid behind lettering that a line would otherwise cross.
 
 ### Secondary
-- **Limit Red** (`red`, `red-dark`): the limit. On the cover it is the span dimension labelled MEMORY 24 GB; in the loading graph it is the vertical red line at 24 GB and its label. Line weight 2.6 in the graph.
+- **Limit Red** (`red`, `red-dark`): the limit. On the cover it is the span dimension labelled MEMORY 24 GB, AS TESTED on a second line; in the loading graph it is the vertical red line at 24 GB and its label, which names the test machine because the line sits at whatever memory a Mac has installed. Line weight 2.6 in the graph.
 - **Emergency Red** (`tabred`, `tabred-dark`): the fill of the Section 3 thumb tab and of the hatched rule under that heading, nowhere else. In the light theme it is the same value as Limit Red; in the dark theme it is deeper, because it carries a white numeral (`emergency-numeral`) where Limit Red is drawn as thin lines and lettering on the dark ground.
 
 ### Tertiary
@@ -190,7 +190,7 @@ Two palettes of the same eight roles, one per GitHub theme; each figure is built
 - **Hairline** (`hair`, `hair-dark`): scale ticks behind bars and the rule that separates the as-found row, 1.5 wide.
 
 ### Named Rules
-**The Marking Code Rule.** Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: 24 GB INSTALLED). Everything else is ink on paper.
+**The Marking Code Rule.** Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: TEST MACHINE, 24 GB). Everything else is ink on paper.
 
 **The Two Reds Rule.** Limit Red marks a number the machine cannot exceed. Emergency Red marks Section 3 and only Section 3: its tab and the hatched rule under its heading. Neither is used for emphasis.
 
@@ -225,10 +225,10 @@ Two palettes of the same eight roles, one per GitHub theme; each figure is built
 
 The column, its width and its breakpoints belong to GitHub. Two measures are set by the project.
 
-- **The cover measure (880).** The cover is the title page and takes the full column, left-aligned in a plain paragraph, 880 by 620, inside a 2-wide ink frame with a 40 margin. The hatched rule shares this measure.
+- **The cover measure (880).** The cover is the title page and takes the full column, left-aligned in a plain paragraph, 880 by 700, inside a 2-wide ink frame with a 40 margin. The hatched rule shares this measure.
 - **The figure measure (600).** Every other figure and every photograph or recording is 600 wide, centred, with its caption centred beneath it after a line break. Drawn figures keep a 20 margin inside the measure; scales run from 20 to 580.
 
-Order of a page: the cover, one opening paragraph that links to Section 4, Performance specifications, the take-off sequence, the table of sections, then the nine sections. The two front-matter headings (Performance specifications, Sections) carry no tab; each of the nine section headings begins with its thumb tab.
+Order of a page: the cover, one opening paragraph that links to Section 4, the Notice, Performance specifications, the take-off sequence, the table of sections, then the nine sections. The three front-matter headings (Notice, Performance specifications, Sections) carry no tab; each of the nine section headings begins with its thumb tab.
 
 Within a figure: boxes are inset 18 from their frame, stacked boxes are 10 apart, a kit-part row is 38 high, a frame-rate row is 52, a loading-graph row is 96. A dot leader starts 12 after its label.
 
@@ -259,13 +259,13 @@ Arrowheads are solid triangles, a little over a third as wide as they are long, 
 No component is interactive; there are no hover or focus states to specify. Links are GitHub's.
 
 ### Cover plate
-The title page. Left: the name, OPERATING HANDBOOK, a two-line description, the data plate, the placard. Right: a front and a side line drawing of the machine with dimension lines, its span given as MEMORY 24 GB in Limit Red and its thickness as PAGE 16 KB. Bottom right: the issue and date in muted Courier. Placed with `<picture>` and a dark-scheme `<source>`, width 880, with an `alt` that reads the whole plate aloud.
+The title page. Left: the name, OPERATING HANDBOOK, a two-line description that names the type (Star Citizen, offline, on Macs with Apple silicon), the data plate of the machine tested, the two placards. Right: a front and a side line drawing of the machine tested with dimension lines, its span given as MEMORY 24 GB, AS TESTED in Limit Red and its thickness as PAGE 16 KB. The page is every Apple silicon Mac's; the memory is this machine's, and the label says so. Bottom right: the issue and date in muted Courier. Placed with `<picture>` and a dark-scheme `<source>`, width 880, with an `alt` that reads the whole plate aloud.
 
 ### Data plate
-Rows of label, dot leader, value: label in Courier Bold capitals, value in Courier, values aligned on one left edge (232 on the cover), rows 37 apart. The same construction in Markdown is the checklist line.
+Rows of label, dot leader, value: label in Courier Bold capitals, value in Courier, values aligned on one left edge (232 on the cover), rows 37 apart. On the cover the first row is TESTED ON and the plate describes the one machine every number was measured on, never the machines the kit is for. The same construction in Markdown is the checklist line.
 
 ### Placard
-A solid ink box with square corners, 432 by 56 on the cover, holding one line of bold tracked capitals in paper colour, centred. Used once, for OFFLINE OPERATION ONLY. It states a standing rule; it is not a badge.
+A solid ink box with square corners, 466 by 56 on the cover, holding one line of bold tracked capitals in paper colour, centred. Used twice, stacked 10 apart, one for each standing rule: OFFLINE OPERATION ONLY and RESEARCH AND STUDY ONLY. A placard states a standing rule; it is not a badge, and there is no third.
 
 ### Thumb tab
 A solid 32 square with the section number in Helvetica Bold 20, paper on ink. Section 3 is Emergency Red with a white numeral. Shown at 28 by 28 at the start of a second-level heading, vertically centred on the heading text, with the alt text "Section N." The tabs are not stepped down the page edge as printed tabs are: at 28 px a position among nine would not read.
@@ -290,6 +290,8 @@ A 34-high solid ink bar from zero, its reading in Courier Bold paper colour insi
 
 ### Notices
 GitHub alerts in GitHub's colours, three kinds only, each defined once in Section 1: CAUTION, ignoring this can break the installation or put the game online; WARNING, ignoring this costs time; NOTE, worth knowing, nothing breaks if skipped.
+
+The Notice in the front matter is not one of them. It is a short section of plain prose under its own heading, like the notice page of a printed information manual: why the work is published (research and education), that it is unofficial, that it holds no game files, that it runs offline. It states purpose and makes no claim of approval or compliance; the full statement is in Section 2.
 
 ## Do's and Don'ts
 

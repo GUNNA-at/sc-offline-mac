@@ -1,11 +1,15 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.svg">
-    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on a 24 GB Apple Silicon Mac. Machine: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Offline operation only. Issue 2, 9 November 2026. A line drawing of the laptop gives its span as memory, 24 GB, in red, and its thickness as one page, 16 KB.">
+    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 3, 9 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
   </picture>
 </p>
 
-A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view, offline and single-player, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. The game was failing on memory, not on graphics speed. This handbook says what the machine does, where its limits are, and [how to set it up](#-normal-procedures).
+A kit of fixes and scripts, published as research, for running Star Citizen offline and single-player on Macs with Apple silicon, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. On the one machine tested so far, a MacBook Pro 16-inch with an M4 Pro and 24 GB, it took the game from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view. The game was failing on memory, not on graphics speed, and the cause is one every Mac with Apple silicon shares: memory comes in 16 KB pages, and the game asks for it 4 KB at a time. This handbook says what the kit does, where its limits are, and [how to set it up](#-normal-procedures).
+
+## Notice
+
+This repository is published for research and education only: a study of why a large Windows program runs out of memory on Apple silicon, what fixes it, and the measurements that show it. It is an unofficial fan project and experimental, home-built work. It is not made, approved or supported by the Cloud Imperium group of companies or Roberts Space Industries. It contains no game files and does not provide the game: you need your own copy. It runs the game offline only, with the network denied to it. The full statement is in [Section 2](#-limitations).
 
 ## Performance specifications
 
@@ -20,7 +24,7 @@ A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac 
 | Take-off: clearance from the tower to hangar door open | about 12 seconds |
 | Network access of the game process | none: a macOS sandbox profile denies it |
 
-One machine, one evening: runs m21 to m26, 9 November 2026. Conditions are in [Section 5](#-performance).
+One machine, one evening: a MacBook Pro 16-inch with an M4 Pro and 24 GB, runs m21 to m26, 9 November 2026. No other Mac has been measured yet. Conditions are in [Section 5](#-performance).
 
 <p align="center">
   <img src="docs/media/takeoff.webp" width="600" alt="An animated sequence from the pilot seat: the hangar door opens onto the city, the ship lifts off and flies out over it at night.">
@@ -35,11 +39,11 @@ Power on, clearance from the tower, the door opens, lift-off, out over the city 
 | No. | Section | You will find |
 |:-:|:--|:--|
 | 1 | [General](#-general) | What is in the kit and where each part sits |
-| 2 | [Limitations](#-limitations) | Offline only, the hardware and versions this was measured on, what is not verified |
+| 2 | [Limitations](#-limitations) | Offline and research only, which Macs it applies to, what was tested, what is not verified |
 | 3 | [Emergency procedures](#-emergency-procedures) | The frame rate collapses, the menu ignores the mouse, the game dies while loading |
 | 4 | [Normal procedures](#-normal-procedures) | Setup from an empty bottle, starting the game, the first take-off |
 | 5 | [Performance](#-performance) | Frame rates by scene, with conditions, and what each fix gave |
-| 6 | [Weight and balance](#-weight-and-balance) | Where 24 GB goes, before and after |
+| 6 | [Weight and balance](#-weight-and-balance) | Where the memory goes, before and after |
 | 7 | [Systems](#-systems) | How each fix works, its log, how to remove it |
 | 8 | [Handling, service and maintenance](#-handling-service-and-maintenance) | After an update of CrossOver, the mod or the game |
 | 9 | [Supplements](#-supplements) | Test tools, the lab notebook, licence, credits |
@@ -82,11 +86,15 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 
 **Offline operation only.** The launcher runs the game inside a `sandbox-exec` profile that denies all network access to the game's process tree, and `./sc-offline-mac.sh nettest` proves it from inside Windows. Nothing here is meant for the official servers and nothing here has been used with them.
 
-**Your own copy.** The repository holds no game files, no CrossOver or Wine binaries and no copy of the mod. It is not affiliated with or endorsed by Cloud Imperium Games or Roberts Space Industries.
+**Research and study only.** The repository is published to document a problem and its fix: why a large Windows program runs out of memory on Apple silicon, what each change does about it, and the measurements, so that others can study, repeat or correct them. It is experimental, home-built work. Nothing here is for sale and nothing here asks for money. It comes with no warranty. If you run it, you do so at your own risk and under the agreements that bind you, the game's terms of service among them: read them first. Nothing in this handbook is legal advice.
 
-**One measured configuration.** Every number in this handbook comes from this machine. Nothing else has been tried.
+**Your own copy.** The repository holds no game files or assets, no CrossOver or Wine binaries and no copy of the mod. It does not provide the game: you need your own copy, installed with the publisher's launcher under your own account. This is an unofficial fan project. It is not affiliated with or endorsed by the Cloud Imperium group of companies or Roberts Space Industries. The screenshots and the take-off recording show the game, whose imagery belongs to its publisher (© Cloud Imperium Rights LLC and Cloud Imperium Rights Ltd.). They are shown without charge, as evidence for the measurements. If you hold rights in anything shown here and want it changed or removed, [open an issue](https://github.com/GUNNA-at/sc-offline-mac/issues).
 
-| Item | As measured |
+**For Macs with Apple silicon.** The fault this kit fixes comes from the 16 KB page, and every Mac with Apple silicon has it, MacBook or desktop, whichever chip is in it. Nothing in the scripts or the code is tied to one model. The kit has run on one machine only, so on every other Mac it is untested, and the memory installed decides how much of the game's load goes to swap ([Section 6](#-weight-and-balance)). Macs with Intel processors are outside its scope: their pages are 4 KB, the fault does not arise, and nothing here was tried on one. If you run the kit on another Mac, [report what you found](https://github.com/GUNNA-at/sc-offline-mac/issues/new?template=tested-mac.yml): each report becomes a tested configuration.
+
+**One tested configuration.** Every number in this handbook comes from the machine below. Nothing else has been tried.
+
+| Item | As tested |
 |:--|:--|
 | Machine | MacBook Pro 16-inch, M4 Pro, 24 GB |
 | macOS | 26.2 |
@@ -104,7 +112,7 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 
 **Not verified.**
 
-- Any other Mac. With less than 24 GB, expect it not to work. With more it should be easier; nobody has measured it.
+- Any other Mac. After the fixes the game still asks for 26 to 33 GB, so with less than 24 GB expect heavy paging or a failure to load, and with more it should be easier. Neither has been measured.
 - Landing, and returning to a hangar.
 - Sessions longer than a few hours.
 - More than one star system loaded (`boot_map = PU_All` carries 2.6 million entities instead of 1.6 million).
@@ -172,12 +180,13 @@ SHIP IS POWERED BUT DOES NOT MOVE
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-4-dark.svg"><img src="docs/assets/tab-4-light.svg" width="28" height="28" align="absmiddle" alt="Section 4."></picture> Normal procedures
 
-This is not a one-click installer. These are the steps that were done on the measured machine, in the order that works. Allow an evening, most of it the game download.
+This is not a one-click installer. These are the steps that were done on the test machine, in the order that works. Allow an evening, most of it the game download.
 
 ### Before you start
 
 ```
-Mac ............. APPLE SILICON, 24 GB
+Mac .................... APPLE SILICON
+Memory ............... 24 GB AS TESTED
 Free disk ..................... 200 GB
 CrossOver ....................... 26.3
 Xcode ...................... INSTALLED
@@ -189,6 +198,8 @@ sc-offline mod ................. 0.7.7
 ```bash
 brew install mingw-w64 vulkan-headers
 ```
+
+The memory line is the test machine's, not a tested minimum. What to expect with more or less is in [Section 6](#-weight-and-balance).
 
 ### The bottle and the game
 
@@ -260,14 +271,14 @@ Copy [`config/user.cfg.example`](config/user.cfg.example) to `LIVE\user.cfg`, th
 
 ```
 macfix ....................... INSTALL
-Cheats plugin .............. SWITCH ON
+Creative plugin ............ SWITCH ON
 ```
 
 ```bash
 macfix/install.sh
 ```
 
-The mod ships its cheats plugin (god mode, noclip) switched off, and the switch is in its Windows launcher. Deleting the file `data\plugins\creative\disabled` in the mod's folder is all that switch does.
+The mod ships its creative plugin (god mode, noclip) switched off, and the switch is in its Windows launcher. Deleting the file `data\plugins\creative\disabled` in the mod's folder is all that switch does.
 
 <p align="center">
   <img src="docs/media/mod-menu.jpg" width="600" alt="The mod's menu over the game, Player tab, with the God mode box ticked and the status line reading God mode on.">
@@ -319,13 +330,13 @@ Lift ................... SPACE, THEN W
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/fig-5-1-frame-rate-dark.svg">
-    <img src="docs/assets/fig-5-1-frame-rate-light.svg" width="600" alt="Figure 5-1. Frame rate by scene, in frames per second: spaceport hall 36 to 53, ship terminal screen 25 to 37, hab 20 to 35, hangar in the seat 25 to 29, hangar door open onto the city 21 to 25, flying over the city at night 18 to 21, terrace outside the habs at night 16 to 21. As found, any scene: 3 to 6. The target is 25 and above.">
+    <img src="docs/assets/fig-5-1-frame-rate-light.svg" width="600" alt="Figure 5-1. Frame rate by scene, measured on a MacBook Pro 16-inch, M4 Pro, 24 GB, in frames per second: spaceport hall 36 to 53, ship terminal screen 25 to 37, hab 20 to 35, hangar in the seat 25 to 29, hangar door open onto the city 21 to 25, flying over the city at night 18 to 21, terrace outside the habs at night 16 to 21. As found, any scene: 3 to 6. The target is 25 and above.">
   </picture>
   <br>
   Figure 5-1. Frame rate by scene, lean profile. Runs m21 to m23, 9 November 2026.
 </p>
 
-**Conditions.** Lean profile ([`profiles/lean.cfg`](profiles/lean.cfg)), 1728 x 1117, vertical sync off, Orison. Runs m21 to m23, 9 November 2026, read from the game's own counter.
+**Conditions.** MacBook Pro 16-inch, M4 Pro, 24 GB. Lean profile ([`profiles/lean.cfg`](profiles/lean.cfg)), 1728 x 1117, vertical sync off, Orison. Runs m21 to m23, 9 November 2026, read from the game's own counter.
 
 | Scene | FPS |
 |:--|:--|
@@ -380,15 +391,15 @@ With the city in view the same switch read 23 to 25 for `pretty` against 22 to 2
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-6-dark.svg"><img src="docs/assets/tab-6-light.svg" width="28" height="28" align="absmiddle" alt="Section 6."></picture> Weight and balance
 
-An aircraft handbook has a chapter on how much the machine may carry and where. For this machine the load is memory, and the limit is 24 GB.
+An aircraft handbook has a chapter on how much the machine may carry and where. For a Mac the load is memory, and the limit is what is installed: 24 GB in the machine tested.
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/fig-6-1-loading-dark.svg">
-    <img src="docs/assets/fig-6-1-loading-light.svg" width="600" alt="Figure 6-1. Loading graph. As found the game needed 44 to 59 GB of memory on a Mac that has 24, at 3 to 6 FPS. With winegrid and the patched MoltenVK it needs 26 to 33 GB, at 10 to 30 FPS. With the squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches again sits in swap, at 16 to 53 FPS.">
+    <img src="docs/assets/fig-6-1-loading-light.svg" width="600" alt="Figure 6-1. Loading graph of the test machine, which has 24 GB of memory. As found the game needed 44 to 59 GB, at 3 to 6 FPS. With winegrid and the patched MoltenVK it needs 26 to 33 GB, at 10 to 30 FPS. With the squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches again sits in swap, at 16 to 53 FPS.">
   </picture>
   <br>
-  Figure 6-1. Loading graph. Runs m10 to m23, 9 November 2026.
+  Figure 6-1. Loading graph of the test machine. Runs m10 to m23, 9 November 2026.
 </p>
 
 **Why it was overloaded.** Under Rosetta the game works in 4 KB pages; the Mac's memory comes in 16 KB pages. Wine commits memory the way Windows programs ask for it, and this game asks for its heap one 4 KB page at a time. Each of those pieces ended up as its own kernel object, rounded up to 16 KB. A million of them turned 21 GB of data into 35 to 50 GB of demand.
@@ -403,7 +414,9 @@ An aircraft handbook has a chapter on how much the machine may carry and where. 
 | Live, uncompressed data | 4.4 | 7.5 |
 | Page decompressions per second | 160,000 to 218,000 | under 1,000 |
 
-The game still needs 26 to 33 GB, more than the Mac has. About 14 GB of that is the offline mod running the whole star system's server-side state, which the game writes once and never reads again. The squeezer puts that part in swap, where it costs disk instead of memory.
+The game still needs 26 to 33 GB, more than the test machine has. About 14 GB of that is the offline mod running the whole star system's server-side state, which the game writes once and never reads again. The squeezer puts that part in swap, where it costs disk instead of memory.
+
+**Other Macs.** The 16 KB page is the same on every Mac with Apple silicon, so the waste is the same and so is the fix. What moves is the red line: it sits at the memory installed. The test machine carries 24 GB in memory and 10 to 13 GB in swap, 34 to 37 GB in all. By arithmetic alone, a Mac with 48 GB or more should hold all of that in memory, one with 32 or 36 GB nearly all, and one with 16 GB under half, where the game may be too slow to play or may not load. None of this has been measured: every number in this section is one machine's.
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-7-dark.svg"><img src="docs/assets/tab-7-light.svg" width="28" height="28" align="absmiddle" alt="Section 7."></picture> Systems
 
@@ -435,7 +448,7 @@ Remove: restore `system32\vulkan-1.dll.wine-fake` and delete the `vulkan-1` over
 
 ### The squeezer
 
-Under pressure macOS lets compressed memory fill about 60% of what is not wired before it writes any of it to swap. The game's never-touched data therefore sat in memory, compressed, while its live data went in and out of the compressor every frame. `winegrid/balloon` pins a few gigabytes for a few seconds; the kernel answers by moving its oldest compressed data to swap, and it stays there. `balloon auto` does this when compressed memory exceeds 5 GB and paging passes 10,000 decompressions per second.
+Under pressure macOS lets compressed memory fill about 60% of what is not wired before it writes any of it to swap. The game's never-touched data therefore sat in memory, compressed, while its live data went in and out of the compressor every frame. `winegrid/balloon` pins a few gigabytes for a few seconds; the kernel answers by moving its oldest compressed data to swap, and it stays there. `balloon auto` does this when compressed memory exceeds 5 GB and paging passes 10,000 decompressions per second. Both thresholds are constants in [`winegrid/balloon.c`](winegrid/balloon.c), chosen on the 24 GB test machine and not tuned for any other amount of memory.
 
 Log: `/private/tmp/sc-squeezer.log`. Off: `SC_NO_SQUEEZE=1 ./sc-offline-mac.sh play`.
 
@@ -557,9 +570,9 @@ The cover and figures are drawn by [`docs/assets/src/build.py`](docs/assets/src/
 
 ### Licence and credits
 
-GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one.
+GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one. The licence covers what was written for this repository. The game imagery in [`docs/media`](docs/media) is not ours to license. The [Notice](#notice) says why the work is published; it adds no condition to the licence.
 
-This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, and Wine as shipped in CrossOver by CodeWeavers. Star Citizen is a trademark of Cloud Imperium Games; this project has no connection to them.
+This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, and Wine as shipped in CrossOver by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
 
 ### Log of revisions
 
@@ -567,3 +580,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 |:--|:--|:--|
 | 1 | 9 November 2026 | First issue |
 | 2 | 9 November 2026 | Live settings, the upscaler and the `pretty` profile; a second MoltenVK patch that changed nothing measurable and is off by default |
+| 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only |

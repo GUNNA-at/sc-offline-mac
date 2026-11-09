@@ -129,32 +129,40 @@ class Doc:
 # ----------------------------------------------------------------------------------------------- the cover
 # Lettering sizes are chosen for a phone: the README column there is about 360 px wide, so an 880-wide cover is shown at
 # 0.41 of its size and a 600-wide figure at 0.6. Nothing below is smaller than 10 px after that.
-PLATE = [("MACHINE", "MacBook Pro 16-inch, M4 Pro"), ("MEMORY", "24 GB"), ("MACOS", "26.2"),
+# The handbook is written for the type, every Mac with Apple silicon, and says so in the line under the title. The plate
+# below it is the one airframe that has flown: the configuration every number in the handbook was measured on.
+PLATE = [("TESTED ON", "MacBook Pro 16-inch, M4 Pro"), ("MEMORY", "24 GB"), ("MACOS", "26.2"),
          ("CROSSOVER", "26.3"), ("GAME", "LIVE 4.10.2"), ("MOD", "sc-offline 0.7.7")]
+PLACARDS = ["OFFLINE OPERATION ONLY", "RESEARCH AND STUDY ONLY"]     # the two standing rules, one placard each
+ISSUE = "ISSUE 3, 9 NOV 2026"
 
 
 def cover(theme):
-    d = Doc(880, 620, theme, "sc-offline-mac operating handbook: Star Citizen, offline, on a 24 GB Apple Silicon Mac. "
-            "Measured on a MacBook Pro 16-inch M4 Pro with 24 GB, macOS 26.2, CrossOver 26.3, game LIVE 4.10.2, "
-            "mod sc-offline 0.7.7. Offline operation only.")
+    d = Doc(880, 700, theme, "sc-offline-mac operating handbook: Star Citizen, offline, on Macs with Apple silicon. "
+            "Tested on one machine so far: a MacBook Pro 16-inch, M4 Pro, with 24 GB, macOS 26.2, CrossOver 26.3, "
+            "game LIVE 4.10.2, mod sc-offline 0.7.7. Offline operation only. Research and study only.")
     t = d.t
     ink, red = t["ink"], t["red"]
-    d.rect(1, 1, 878, 618, stroke=ink, sw=2)
+    d.rect(1, 1, 878, 698, stroke=ink, sw=2)
     d.text(38, 116, "sc-offline-mac", HB, 74, track=-0.02)
     d.text(40, 160, "OPERATING HANDBOOK", HB, 25, track=0.12)
     d.text(40, 208, "Star Citizen, offline,", H, 27)
-    d.text(40, 242, "on a 24 GB Apple Silicon Mac", H, 27)
-    y = 312
+    d.text(40, 242, "on Macs with Apple silicon", H, 27)
+    y = 326
     for label, value in PLATE:
         w = d.text(40, y, label, CB, 24)
         d.text(232, y, value, C, 24)
         d.leader(40 + w + 12, 220, y - 7)
         y += 37
-    d.rect(40, 532, 432, 56, fill=ink)
-    d.text(40 + 216, 569, "OFFLINE OPERATION ONLY", HB, 25, fill=t["paper"], anchor="middle", track=0.08)
-    d.text(840, 568, "ISSUE 2, 9 NOV 2026", C, 24, fill=t["muted"], anchor="end")
+    y = 546
+    for words in PLACARDS:
+        d.rect(40, y, 466, 56, fill=ink)
+        d.text(40 + 233, y + 37, words, HB, 25, fill=t["paper"], anchor="middle", track=0.08)
+        y += 66
+    d.text(840, 648, ISSUE, C, 24, fill=t["muted"], anchor="end")
 
-    # three-view of the machine; its two dimensions are the two numbers the whole kit is about
+    # three-view of the machine tested; its two dimensions are the two numbers the whole kit is about. The page is the
+    # same on every Mac with Apple silicon; the memory is this machine's, and the label says so.
     ox = 566                                                                 # front view, lid open
     d.rect(ox + 22, 44, 232, 152, stroke=ink, sw=2, r=10)
     d.rect(ox + 29, 51, 218, 136, stroke=ink, sw=1, r=4)
@@ -167,7 +175,8 @@ def cover(theme):
     d.arrow(ox + 1, 232, "left", red, 10)
     d.arrow(ox + 275, 232, "right", red, 10)
     d.text(ox + 138, 262, "MEMORY 24 GB", CB, 24, fill=red, anchor="middle")
-    sx, sy = 700, 470                                                        # side view, with the page as its thickness
+    d.text(ox + 138, 288, "AS TESTED", CB, 24, fill=red, anchor="middle")
+    sx, sy = 700, 484                                                        # side view, with the page as its thickness
     d.rect(sx, sy, 126, 8, stroke=ink, sw=2, r=4)
     d.path(f"M{sx + 4} {sy + 1} L{sx - 24} {sy - 84}", stroke=ink, sw=7)
     d.path(f"M{sx + 4} {sy + 1} L{sx - 24} {sy - 84}", stroke=t["paper"], sw=3)
@@ -213,7 +222,7 @@ LAYERS = [  # (what you provide, its note, [(kit part, what it does)])
     ("ROSETTA 2", "the game sees 4 KB pages", []),
     ("MACOS", "16 KB pages, compressor, swap", [("squeezer", "moves cold data out to swap"),
                                                 ("sandbox", "no network for the game")]),
-    ("MACBOOK PRO", "M4 Pro, 24 GB", []),
+    ("MAC", "Apple silicon; tested on M4 Pro, 24 GB", []),
 ]
 
 
@@ -249,25 +258,29 @@ SCENES = [("Spaceport hall", 36, 53), ("Ship terminal screen", 25, 37), ("Hab", 
           ("Terrace outside the habs, night", 16, 21)]
 AS_FOUND = ("Any scene, as found", 3, 6)
 TARGET = 25   # the owner's minimum: the green arc starts here
+TEST_MACHINE = "MacBook Pro 16-inch, M4 Pro, 24 GB"      # the only machine measured so far; every figure with numbers names it
+CONDITIONS = [TEST_MACHINE, "Lean profile, 1728 x 1117, Orison", "Runs m21 to m23, 9 November 2026"]
 
 
 def performance(theme):
-    x0, x1, top, rh = 20, 580, 150, 52
+    x0, x1, rh = 20, 580, 52
+    key = 42 + 22 * len(CONDITIONS) + 26                 # baseline of the colour key, under the conditions
+    top = key + 38
     px = (x1 - x0) / 60
     rows = SCENES + [AS_FOUND]
     bottom = top + len(rows) * rh + 14
-    d = Doc(W, bottom + 72, theme, "Figure 5-1. Frame rate by scene, measured: " +
+    d = Doc(W, bottom + 72, theme, f"Figure 5-1. Frame rate by scene, measured on a {TEST_MACHINE}: " +
             "; ".join(f"{s} {a} to {b}" for s, a, b in rows) + " frames per second. The target is 25 and above.")
     t = d.t
     d.text(x0, 18, "CONDITIONS", HB, S, track=0.05)
-    d.text(x0, 42, "Lean profile, 1728 x 1117, Orison", C, S)
-    d.text(x0, 64, "Runs m21 to m23, 9 November 2026", C, S)
+    for i, line in enumerate(CONDITIONS):
+        d.text(x0, 42 + 22 * i, line, C, S)
     # the arc, straightened: yellow below the target, green from the target up
     tx = x0 + TARGET * px
-    d.text(x0, 112, "YELLOW: BELOW TARGET", CB, S, fill=t["yellowink"])
-    d.text(tx + 8, 112, "GREEN: 25 AND ABOVE", CB, S, fill=t["green"])
-    d.rect(x0, 122, TARGET * px, 9, fill=t["yellow"])
-    d.rect(tx, 122, (60 - TARGET) * px, 9, fill=t["green"])
+    d.text(x0, key, "YELLOW: BELOW TARGET", CB, S, fill=t["yellowink"])
+    d.text(tx + 8, key, "GREEN: 25 AND ABOVE", CB, S, fill=t["green"])
+    d.rect(x0, key + 10, TARGET * px, 9, fill=t["yellow"])
+    d.rect(tx, key + 10, (60 - TARGET) * px, 9, fill=t["green"])
     y = top
     for i, (scene, lo, hi) in enumerate(rows):
         found = i == len(rows) - 1
@@ -300,13 +313,14 @@ def performance(theme):
 def loading(theme):
     x0, x1, limit = 20, 580, 24
     px = (x1 - x0) / 60
-    d = Doc(W, 430, theme, "Figure 6-1. Loading graph. As found the game needed 44 to 59 GB of memory on a Mac that has 24, "
-            "at 3 to 6 frames per second. With winegrid and the patched MoltenVK it needs 26 to 33 GB, at 10 to 30. With the "
-            "squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches again sits in swap, at 16 to 53.")
+    d = Doc(W, 430, theme, "Figure 6-1. Loading graph for the test machine, a Mac with 24 GB installed. As found the game "
+            "needed 44 to 59 GB of memory, at 3 to 6 frames per second. With winegrid and the patched MoltenVK it needs 26 to "
+            "33 GB, at 10 to 30. With the squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches "
+            "again sits in swap, at 16 to 53.")
     t = d.t
     lx, base = x0 + limit * px, 356
-    d.line(lx, 34, lx, base, t["red"], 2.6)            # the red line: what is installed
-    d.text(lx + 10, 24, "RED LINE: 24 GB INSTALLED", CB, S, fill=t["red"])
+    d.line(lx, 34, lx, base, t["red"], 2.6)            # the red line: what is installed in the machine tested
+    d.text(lx + 10, 24, "RED LINE: TEST MACHINE, 24 GB", CB, S, fill=t["red"])
     rows = [("AS FOUND", "3 to 6 FPS", 44, 59, "range", "needs 44 to 59 GB", None),
             ("WASTE REMOVED", "10 to 30 FPS", 26, 33, "range", "needs 26 to 33 GB", None),
             ("COLD DATA MOVED TO SWAP", "16 to 53 FPS", 24, 35.5, "swap", "24 GB in memory", "10 to 13 GB in swap")]
