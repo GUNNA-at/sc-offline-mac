@@ -1296,3 +1296,111 @@
          thread cpu  54.8%  pri 36T  sys 1:44.57  user 38:45.10
          thread cpu  51.9%  pri 36T  sys 1:45.05  user 38:45.64
          thread cpu  49.1%  pri 36T  sys 1:44.66  user 38:47.09
+18:41:41 WORLD game mem/compressed: 27G 19G   | free 0.3GB swap 9749.12M compressor 34.3GB held in 5.2GB | cpu 678.3%
+         gpu: busy 54% (tiler 17%, renderer 53%) | parameter buffer 100 MB | split scenes 0 | gpu memory in use 4.2 GB of 8.1 GB allocated
+         paging/s: decompress 37  compress 0  swapin 4  swapout 0  pagein 126
+         thread cpu  64.0%  pri 63R  sys 2:46.90  user 50:59.86
+         thread cpu  58.5%  pri 36T  sys 1:45.50  user 39:06.39
+         thread cpu  57.3%  pri 36T  sys 1:45.33  user 39:02.68
+         thread cpu  56.6%  pri 36T  sys 1:45.54  user 39:06.35
+         thread cpu  55.9%  pri 36T  sys 1:45.81  user 39:03.29
+         thread cpu  55.7%  pri 36T  sys 1:45.66  user 39:00.68
+18:42:15 WORLD game mem/compressed: 27G 19G   | free 0.4GB swap 9749.12M compressor 34.2GB held in 5.2GB | cpu 641.6%
+         gpu: busy 55% (tiler 17%, renderer 53%) | parameter buffer 100 MB | split scenes 0 | gpu memory in use 4.2 GB of 7.9 GB allocated
+         paging/s: decompress 62  compress 0  swapin 2  swapout 0  pagein 7
+         thread cpu  46.9%  pri 63R  sys 2:47.87  user 51:20.04
+         thread cpu  42.3%  pri 36T  sys 1:46.57  user 39:21.19
+         thread cpu  41.1%  pri 36T  sys 1:46.08  user 39:20.59
+         thread cpu  40.6%  pri 36T  sys 1:46.41  user 39:18.98
+         thread cpu  39.6%  pri 36T  sys 1:46.26  user 39:24.37
+         thread cpu  39.6%  pri 36T  sys 1:46.17  user 39:22.51
+18:42:49 WORLD game mem/compressed: 27G 19G   | free 0.6GB swap 9749.12M compressor 34.2GB held in 5.2GB | cpu 663.5%
+         gpu: busy 55% (tiler 17%, renderer 54%) | parameter buffer 96 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 43  compress 0  swapin 0  swapout 0  pagein 237
+         thread cpu  60.6%  pri 36T  sys 1:47.32  user 39:39.31
+         thread cpu  59.5%  pri 63R  sys 2:48.85  user 51:40.03
+         thread cpu  56.7%  pri 36T  sys 1:46.84  user 39:38.60
+         thread cpu  54.0%  pri 36T  sys 1:47.17  user 39:37.01
+         thread cpu  53.3%  pri 36T  sys 1:47.02  user 39:42.29
+         thread cpu  50.5%  pri 36T  sys 1:46.93  user 39:40.76
+18:43:24 WORLD game mem/compressed: 27G 19G   | free 0.3GB swap 9749.12M compressor 34.2GB held in 5.2GB | cpu 646.8%
+         gpu: busy 54% (tiler 17%, renderer 52%) | parameter buffer 96 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 18  compress 0  swapin 1  swapout 0  pagein 182
+         thread cpu  60.6%  pri 63R  sys 2:49.81  user 52:00.07
+         thread cpu  55.8%  pri 36T  sys 1:47.80  user 39:59.74
+         thread cpu  55.7%  pri 36T  sys 1:47.59  user 39:56.75
+         thread cpu  53.5%  pri 36T  sys 1:47.76  user 40:00.49
+         thread cpu  53.0%  pri 36T  sys 1:47.92  user 39:54.95
+         thread cpu  51.6%  pri 36T  sys 1:48.07  user 39:57.48
+18:43:58 WORLD game mem/compressed: 27G 19G   | free 0.3GB swap 9749.12M compressor 34.2GB held in 5.1GB | cpu 654.3%
+         gpu: busy 55% (tiler 18%, renderer 54%) | parameter buffer 96 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 41  compress 0  swapin 0  swapout 0  pagein 5
+         thread cpu  61.6%  pri 63R  sys 2:50.75  user 52:20.30
+         thread cpu  56.2%  pri 36T  sys 1:48.65  user 40:12.84
+         thread cpu  55.8%  pri 36T  sys 1:48.41  user 40:16.86
+         thread cpu  54.8%  pri 36T  sys 1:48.55  user 40:17.58
+         thread cpu  51.5%  pri 36T  sys 1:48.81  user 40:15.40
+         thread cpu  51.2%  pri 36T  sys 1:48.50  user 40:18.37
+18:44:32 WORLD game mem/compressed: 27G 19G   | free 0.2GB swap 9749.12M compressor 34.1GB held in 5.1GB | cpu 736.7%
+         gpu: busy 64% (tiler 18%, renderer 61%) | parameter buffer 93 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.8 GB allocated
+         paging/s: decompress 99  compress 0  swapin 6  swapout 0  pagein 113
+         thread cpu  63.0%  pri 63R  sys 2:51.66  user 52:39.86
+         thread cpu  60.3%  pri 36T  sys 1:49.47  user 40:30.47
+         thread cpu  60.1%  pri 36T  sys 1:49.07  user 40:31.86
+         thread cpu  56.5%  pri 36T  sys 1:49.17  user 40:33.47
+         thread cpu  52.2%  pri 36T  sys 1:48.98  user 40:29.61
+         thread cpu  51.4%  pri 36T  sys 1:49.32  user 40:27.69
+18:45:06 WORLD game mem/compressed: 27G 19G   | free 0.1GB swap 9749.12M compressor 34.1GB held in 5.1GB | cpu 666.5%
+         gpu: busy 61% (tiler 20%, renderer 60%) | parameter buffer 93 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.7 GB allocated
+         paging/s: decompress 38  compress 0  swapin 1  swapout 0  pagein 394
+         thread cpu  58.9%  pri 63R  sys 2:52.65  user 53:00.71
+         thread cpu  57.3%  pri 36T  sys 1:49.93  user 40:50.90
+         thread cpu  55.8%  pri 36T  sys 1:49.89  user 40:51.71
+         thread cpu  53.4%  pri 36T  sys 1:49.71  user 40:47.35
+         thread cpu  50.8%  pri 36T  sys 1:50.19  user 40:48.47
+         thread cpu  50.8%  pri 36T  sys 1:50.04  user 40:45.77
+18:45:40 WORLD game mem/compressed: 27G 19G   | free 0.2GB swap 9741.12M compressor 34.1GB held in 5.1GB | cpu 658.5%
+         gpu: busy 55% (tiler 20%, renderer 54%) | parameter buffer 89 MB | split scenes 0 | gpu memory in use 4.0 GB of 7.7 GB allocated
+         paging/s: decompress 62  compress 0  swapin 13  swapout 0  pagein 9
+         thread cpu  61.9%  pri 63R  sys 2:53.62  user 53:21.09
+         thread cpu  57.7%  pri 36T  sys 1:50.42  user 41:05.52
+         thread cpu  57.1%  pri 36T  sys 1:50.75  user 41:03.96
+         thread cpu  55.5%  pri 36T  sys 1:50.65  user 41:09.20
+         thread cpu  53.8%  pri 36T  sys 1:50.49  user 41:08.52
+         thread cpu  52.3%  pri 36T  sys 1:50.90  user 41:06.63
+18:46:14 WORLD game mem/compressed: 28G 19G   | free 0.1GB swap 9669.12M compressor 34.1GB held in 5.1GB | cpu 898.7%
+         gpu: busy 59% (tiler 25%, renderer 57%) | parameter buffer 89 MB | split scenes 0 | gpu memory in use 4.1 GB of 8.1 GB allocated
+         paging/s: decompress 1041  compress 1740  swapin 146  swapout 0  pagein 404
+         thread cpu  70.9%  pri 63R  sys 2:54.60  user 53:41.30
+         thread cpu  64.0%  pri 36T  sys 1:51.52  user 41:20.94
+         thread cpu  61.8%  pri 36T  sys 1:51.18  user 41:22.72
+         thread cpu  57.9%  pri 36T  sys 1:51.66  user 41:23.76
+         thread cpu  55.9%  pri 36T  sys 1:51.36  user 41:26.97
+         thread cpu  52.8%  pri 36T  sys 1:51.41  user 41:26.16
+18:46:47 WORLD game mem/compressed: 28G 19G   | free 0.2GB swap 9605.12M compressor 34.3GB held in 5.3GB | cpu 717.2%
+         gpu: busy 51% (tiler 17%, renderer 50%) | parameter buffer 89 MB | split scenes 0 | gpu memory in use 4.0 GB of 8.0 GB allocated
+         paging/s: decompress 765  compress 615  swapin 64  swapout 0  pagein 131
+         thread cpu  62.2%  pri 63R  sys 2:55.79  user 54:04.38
+         thread cpu  59.5%  pri 36T  sys 1:52.28  user 41:44.02
+         thread cpu  59.3%  pri 36T  sys 1:52.53  user 41:41.64
+         thread cpu  56.2%  pri 36T  sys 1:52.23  user 41:44.94
+         thread cpu  55.0%  pri 36T  sys 1:52.24  user 41:43.68
+         thread cpu  50.3%  pri 36T  sys 1:52.06  user 41:40.72
+18:47:21 WORLD game mem/compressed: 28G 19G   | free 0.2GB swap 9605.12M compressor 34.3GB held in 5.2GB | cpu 694.1%
+         gpu: busy 34% (tiler 12%, renderer 33%) | parameter buffer 89 MB | split scenes 0 | gpu memory in use 4.0 GB of 8.0 GB allocated
+         paging/s: decompress 92  compress 0  swapin 0  swapout 0  pagein 5
+         thread cpu  65.5%  pri 63R  sys 2:56.75  user 54:25.20
+         thread cpu  58.0%  pri 36T  sys 1:52.77  user 41:59.07
+         thread cpu  57.1%  pri 36T  sys 1:52.94  user 42:03.28
+         thread cpu  55.8%  pri 36T  sys 1:53.10  user 41:57.35
+         thread cpu  53.7%  pri 36T  sys 1:53.00  user 42:02.43
+         thread cpu  51.8%  pri 36T  sys 1:52.96  user 42:02.12
+18:47:56 WORLD game mem/compressed: 28G 19G   | free 0.1GB swap 9605.12M compressor 34.2GB held in 5.2GB | cpu 687.9%
+         gpu: busy 36% (tiler 12%, renderer 35%) | parameter buffer 89 MB | split scenes 0 | gpu memory in use 4.1 GB of 8.1 GB allocated
+         paging/s: decompress 102  compress 3  swapin 0  swapout 0  pagein 9
+         thread cpu  59.7%  pri 36T  sys 1:53.82  user 42:15.46
+         thread cpu  58.4%  pri 63R  sys 2:57.71  user 54:46.45
+         thread cpu  55.3%  pri 36T  sys 1:53.65  user 42:21.66
+         thread cpu  52.2%  pri 36T  sys 1:53.96  user 42:18.31
+         thread cpu  50.5%  pri 36T  sys 1:53.71  user 42:20.49
+         thread cpu  49.0%  pri 36T  sys 1:53.67  user 42:20.65

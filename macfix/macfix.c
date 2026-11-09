@@ -36,6 +36,8 @@
  *   "!find <entity name>" (is that game object loaded), "!goto <entity name> [metres above]" (teleport to it; the mod's
  *   own Travel tab does the same for names in locations.txt), "!seats <ship>", "!sit <ship> [seat words]" (the pilot's
  *   seat by default; the mod's crew.sit needs you aboard already), "!power <ship>", "!tp <zone entity> x y z".
+ *   For trying settings in a running game: "!cvar <name>" reads a console variable of the game, "!cvar <name> <number>"
+ *   sets it, "!exec <line>" runs a line on the game's console (through the console object the mod found; no whitelist).
  *
  * Every address below belongs to one build of the mod's dinput8.dll (0.7.7, PE timestamp 0x6acc0bc4, image size
  * 0xe75000, sha256 d6d43463...). The build and three code sites are checked at start; on any mismatch nothing is touched.
@@ -62,6 +64,7 @@
 #define RVA_FIND_ENTITY       0x00D540 /* spawner.cpp bool FindEntityByNameEx(const char* name, uintptr_t& entity, uint64_t& id) */
 #define RVA_TELEPORT_ENTITY   0x00A300 /* teleport.cpp const char* TeleportToEntity(uint64_t entityId, double up): NULL = done */
 #define RVA_TELEPORT_ZONE     0x00B0B0 /* teleport.cpp const char* TeleportIntoZone(uintptr_t zone, const double local[3]) */
+#define RVA_CONSOLE           0x7D4FC0 /* cvars.cpp g_console: where the game keeps its console object (a pointer to that pointer) */
 #define VSLOT_ENTITY_ZONE     0x6E0    /* entity vtable: the zone this entity is (0 = it is not a zone), as travel.cpp uses it */
 #define CTX_FRAMECOUNT        0x004    /* ImGuiContext::FrameCount */
 #define CTX_MOUSEDRAWCURSOR   0x078    /* ImGuiContext::IO.MouseDrawCursor */
@@ -558,6 +561,35 @@ static void run_own_command(struct cmdline *c) {
         mlog("[cmd] !pose -> zone %s (0x%llX) pos %.2f %.2f %.2f yaw %.0f", name, (unsigned long long)zone, pos[0], pos[1], pos[2], yaw);
         return;
     }
+    if (!strcmp(c->text, "!cvar") || !strcmp(c->text, "!exec")) {
+        /* "!cvar <name>" reads one of the game's console variables, "!cvar <name> <number>" sets it, "!exec <line>" runs a
+           line on the game's console. They go through the console object the mod found for its own use (cvars.cpp), so the
+           user.cfg whitelist is not in the way and a setting can be tried in a running game. The slots in the console's and
+           the variable's tables are the mod's: find a variable 0xC0, run a line 0x130; read as float 0x20, set a float 0x38. */
+        uintptr_t slot = 0, con = 0, vt = 0, fn = 0;
+        if (!g_mod || !arg || !*arg) { mlog("[cmd] %s -> needs a variable name or a console line", c->shown); return; }
+        if (!rd(g_mod + RVA_CONSOLE, &slot, sizeof slot) || !slot || !rd((const void *)slot, &con, sizeof con) || !con ||
+            !rd((const void *)con, &vt, sizeof vt) || !vt) { mlog("[cmd] %s -> the game's console is not there yet", c->shown); return; }
+        if (!strcmp(c->text, "!exec")) {
+            if (!rd((const void *)(vt + 0x130), &fn, sizeof fn) || !fn) { mlog("[cmd] %s -> could not read the console", c->shown); return; }
+            ((void (*)(uintptr_t, const char *, int, int, void *))fn)(con, arg, 0, 0, NULL);
+            mlog("[cmd] !exec %s -> sent to the game's console", arg);
+            return;
+        }
+        char *val = strchr(arg, ' ');
+        if (val) { *val++ = 0; while (*val == ' ') val++; }
+        uintptr_t cvar = 0, cvt = 0, getf = 0, setf = 0;
+        if (!rd((const void *)(vt + 0xC0), &fn, sizeof fn) || !fn) { mlog("[cmd] %s -> could not read the console", c->shown); return; }
+        cvar = ((uintptr_t (*)(uintptr_t, const char *))fn)(con, arg);
+        if (!cvar || !rd((const void *)cvar, &cvt, sizeof cvt) || !rd((const void *)(cvt + 0x20), &getf, sizeof getf) ||
+            !rd((const void *)(cvt + 0x38), &setf, sizeof setf) || !getf || !setf) { mlog("[cmd] !cvar %s -> no such variable", arg); return; }
+        const float before = ((float (*)(uintptr_t))getf)(cvar);
+        if (val && *val) {
+            ((void (*)(uintptr_t, float))setf)(cvar, (float)strtod(val, NULL));
+            mlog("[cmd] !cvar %s %s -> was %g, now %g", arg, val, before, ((float (*)(uintptr_t))getf)(cvar));
+        } else mlog("[cmd] !cvar %s -> %g", arg, before);
+        return;
+    }
     if (!g_mod || !arg || !*arg) { mlog("[cmd] %s -> needs an entity name", c->shown); return; }
     if (!strcmp(c->text, "!tp")) {
         /* "!tp <zone entity name> x y z": put you at that position of that zone (Spaceport_interior -3.44 55.61 0.05). */
@@ -643,7 +675,7 @@ static void run_own_command(struct cmdline *c) {
         mlog("[cmd] %s -> %s (id %llu, %.1f m above)", c->shown, err ? err : "teleported", (unsigned long long)id, up);
         return;
     }
-    mlog("[cmd] %s -> unknown (own commands: !pose, !find <name>, !goto <name> [up], !seats <ship>, !sit <ship> [seat], !power <ship>, !tp <zone> x y z)", c->shown);
+    mlog("[cmd] %s -> unknown (own commands: !pose, !find <name>, !goto <name> [up], !seats <ship>, !sit <ship> [seat], !power <ship>, !tp <zone> x y z, !cvar <name> [value], !exec <console line>)", c->shown);
 }
 
 /* On the game thread. */

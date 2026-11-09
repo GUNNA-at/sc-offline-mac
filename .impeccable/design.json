@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T17:46:01Z",
+  "title": "Design System: sc-offline-mac",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#1f2328",
+        "oklch": "oklch(25.4% 0.011 254)",
+        "tonalRamp": [
+          "oklch(15% 0.011 254)",
+          "oklch(27% 0.011 254)",
+          "oklch(38% 0.011 254)",
+          "oklch(50% 0.011 254)",
+          "oklch(62% 0.011 254)",
+          "oklch(73% 0.011 254)",
+          "oklch(84% 0.011 254)",
+          "oklch(95% 0.011 254)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(27% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(50% 0.000 90)",
+          "oklch(62% 0.000 90)",
+          "oklch(73% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#59636e",
+        "oklch": "oklch(49.5% 0.022 251)",
+        "tonalRamp": [
+          "oklch(15% 0.022 251)",
+          "oklch(27% 0.022 251)",
+          "oklch(38% 0.022 251)",
+          "oklch(50% 0.022 251)",
+          "oklch(62% 0.022 251)",
+          "oklch(73% 0.022 251)",
+          "oklch(84% 0.022 251)",
+          "oklch(95% 0.022 251)"
+        ]
+      },
+      "hair": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d1d9e0",
+        "oklch": "oklch(88.1% 0.013 244)",
+        "tonalRamp": [
+          "oklch(15% 0.013 244)",
+          "oklch(27% 0.013 244)",
+          "oklch(38% 0.013 244)",
+          "oklch(50% 0.013 244)",
+          "oklch(62% 0.013 244)",
+          "oklch(73% 0.013 244)",
+          "oklch(84% 0.013 244)",
+          "oklch(95% 0.013 244)"
+        ]
+      },
+      "green": {
+        "role": "tertiary",
+        "displayName": "Normal-range Green",
+        "canonical": "#1a7f37",
+        "oklch": "oklch(52.4% 0.140 148)",
+        "tonalRamp": [
+          "oklch(15% 0.048 148)",
+          "oklch(27% 0.080 148)",
+          "oklch(38% 0.108 148)",
+          "oklch(50% 0.140 148)",
+          "oklch(62% 0.140 148)",
+          "oklch(73% 0.140 148)",
+          "oklch(84% 0.140 148)",
+          "oklch(95% 0.084 148)"
+        ]
+      },
+      "yellow": {
+        "role": "tertiary",
+        "displayName": "Caution Yellow",
+        "canonical": "#bf8700",
+        "oklch": "oklch(66.2% 0.137 79)",
+        "tonalRamp": [
+          "oklch(15% 0.037 79)",
+          "oklch(27% 0.057 79)",
+          "oklch(38% 0.077 79)",
+          "oklch(50% 0.101 79)",
+          "oklch(62% 0.125 79)",
+          "oklch(73% 0.137 79)",
+          "oklch(84% 0.137 79)",
+          "oklch(95% 0.041 79)"
+        ]
+      },
+      "red": {
+        "role": "secondary",
+        "displayName": "Limit Red",
+        "canonical": "#cf222e",
+        "oklch": "oklch(55.2% 0.205 25)",
+        "tonalRamp": [
+          "oklch(15% 0.065 25)",
+          "oklch(27% 0.109 25)",
+          "oklch(38% 0.153 25)",
+          "oklch(50% 0.201 25)",
+          "oklch(62% 0.205 25)",
+          "oklch(73% 0.165 25)",
+          "oklch(84% 0.085 25)",
+          "oklch(95% 0.021 25)"
+        ]
+      },
+      "tabred": {
+        "role": "secondary",
+        "displayName": "Emergency Red",
+        "canonical": "#cf222e",
+        "oklch": "oklch(55.2% 0.205 25)",
+        "tonalRamp": [
+          "oklch(15% 0.065 25)",
+          "oklch(27% 0.109 25)",
+          "oklch(38% 0.153 25)",
+          "oklch(50% 0.201 25)",
+          "oklch(62% 0.205 25)",
+          "oklch(73% 0.165 25)",
+          "oklch(84% 0.085 25)",
+          "oklch(95% 0.021 25)"
+        ]
+      },
+      "ink-dark": {
+        "role": "primary",
+        "displayName": "Ink (instrument face)",
+        "canonical": "#f0f6fc",
+        "oklch": "oklch(97.0% 0.010 248)",
+        "tonalRamp": [
+          "oklch(15% 0.010 248)",
+          "oklch(27% 0.010 248)",
+          "oklch(38% 0.010 248)",
+          "oklch(50% 0.010 248)",
+          "oklch(62% 0.010 248)",
+          "oklch(73% 0.010 248)",
+          "oklch(84% 0.010 248)",
+          "oklch(95% 0.010 248)"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Paper (instrument face)",
+        "canonical": "#0d1117",
+        "oklch": "oklch(17.6% 0.014 258)",
+        "tonalRamp": [
+          "oklch(15% 0.014 258)",
+          "oklch(27% 0.014 258)",
+          "oklch(38% 0.014 258)",
+          "oklch(50% 0.014 258)",
+          "oklch(62% 0.014 258)",
+          "oklch(73% 0.014 258)",
+          "oklch(84% 0.014 258)",
+          "oklch(95% 0.014 258)"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted (instrument face)",
+        "canonical": "#9198a1",
+        "oklch": "oklch(67.7% 0.016 255)",
+        "tonalRamp": [
+          "oklch(15% 0.016 255)",
+          "oklch(27% 0.016 255)",
+          "oklch(38% 0.016 255)",
+          "oklch(50% 0.016 255)",
+          "oklch(62% 0.016 255)",
+          "oklch(73% 0.016 255)",
+          "oklch(84% 0.016 255)",
+          "oklch(95% 0.016 255)"
+        ]
+      },
+      "hair-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (instrument face)",
+        "canonical": "#3d444d",
+        "oklch": "oklch(38.4% 0.018 255)",
+        "tonalRamp": [
+          "oklch(15% 0.018 255)",
+          "oklch(27% 0.018 255)",
+          "oklch(38% 0.018 255)",
+          "oklch(50% 0.018 255)",
+          "oklch(62% 0.018 255)",
+          "oklch(73% 0.018 255)",
+          "oklch(84% 0.018 255)",
+          "oklch(95% 0.018 255)"
+        ]
+      },
+      "green-dark": {
+        "role": "tertiary",
+        "displayName": "Normal-range Green (instrument face)",
+        "canonical": "#3fb950",
+        "oklch": "oklch(69.5% 0.181 146)",
+        "tonalRamp": [
+          "oklch(15% 0.053 146)",
+          "oklch(27% 0.085 146)",
+          "oklch(38% 0.117 146)",
+          "oklch(50% 0.153 146)",
+          "oklch(62% 0.181 146)",
+          "oklch(73% 0.181 146)",
+          "oklch(84% 0.181 146)",
+          "oklch(95% 0.085 146)"
+        ]
+      },
+      "yellow-dark": {
+        "role": "tertiary",
+        "displayName": "Caution Yellow (instrument face)",
+        "canonical": "#d29922",
+        "oklch": "oklch(72.0% 0.140 80)",
+        "tonalRamp": [
+          "oklch(15% 0.036 80)",
+          "oklch(27% 0.056 80)",
+          "oklch(38% 0.076 80)",
+          "oklch(50% 0.104 80)",
+          "oklch(62% 0.128 80)",
+          "oklch(73% 0.140 80)",
+          "oklch(84% 0.140 80)",
+          "oklch(95% 0.044 80)"
+        ]
+      },
+      "red-dark": {
+        "role": "secondary",
+        "displayName": "Limit Red (instrument face)",
+        "canonical": "#f85149",
+        "oklch": "oklch(66.5% 0.205 27)",
+        "tonalRamp": [
+          "oklch(15% 0.069 27)",
+          "oklch(27% 0.109 27)",
+          "oklch(38% 0.153 27)",
+          "oklch(50% 0.201 27)",
+          "oklch(62% 0.205 27)",
+          "oklch(73% 0.165 27)",
+          "oklch(84% 0.085 27)",
+          "oklch(95% 0.025 27)"
+        ]
+      },
+      "tabred-dark": {
+        "role": "secondary",
+        "displayName": "Emergency Red (instrument face)",
+        "canonical": "#da3633",
+        "oklch": "oklch(58.6% 0.201 27)",
+        "tonalRamp": [
+          "oklch(15% 0.065 27)",
+          "oklch(27% 0.109 27)",
+          "oklch(38% 0.153 27)",
+          "oklch(50% 0.201 27)",
+          "oklch(62% 0.201 27)",
+          "oklch(73% 0.165 27)",
+          "oklch(84% 0.085 27)",
+          "oklch(95% 0.021 27)"
+        ]
+      },
+      "emergency-numeral": {
+        "role": "neutral",
+        "displayName": "Emergency Numeral",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(27% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(50% 0.000 90)",
+          "oklch(62% 0.000 90)",
+          "oklch(73% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "cover-title": {
+        "displayName": "Display",
+        "purpose": "The name on the cover, once."
+      },
+      "cover-designation": {
+        "displayName": "Headline",
+        "purpose": "OPERATING HANDBOOK under the title."
+      },
+      "cover-description": {
+        "displayName": "Body, cover",
+        "purpose": "The two-line description on the cover."
+      },
+      "cover-data-label": {
+        "displayName": "Label, cover plate",
+        "purpose": "Labels of the data plate and dimension labels on the cover."
+      },
+      "cover-data-value": {
+        "displayName": "Data, cover plate",
+        "purpose": "Values of the data plate and the issue line."
+      },
+      "placard": {
+        "displayName": "Headline, placard",
+        "purpose": "The one line inside the boxed placard."
+      },
+      "tab-numeral": {
+        "displayName": "Tab numeral",
+        "purpose": "The section number in a thumb tab."
+      },
+      "figure-title": {
+        "displayName": "Title",
+        "purpose": "Names inside figures: layers, rows, CONDITIONS, axis titles."
+      },
+      "figure-text": {
+        "displayName": "Body, figure",
+        "purpose": "Sentences and notes inside figures."
+      },
+      "figure-data": {
+        "displayName": "Data, bold",
+        "purpose": "Values that are the point of a figure, and marking labels."
+      },
+      "figure-data-quiet": {
+        "displayName": "Data",
+        "purpose": "Conditions, scale numerals, notes beside a bar."
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [],
+    "themes": {
+      "source": "docs/assets/src/build.py THEMES",
+      "light": {
+        "ink": "#1f2328",
+        "paper": "#ffffff",
+        "muted": "#59636e",
+        "hair": "#d1d9e0",
+        "green": "#1a7f37",
+        "yellow": "#bf8700",
+        "red": "#cf222e",
+        "tabred": "#cf222e"
+      },
+      "dark": {
+        "ink": "#f0f6fc",
+        "paper": "#0d1117",
+        "muted": "#9198a1",
+        "hair": "#3d444d",
+        "green": "#3fb950",
+        "yellow": "#d29922",
+        "red": "#f85149",
+        "tabred": "#da3633"
+      },
+      "selection": "<picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"...-dark.svg\"><img src=\"...-light.svg\"></picture>"
+    },
+    "measures": [
+      {
+        "name": "cover",
+        "value": "880",
+        "purpose": "The cover plate (880 x 620) and the hatched rule (880 x 14)."
+      },
+      {
+        "name": "figure",
+        "value": "600",
+        "purpose": "Every other figure, photograph and recording, centred with its caption."
+      },
+      {
+        "name": "tab",
+        "value": "32 drawn, 28 shown",
+        "purpose": "Thumb tab at the start of a section heading."
+      },
+      {
+        "name": "checklist",
+        "value": "38 columns",
+        "purpose": "Maximum line length of a fenced checklist; challenge-and-response lines are exactly 38."
+      },
+      {
+        "name": "phone-scale",
+        "value": "0.41 cover, 0.6 figure",
+        "purpose": "Scale at a 360 px column; lettering stays at about 10 px."
+      }
+    ],
+    "strokes": [
+      {
+        "name": "frame",
+        "value": "2",
+        "purpose": "Outer frames, layer boxes, axes, machine outline."
+      },
+      {
+        "name": "hairline",
+        "value": "1.5",
+        "purpose": "Scale ticks, separating rule, dot leaders, target line."
+      },
+      {
+        "name": "limit",
+        "value": "2.6",
+        "purpose": "The red line in the loading graph."
+      },
+      {
+        "name": "dimension",
+        "value": "1.2 to 1.8",
+        "purpose": "Dimension and extension lines on the cover."
+      }
+    ],
+    "linePatterns": [
+      {
+        "name": "dot-leader",
+        "value": "stroke-dasharray 0.01 5; round caps; 1.5 wide; muted",
+        "purpose": "Joins a label to its value."
+      },
+      {
+        "name": "target",
+        "value": "stroke-dasharray 3 3; green; 1.5 wide",
+        "purpose": "The target, behind each range bar."
+      },
+      {
+        "name": "not-in-result",
+        "value": "stroke-dasharray 3 2.4 (bar) or 5 3.5 (load bar); ink outline, no fill",
+        "purpose": "As-found row; data held in swap."
+      },
+      {
+        "name": "hatch",
+        "value": "pattern 14 x 14 rotated -45deg, 7 wide stripe of tabred",
+        "purpose": "Emergency edge under the Section 3 heading only."
+      },
+      {
+        "name": "spread",
+        "value": "ink at fill-opacity 0.38",
+        "purpose": "The measured spread at the end of a load bar."
+      }
+    ],
+    "platformOwned": [
+      "README body and heading type",
+      "heading rules",
+      "table borders and striping",
+      "code-block ground and monospace face",
+      "link colour",
+      "alert colours and icons",
+      "column width and breakpoints"
+    ]
+  },
+  "components": [
+    {
+      "name": "Thumb tab",
+      "kind": "custom",
+      "refersTo": "thumb-tab",
+      "description": "Section number at the start of each of the nine section headings; drawn 32 square, shown at 28. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<h2 class=\"ds-tabhead\"><span class=\"ds-tab\">1</span> General</h2>",
+      "css": ".ds-tabhead { font: 600 24px Helvetica, Arial, sans-serif; color: #1f2328; display: flex; align-items: center; gap: 8px; margin: 0; } .ds-tab { display: inline-block; width: 28px; height: 28px; background: #1f2328; color: #ffffff; font: 700 17.5px/28px Helvetica, Arial, sans-serif; text-align: center; border-radius: 0; }"
+    },
+    {
+      "name": "Thumb tab, emergency, with hatched rule",
+      "kind": "custom",
+      "refersTo": "thumb-tab-emergency",
+      "description": "Section 3 only: Emergency Red tab with a white numeral, and the 14-high hatched rule directly under the heading. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<div class=\"ds-emerg\"><h2 class=\"ds-emerg-head\"><span class=\"ds-tab-red\">3</span> Emergency procedures</h2><div class=\"ds-hatch\"></div></div>",
+      "css": ".ds-emerg-head { font: 600 24px Helvetica, Arial, sans-serif; color: #1f2328; display: flex; align-items: center; gap: 8px; margin: 0 0 12px; } .ds-tab-red { display: inline-block; width: 28px; height: 28px; background: #cf222e; color: #ffffff; font: 700 17.5px/28px Helvetica, Arial, sans-serif; text-align: center; } .ds-hatch { height: 14px; max-width: 880px; background: repeating-linear-gradient(45deg, #cf222e 0 7px, transparent 7px 14px); }"
+    },
+    {
+      "name": "Placard",
+      "kind": "custom",
+      "refersTo": "placard",
+      "description": "Solid ink box with one line of tracked bold capitals; used once, on the cover, for the standing rule. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<div class=\"ds-placard\">OFFLINE OPERATION ONLY</div>",
+      "css": ".ds-placard { width: 432px; height: 56px; line-height: 56px; background: #1f2328; color: #ffffff; font: 700 25px/56px Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-align: center; border-radius: 0; }"
+    },
+    {
+      "name": "Data plate",
+      "kind": "custom",
+      "refersTo": "cover-plate",
+      "description": "Label, dot leader, value: Courier Bold label, Courier value on a shared left edge, rows 37 apart. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<dl class=\"ds-plate\"><div class=\"ds-plate-row\"><dt>MACHINE</dt><i></i><dd>MacBook Pro 16-inch, M4 Pro</dd></div><div class=\"ds-plate-row\"><dt>MEMORY</dt><i></i><dd>24 GB</dd></div><div class=\"ds-plate-row\"><dt>CROSSOVER</dt><i></i><dd>26.3</dd></div></dl>",
+      "css": ".ds-plate { margin: 0; font: 24px/37px Courier, 'Courier New', monospace; color: #1f2328; } .ds-plate-row { display: flex; width: 180px; position: relative; white-space: nowrap; } .ds-plate-row dt { font-weight: 700; padding-right: 12px; } .ds-plate-row i { border-bottom: 1.5px dotted #59636e; height: 22px; flex: 1; } .ds-plate-row dd { position: absolute; left: 192px; margin: 0; }"
+    },
+    {
+      "name": "Checklist",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Challenge-and-response checklist: a fenced block, every line 38 columns with full-stop leaders and capital responses. On github.com the ground and monospace face are GitHub's own.",
+      "html": "<pre class=\"ds-checklist\">FRAME RATE FALLS TO 2-5 FPS\nafter a door opens or a teleport\n1. Wait ................. 20 TO 60 SEC\n2. Squeezer log ................ CHECK\n3. No squeeze logged ......... SQUEEZE</pre>",
+      "css": ".ds-checklist { font: 13.6px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; color: #1f2328; background: #f6f8fa; padding: 16px; border-radius: 6px; margin: 0; width: max-content; }"
+    },
+    {
+      "name": "Layer box with kit-part label",
+      "kind": "card",
+      "refersTo": "kit-part",
+      "description": "Figure 1-1: a 2-wide ink frame per layer, name in tracked bold capitals, muted note at the right, each kit part a solid ink label with what it does beside it. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<div class=\"ds-layer\"><div class=\"ds-layer-head\"><b>WINE (CROSSOVER)</b><span>runs the Windows game</span></div><div class=\"ds-layer-row\"><code>winegrid</code>4 KB commits stop costing 16 KB</div><div class=\"ds-layer-row\"><code>vk1wrap</code>answers two Windows-only extensions</div></div>",
+      "css": ".ds-layer { width: 598px; border: 2px solid #1f2328; padding: 0 16px 8px; font: 17px Helvetica, Arial, sans-serif; color: #1f2328; } .ds-layer-head { display: flex; justify-content: space-between; height: 44px; align-items: center; } .ds-layer-head b { letter-spacing: 0.05em; } .ds-layer-head span { color: #59636e; } .ds-layer-row { display: flex; align-items: center; gap: 14px; height: 30px; margin-bottom: 8px; } .ds-layer-row code { width: 176px; height: 30px; line-height: 30px; background: #1f2328; color: #ffffff; font: 700 17px/30px Courier, 'Courier New', monospace; text-align: center; }"
+    },
+    {
+      "name": "Range bar",
+      "kind": "custom",
+      "refersTo": "measured-bar",
+      "description": "Figure 5-1: a measured range as a solid ink bar on a 0 to 60 scale with hairline ticks, the dashed green target line, and the value in Courier Bold. Above it the marking band: yellow below the target, green from it up. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<div class=\"ds-range\"><div class=\"ds-range-band\"></div><div class=\"ds-range-name\">Spaceport hall</div><div class=\"ds-range-scale\"><span class=\"ds-range-bar\"></span><b>36 to 53</b></div></div>",
+      "css": ".ds-range { width: 560px; font: 17px Helvetica, Arial, sans-serif; color: #1f2328; } .ds-range-band { height: 9px; margin-bottom: 19px; background: linear-gradient(90deg, #bf8700 0 41.667%, #1a7f37 41.667% 100%); } .ds-range-scale { position: relative; height: 22px; margin-top: 6px; background: repeating-linear-gradient(90deg, #d1d9e0 0 1.5px, transparent 1.5px 93.33px), linear-gradient(90deg, transparent 233px, #1a7f37 233px 234.5px, transparent 234.5px); } .ds-range-bar { position: absolute; left: 60%; width: 28.33%; top: 3px; height: 16px; background: #1f2328; } .ds-range-scale b { position: absolute; left: calc(88.33% + 9px); top: 0; font: 700 17px/22px Courier, 'Courier New', monospace; background: #ffffff; padding: 0 4px; white-space: nowrap; }"
+    },
+    {
+      "name": "Load bar",
+      "kind": "custom",
+      "refersTo": "load-bar",
+      "description": "Figure 6-1: a solid ink bar from zero with its reading inside, the measured spread continued at 0.38 opacity, crossed by the red line at the installed limit. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
+      "html": "<div class=\"ds-load\"><div class=\"ds-load-head\"><b>WASTE REMOVED</b><code>10 to 30 FPS</code></div><div class=\"ds-load-track\"><span class=\"ds-load-solid\">needs 26 to 33 GB</span><span class=\"ds-load-spread\"></span><i class=\"ds-load-limit\"></i></div></div>",
+      "css": ".ds-load { width: 560px; font: 17px Helvetica, Arial, sans-serif; color: #1f2328; } .ds-load-head { display: flex; justify-content: space-between; margin-bottom: 8px; } .ds-load-head b { letter-spacing: 0.05em; } .ds-load-head code { font: 700 17px Courier, 'Courier New', monospace; } .ds-load-track { position: relative; height: 34px; } .ds-load-solid { position: absolute; left: 0; width: 43.33%; height: 34px; background: #1f2328; color: #ffffff; font: 700 17px/34px Courier, 'Courier New', monospace; padding-left: 12px; box-sizing: border-box; white-space: nowrap; } .ds-load-spread { position: absolute; left: 43.33%; width: 11.67%; height: 34px; background: #1f2328; opacity: 0.38; } .ds-load-limit { position: absolute; left: 40%; top: -10px; bottom: -10px; width: 2.6px; background: #cf222e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Pilot's Operating Handbook",
+    "overview": "The README is the operating handbook for one machine: a 24 GB Apple Silicon Mac flying Star Citizen offline. It documents that machine the way pilots document an aircraft, with a cover that carries a data plate, numbered sections on thumb tabs, limitations, emergency and normal procedures as challenge-and-response checklists, and performance figures that state their conditions. The light theme is the printed page, ink on paper. The dark theme is the instrument face, light markings on a dark ground.\n\nThe surface is github.com, so the system has exactly two layers. GitHub owns everything Markdown renders: the body face and its sizes, heading sizes and their rules, table borders and striping, code-block grounds and their monospace face, link colour, alert colours and icons, the column width and every breakpoint. None of those are tokens here and none may be overridden. The project owns the SVG figures in `docs/assets/`, drawn by `docs/assets/src/build.py`, and the conventions for how Markdown is written. Every token in this file is a value in that script; the figures' two palettes are GitHub's own light and dark page colours, so a figure sits on the page as if printed on it.\n\nLettering in figures is Helvetica and Courier converted to outlines, because an SVG shown through an image tag cannot load fonts. One image file serves desktop and phone, so lettering is sized for the phone: the cover is shown at about 0.41 of its drawn size there and a figure at 0.6, which puts the smallest lettering at about 10 px.",
+    "keyCharacteristics": [
+      "Ink and paper, plus an instrument-marking code (green, yellow, red) that appears only where it encodes a measurement or a limit.",
+      "Two faces with fixed jobs: Helvetica Bold capitals name things, Courier states data.",
+      "Square, flat, ruled. No shadows, no gradients, no rounded containers.",
+      "Every figure exists as a light and a dark file, chosen by the reader's colour scheme.",
+      "Checklists set in 38 monospace columns with dot leaders, so they fit a phone without wrapping.",
+      "Static. The one moving element is the take-off sequence, a recording."
+    ],
+    "rules": [
+      {
+        "name": "The Marking Code Rule",
+        "body": "Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: 24 GB INSTALLED). Everything else is ink on paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Reds Rule",
+        "body": "Limit Red marks a number the machine cannot exceed. Emergency Red marks Section 3 and only Section 3: its tab and the hatched rule under its heading. Neither is used for emphasis.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Tint Rule",
+        "body": "Ink at 0.38 opacity has a single meaning: the measured spread at the end of a bar, where the true value lies somewhere inside. A dashed ink outline with no fill means not in memory or not part of the kit's result (data in swap, the as-found row). No other tints or fills exist.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Size Rule",
+        "body": "Inside a figure every piece of lettering is 17. Hierarchy comes from face, weight, capitals and ink against muted, never from a second size. The cover is the only plate with a scale, and its smallest lettering is 24.",
+        "section": "typography"
+      },
+      {
+        "name": "The Phone Floor Rule",
+        "body": "Lettering is sized by what it becomes in a 360 px column: drawn size times 0.6 for a figure, times 0.41 for the cover, and the result stays at about 10 px. A new figure keeps the 600 measure and the 17 lettering rather than adding detail that needs smaller type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Outline Rule",
+        "body": "Every letter in a figure is a path produced by `textpath` from Helvetica or Courier. No `<text>` elements, no font references, so each figure carries its full reading in the `aria-label` and `<title>` and again in the `alt` of the image.",
+        "section": "typography"
+      },
+      {
+        "name": "The Written Range Rule",
+        "body": "A measured range is written with the word \"to\" (16 to 25 FPS), in prose, tables and figures alike. An en dash in a table cell means not measured.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do draw every new figure in `docs/assets/src/build.py` from the `THEMES` roles, and ship it as a `-light` and a `-dark` file placed with `<picture>`.",
+      "Do keep figures at the 600 measure with all lettering at 17, and the cover alone at 880.",
+      "Do use Helvetica Bold capitals for names and Courier for data, as outlines, and give each figure an `aria-label` and an `alt` that state every value it shows.",
+      "Do say in words what a marking colour means inside the figure that uses it.",
+      "Do hold checklists to 38 columns with full-stop leaders and capital responses, and put commands in their own `bash` block.",
+      "Do state conditions with every performance table, and sign each photograph or recording with its run and date.",
+      "Do begin each of the nine section headings with its thumb tab, shown at 28 by 28.",
+      "Do leave prose, tables, code blocks, links and alerts in GitHub's own styling."
+    ],
+    "donts": [
+      "Don't use green, yellow or red for emphasis, decoration or status. They are data; see The Marking Code Rule.",
+      "Don't use the hatched rule or Emergency Red outside Section 3.",
+      "Don't add shadows, gradients, tints or rounded containers. Rounded corners belong only to a drawing of a rounded object.",
+      "Don't put live text or font references in an SVG, or add a second lettering size to a figure.",
+      "Don't set lettering in light-theme Caution Yellow; it is a band colour.",
+      "Don't add badges, logos, emoji bullets or a screenshot carousel, and do not use the game's logos, trade dress or interface styling.",
+      "Don't invent approvals, stamps, serial numbers or signatures. The handbook borrows the form of an aircraft manual, not its authority.",
+      "Don't add a fourth kind of notice or use an alert for anything but its defined meaning."
+    ]
+  }
+}
