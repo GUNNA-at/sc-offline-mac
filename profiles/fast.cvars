@@ -1,0 +1,2 @@
+# fast, the live part: macfix sets this once you are in the world (C:\users\crossover\macfix.cvars).
+r.TSR.UpscalingPreset 2        # the game's upscaler: 0 native, 1 Quality (66%), 2 Balanced (57%), 3 Performance (50%)

@@ -1,0 +1,471 @@
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCmdDraw.mm b/MoltenVK/MoltenVK/Commands/MVKCmdDraw.mm
+index 664276b..763df23 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCmdDraw.mm
++++ b/MoltenVK/MoltenVK/Commands/MVKCmdDraw.mm
+@@ -200,7 +200,11 @@
+ 		uint32_t patchCount = 0;
+ 	} tessParams;
+     uint32_t outControlPointCount = 0;
++    struct MVKTessDrawScope { MVKCommandEncoder* enc; ~MVKTessDrawScope() { if (enc) { enc->endTessellatedDraw(); } } } tessScope = { nullptr };
+     if (pipeline->isTessellationPipeline()) {
++        // Converted 8-bit indices are produced by compute work of this very draw, so that draw cannot run ahead of it.
++        cmdEncoder->beginTessellatedDraw(true);
++        tessScope.enc = cmdEncoder;
+         tessParams.inControlPointCount = cmdEncoder->getVkGraphics().getPatchControlPoints();
+         outControlPointCount = pipeline->getOutputControlPointCount();
+         tessParams.patchCount = mvkCeilingDivide(_vertexCount, tessParams.inControlPointCount) * _instanceCount;
+@@ -221,7 +225,7 @@
+ 
+ 		switch (stage) {
+             case kMVKGraphicsStageVertex: {
+-                mtlTessCtlEncoder = cmdEncoder->getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++                mtlTessCtlEncoder = cmdEncoder->getMTLTessComputeEncoder();
+                 if (pipeline->needsVertexOutputBuffer()) {
+                     vtxOutBuff = cmdEncoder->getTempMTLBuffer(_vertexCount * _instanceCount * 4 * dvcLimits.maxVertexOutputComponents, true);
+                     [mtlTessCtlEncoder setBuffer: vtxOutBuff->_mtlBuffer
+@@ -248,7 +252,7 @@
+                 break;
+ 			}
+             case kMVKGraphicsStageTessControl: {
+-                mtlTessCtlEncoder = cmdEncoder->getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++                mtlTessCtlEncoder = cmdEncoder->getMTLTessComputeEncoder();
+                 if (pipeline->needsTessCtlOutputBuffer()) {
+                     tcOutBuff = cmdEncoder->getTempMTLBuffer(outControlPointCount * tessParams.patchCount * 4 * dvcLimits.maxTessellationControlPerVertexOutputComponents, true);
+                     [mtlTessCtlEncoder setBuffer: tcOutBuff->_mtlBuffer
+@@ -288,9 +292,9 @@
+ 					[mtlTessCtlEncoder dispatchThreadgroups: MTLSizeMake(mvkCeilingDivide(tessParams.patchCount * outControlPointCount, wgSize), 1, 1)
+ 									  threadsPerThreadgroup: MTLSizeMake(wgSize, 1, 1)];
+ 				}
+-                // Running this stage prematurely ended the render pass, so we have to start it up again.
+-                // TODO: On iOS, maybe we could use a tile shader to avoid this.
+-                cmdEncoder->beginMetalRenderPass(kMVKCommandUseRestartSubpass);
++                // Make sure a Metal render pass is open for the rasterization stage: one was ended above
++                // unless the compute stages went to the tessellation command buffer that runs ahead of it.
++                cmdEncoder->endTessellationCompute();
+                 break;
+ 			}
+             case kMVKGraphicsStageRasterization:
+@@ -483,7 +487,11 @@
+ 		uint32_t patchCount = 0;
+ 	} tessParams;
+     uint32_t outControlPointCount = 0;
++    struct MVKTessDrawScope { MVKCommandEncoder* enc; ~MVKTessDrawScope() { if (enc) { enc->endTessellatedDraw(); } } } tessScope = { nullptr };
+     if (pipeline->isTessellationPipeline()) {
++        // Converted 8-bit indices are produced by compute work of this very draw, so that draw cannot run ahead of it.
++        cmdEncoder->beginTessellatedDraw(ibb.vkIndexType != VK_INDEX_TYPE_UINT8);
++        tessScope.enc = cmdEncoder;
+         tessParams.inControlPointCount = cmdEncoder->getVkGraphics().getPatchControlPoints();
+         outControlPointCount = pipeline->getOutputControlPointCount();
+         tessParams.patchCount = mvkCeilingDivide(_indexCount, tessParams.inControlPointCount) * _instanceCount;
+@@ -503,7 +511,7 @@
+ 
+         switch (stage) {
+             case kMVKGraphicsStageVertex: {
+-                mtlTessCtlEncoder = cmdEncoder->getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++                mtlTessCtlEncoder = cmdEncoder->getMTLTessComputeEncoder();
+                 if (pipeline->needsVertexOutputBuffer()) {
+                     vtxOutBuff = cmdEncoder->getTempMTLBuffer(_indexCount * _instanceCount * 4 * dvcLimits.maxVertexOutputComponents, true);
+                     [mtlTessCtlEncoder setBuffer: vtxOutBuff->_mtlBuffer
+@@ -533,7 +541,7 @@
+                 break;
+ 			}
+             case kMVKGraphicsStageTessControl: {
+-                mtlTessCtlEncoder = cmdEncoder->getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++                mtlTessCtlEncoder = cmdEncoder->getMTLTessComputeEncoder();
+                 if (pipeline->needsTessCtlOutputBuffer()) {
+                     tcOutBuff = cmdEncoder->getTempMTLBuffer(outControlPointCount * tessParams.patchCount * 4 * dvcLimits.maxTessellationControlPerVertexOutputComponents, true);
+                     [mtlTessCtlEncoder setBuffer: tcOutBuff->_mtlBuffer
+@@ -574,9 +582,9 @@
+ 					[mtlTessCtlEncoder dispatchThreadgroups: MTLSizeMake(mvkCeilingDivide(tessParams.patchCount * outControlPointCount, wgSize), 1, 1)
+ 									  threadsPerThreadgroup: MTLSizeMake(wgSize, 1, 1)];
+ 				}
+-                // Running this stage prematurely ended the render pass, so we have to start it up again.
+-                // TODO: On iOS, maybe we could use a tile shader to avoid this.
+-                cmdEncoder->beginMetalRenderPass(kMVKCommandUseRestartSubpass);
++                // Make sure a Metal render pass is open for the rasterization stage: one was ended above
++                // unless the compute stages went to the tessellation command buffer that runs ahead of it.
++                cmdEncoder->endTessellationCompute();
+                 break;
+ 			}
+             case kMVKGraphicsStageRasterization:
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
+index 76ca788..c0ec512 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
++++ b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.h
+@@ -237,6 +237,33 @@ protected:
+ /*** Holds a collection of active queries for each query pool. */
+ typedef std::unordered_map<MVKQueryPool*, MVKSmallVector<uint32_t, kMVKDefaultQueryCount>> MVKActivatedQueries;
+ 
++#pragma mark -
++#pragma mark Runtime switches
++
++/**
++ * Switches that can be flipped while the app is running, so a change can be compared in one and the same scene.
++ * A switch is on when the environment variable MVK_SC_<NAME>=1 was set at start (TESS_PREPASS, ASYNC_SUBMIT) or the
++ * file /private/tmp/mvk-live/<name> exists (tess-prepass, async-submit); the file /private/tmp/mvk-live/no-<name>
++ * turns it off. The files are looked at once a second.
++ */
++typedef enum {
++	kMVKLiveSwitchTessPrepass = 0,	/**< Tessellation compute goes to its own MTLCommandBuffer, queued ahead of the render pass. */
++	kMVKLiveSwitchAsyncSubmit,		/**< Queue submissions are encoded on a dispatch queue instead of the thread that submits. */
++	kMVKLiveSwitchCount
++} MVKLiveSwitch;
++
++typedef enum {
++	kMVKLiveCounterTessDraws = 0,	/**< Tessellated draws encoded. */
++	kMVKLiveCounterTessRestarts,	/**< Metal render passes ended and started again for a tessellated draw. */
++	kMVKLiveCounterTessSplits,		/**< MTLCommandBuffer pairs opened for tessellation compute. */
++	kMVKLiveCounterAsyncSubmits,	/**< Queue submissions handed to the dispatch queue. */
++	kMVKLiveCounterCount
++} MVKLiveCounter;
++
++bool mvkLiveSwitch(MVKLiveSwitch sw);
++void mvkLiveCount(MVKLiveCounter counter);
++
++
+ /** 
+  * MVKCommandEncoder uses a visitor design pattern iterate the commands in a MVKCommandBuffer, 
+  * tracking and caching dynamic encoding state, and encoding the commands onto Metal MTLCommandBuffers.
+@@ -336,6 +363,26 @@ public:
+ 	/** Called by each graphics draw command to establish any outstanding state just prior to performing the draw. */
+ 	void finalizeDrawState(MVKGraphicsStage stage);
+ 
++	/**
++	 * Called by a draw command that uses a tessellation pipeline, before it allocates anything for the draw.
++	 * Returns whether the draw's compute stages (vertex and tessellation control) will be encoded onto the
++	 * tessellation MTLCommandBuffer that runs ahead of the render pass, leaving the Metal render pass open.
++	 * A draw whose compute stages depend on other compute work of the same draw must pass false.
++	 */
++	bool beginTessellatedDraw(bool canRunAhead);
++
++	/** The Metal compute encoder for the vertex and tessellation-control stages of the current tessellated draw. */
++	id<MTLComputeCommandEncoder> getMTLTessComputeEncoder();
++
++	/** Called by a tessellated draw after its last compute stage: makes sure a Metal render pass is open for the rasterization stage. */
++	void endTessellationCompute();
++
++	/** Called when a tessellated draw is over, however it ended. */
++	void endTessellatedDraw();
++
++	/** The queue submission this encoder is encoding for. Not set when prefilling. */
++	void setSubmission(MVKQueueCommandBufferSubmission* cmdBuffSubmit) { _cmdBuffSubmit = cmdBuffSubmit; }
++
+     /** Called by each compute dispatch command to establish any outstanding state just prior to performing the dispatch. */
+     void finalizeDispatchState();
+ 
+@@ -400,7 +447,7 @@ public:
+ 	void prepareDraw() { _state.prepareDraw(_mtlRenderEncoder, *this); }
+ 
+ 	/** Prepares the Metal compute pipeline state to dispatch the given stage of the Vulkan render pipeline. */
+-	void prepareRenderDispatch(MVKGraphicsStage stage) { _state.prepareRenderDispatch(_mtlComputeEncoder, *this, stage); }
++	void prepareRenderDispatch(MVKGraphicsStage stage) { _state.prepareRenderDispatch(_isEncodingTessPrepass ? _mtlTessEncoder : _mtlComputeEncoder, *this, stage); }
+ 
+ 	/** Prepares the Metal compute pipeline state to dispatch the given stage of the Vulkan render pipeline. */
+ 	void prepareComputeDispatch() { _state.prepareComputeDispatch(_mtlComputeEncoder, *this); }
+@@ -518,6 +565,13 @@ public:
+ protected:
+     void addActivatedQueries(MVKQueryPool* pQueryPool, uint32_t query, uint32_t queryCount);
+     void finishQueries();
++	void closeTessellationPrepass();
++
++	MVKQueueCommandBufferSubmission* _cmdBuffSubmit = nullptr;
++	id<MTLCommandBuffer> _mtlTessCmdBuffer = nil;				// retained
++	id<MTLComputeCommandEncoder> _mtlTessEncoder = nil;		// retained
++	bool _tessPrepassValid = false;
++	bool _isEncodingTessPrepass = false;
+ 	void setSubpass(MVKCommand* passCmd, VkSubpassContents subpassContents, uint32_t subpassIndex, MVKCommandUse cmdUse);
+ 	void clearRenderArea(MVKCommandUse cmdUse);
+ 	bool hasMoreMultiviewPasses();
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
+index 8c24deb..e437abb 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
++++ b/MoltenVK/MoltenVK/Commands/MVKCommandBuffer.mm
+@@ -26,6 +26,56 @@
+ #include "MVKCmdDraw.h"
+ #include "MVKCmdRendering.h"
+ #include <sys/mman.h>
++#include <sys/stat.h>
++#include <atomic>
++#include <time.h>
++
++
++#pragma mark -
++#pragma mark Runtime switches
++
++static std::atomic<uint32_t> _mvkLiveBits{0};
++static std::atomic<uint64_t> _mvkLiveNextCheck{0};
++static std::atomic<uint64_t> _mvkLiveNextReport{0};
++static std::atomic<uint32_t> _mvkLiveCounters[kMVKLiveCounterCount];
++
++static void mvkLiveRefresh(uint64_t now) {
++	static const char* names[kMVKLiveSwitchCount] = { "tess-prepass", "async-submit" };
++	static const char* envs[kMVKLiveSwitchCount] = { "MVK_SC_TESS_PREPASS", "MVK_SC_ASYNC_SUBMIT" };
++	uint32_t bits = 0;
++	for (uint32_t i = 0; i < kMVKLiveSwitchCount; i++) {
++		char path[96];
++		struct stat st;
++		const char* env = getenv(envs[i]);
++		bool on = env && env[0] == '1';
++		snprintf(path, sizeof(path), "/private/tmp/mvk-live/%s", names[i]);
++		if (stat(path, &st) == 0) { on = true; }
++		snprintf(path, sizeof(path), "/private/tmp/mvk-live/no-%s", names[i]);
++		if (stat(path, &st) == 0) { on = false; }
++		if (on) { bits |= 1u << i; }
++	}
++	_mvkLiveBits.store(bits, std::memory_order_relaxed);
++
++	uint64_t report = _mvkLiveNextReport.load(std::memory_order_relaxed);
++	if (now >= report && _mvkLiveNextReport.compare_exchange_strong(report, now + 5000000000ull)) {
++		uint32_t c[kMVKLiveCounterCount];
++		for (uint32_t i = 0; i < kMVKLiveCounterCount; i++) { c[i] = _mvkLiveCounters[i].exchange(0, std::memory_order_relaxed); }
++		if (c[kMVKLiveCounterTessDraws] || c[kMVKLiveCounterAsyncSubmits]) {
++			fprintf(stderr, "[mvk-live] last 5 s: %u tessellated draws, %u render pass restarts for them, %u command buffer splits, %u async submits | tess-prepass %s, async-submit %s\n",
++					c[kMVKLiveCounterTessDraws], c[kMVKLiveCounterTessRestarts], c[kMVKLiveCounterTessSplits], c[kMVKLiveCounterAsyncSubmits],
++					(bits & (1u << kMVKLiveSwitchTessPrepass)) ? "on" : "off", (bits & (1u << kMVKLiveSwitchAsyncSubmit)) ? "on" : "off");
++		}
++	}
++}
++
++bool mvkLiveSwitch(MVKLiveSwitch sw) {
++	uint64_t now = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);
++	uint64_t next = _mvkLiveNextCheck.load(std::memory_order_relaxed);
++	if (now >= next && _mvkLiveNextCheck.compare_exchange_strong(next, now + 1000000000ull)) { mvkLiveRefresh(now); }
++	return (_mvkLiveBits.load(std::memory_order_relaxed) >> sw) & 1u;
++}
++
++void mvkLiveCount(MVKLiveCounter counter) { _mvkLiveCounters[counter].fetch_add(1, std::memory_order_relaxed); }
+ 
+ using namespace std;
+ 
+@@ -310,6 +360,7 @@
+ 		clearPrefilledMTLCommandBuffer();
+ 	} else {
+ 		MVKCommandEncoder encoder(this);
++		encoder.setSubmission(cmdBuffSubmit);
+ 		encoder.encode(cmdBuffSubmit->getActiveMTLCommandBuffer(), pEncodingContext);
+ 	}
+ 
+@@ -464,6 +515,7 @@
+ 
+ void MVKCommandEncoder::endEncoding() {
+ 	endCurrentMetalEncoding();
++	closeTessellationPrepass();
+ 	finishQueries();
+ }
+ 
+@@ -553,6 +605,7 @@
+ }
+ 
+ void MVKCommandEncoder::beginNextSubpass(MVKCommand* subpassCmd, VkSubpassContents contents) {
++	closeTessellationPrepass();
+ 	if (hasMoreMultiviewPasses()) {
+ 		beginNextMultiviewPass();
+ 	} else {
+@@ -958,7 +1011,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+ }
+ 
+ void MVKCommandEncoder::finalizeDrawState(MVKGraphicsStage stage) {
+-    if (stage == kMVKGraphicsStageVertex) {
++    if (stage == kMVKGraphicsStageVertex && !_isEncodingTessPrepass) {
+         // Must happen before switching encoders.
+         encodeStoreActions(true);
+     }
+@@ -966,11 +1019,90 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+ 		prepareDraw();
+ 		_occlusionQueryState.encode(_mtlRenderEncoder, this);
+ 	} else {
+-		getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++		getMTLTessComputeEncoder();
+ 		prepareRenderDispatch(stage);
+ 	}
+ }
+ 
++#pragma mark Tessellation compute ahead of the render pass
++
++// Metal has no tessellation shaders: the vertex and tessellation-control stages of a tessellated draw run as compute,
++// and compute cannot run inside a Metal render pass. The stock path therefore ends the render pass before every
++// tessellated draw and starts it again afterwards, and a tile-based GPU stores and reloads every attachment each time.
++//
++// Here the compute stages go to a MTLCommandBuffer of their own that is queued ahead of the one carrying the render
++// pass, so the pass is interrupted once, at its first tessellated draw, instead of once per draw. Everything encoded
++// before that first draw is committed first, so the compute work still runs after it. Within one render pass nothing
++// can be written between two draws that a vertex or tessellation-control stage of a later draw may read, which is
++// what makes it sound to run the pass's later compute work before its earlier draws.
++bool MVKCommandEncoder::beginTessellatedDraw(bool canRunAhead) {
++	mvkLiveCount(kMVKLiveCounterTessDraws);
++	_isEncodingTessPrepass = false;
++	if ( !(canRunAhead && _cmdBuffSubmit && mvkLiveSwitch(kMVKLiveSwitchTessPrepass)) ||
++		isUsingMetalArgumentBuffers() || _cmdBuffer->_hasStageCounterTimestampCommand ||
++		(getSubpass() && getSubpass()->isMultiview()) ) {
++		mvkLiveCount(kMVKLiveCounterTessRestarts);
++		return false;
++	}
++	if ( !_tessPrepassValid ) {
++		if (_mtlRenderEncoder) { encodeStoreActions(true); }
++		endCurrentMetalEncoding();
++		closeTessellationPrepass();
++		_mtlTessCmdBuffer = _cmdBuffSubmit->beginPrepassMTLCommandBuffer();		// retained for us
++		_mtlCmdBuffer = _cmdBuffSubmit->getActiveMTLCommandBuffer();			// not retained
++		_cmdBuffer->setMetalObjectLabel(_mtlCmdBuffer, _cmdBuffer->_debugName);
++		_mtlTessEncoder = [[_mtlTessCmdBuffer computeCommandEncoderWithDispatchType: MTLDispatchTypeSerial] retain];
++		_cmdBuffer->setMetalObjectLabel(_mtlTessEncoder, mvkMTLComputeCommandEncoderLabel(kMVKCommandUseTessellationVertexTessCtl));
++		_tessPrepassValid = (_mtlTessEncoder != nil);
++		mvkLiveCount(kMVKLiveCounterTessSplits);
++		mvkLiveCount(kMVKLiveCounterTessRestarts);
++		if ( !_tessPrepassValid ) { closeTessellationPrepass(); return false; }
++	}
++	_isEncodingTessPrepass = true;
++	getState().beginComputeEncoding();		// as for a new compute encoder: nothing is taken to be bound on it
++	return true;
++}
++
++id<MTLComputeCommandEncoder> MVKCommandEncoder::getMTLTessComputeEncoder() {
++	return _isEncodingTessPrepass ? _mtlTessEncoder : getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl);
++}
++
++void MVKCommandEncoder::endTessellationCompute() {
++	if (_isEncodingTessPrepass) {
++		_isEncodingTessPrepass = false;
++		if (_mtlRenderEncoder) {
++			getState().resumeGraphicsEncoding();	// the render pass was never interrupted
++			return;
++		}
++	}
++	// Running the compute stages ended the Metal render pass, so start it up again.
++	beginMetalRenderPass(kMVKCommandUseRestartSubpass);
++}
++
++void MVKCommandEncoder::endTessellatedDraw() {
++	if (_isEncodingTessPrepass) {
++		_isEncodingTessPrepass = false;
++		if (_mtlRenderEncoder) { getState().resumeGraphicsEncoding(); }
++	}
++}
++
++// Ends and commits the tessellation MTLCommandBuffer. It sits ahead of the current MTLCommandBuffer in the queue,
++// so it has to be committed before that one can run.
++void MVKCommandEncoder::closeTessellationPrepass() {
++	_isEncodingTessPrepass = false;
++	_tessPrepassValid = false;
++	if (_mtlTessEncoder) {
++		[_mtlTessEncoder endEncoding];
++		[_mtlTessEncoder release];
++		_mtlTessEncoder = nil;
++	}
++	if (_mtlTessCmdBuffer) {
++		[_mtlTessCmdBuffer commit];
++		[_mtlTessCmdBuffer release];
++		_mtlTessCmdBuffer = nil;
++	}
++}
++
+ // Clears the render area of the framebuffer attachments.
+ void MVKCommandEncoder::clearRenderArea(MVKCommandUse cmdUse) {
+ 
+@@ -1034,6 +1166,7 @@ static MVKBarrierStage commandUseToBarrierStage(MVKCommandUse use) {
+ 
+ 	encodeStoreActions();
+ 	endMetalRenderEncoding();
++	closeTessellationPrepass();
+ 	MVKRenderPass *renderPass = _pEncodingContext->getRenderPass();
+ 	if (renderPass) { renderPass->encodeSubpassDependencyBarriers(this, VK_SUBPASS_EXTERNAL); }
+ 	if ( !mvkIsAnyFlagEnabled(_pEncodingContext->getRenderingFlags(), VK_RENDERING_SUSPENDING_BIT) ) {
+@@ -1358,6 +1491,7 @@ static bool shouldStartNewEncoder(MVKCommandUse prev, MVKCommandUse next) {
+ }
+ 
+ MVKCommandEncoder::~MVKCommandEncoder() {
++	closeTessellationPrepass();
+ 	[_mtlRenderEncoder release];
+ 	[_mtlComputeEncoder release];
+ 	[_mtlBlitEncoder release];
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.h b/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.h
+index 25e6017..8e3404a 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.h
++++ b/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.h
+@@ -505,6 +505,8 @@ public:
+ 	void beginGraphicsEncoding(VkSampleCountFlags sampleCount);
+ 	/** Begins tracking for a fresh MTLComputeCommandEncoder. */
+ 	void beginComputeEncoding();
++	/** Compute encoding on another MTLCommandBuffer is over and the render encoder, never interrupted, is current again: what it has bound is still bound. */
++	void resumeGraphicsEncoding() { _mtlShared.reset(); _mtlActiveEncoder = CommandEncoderClass::Graphics; }
+ 
+ 	/**
+ 	 * Calls the given function on either the Metal graphics or compute state tracker, whichever one is active (or neither if neither is active).
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.mm b/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.mm
+index 7d16b94..d0ab4b9 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.mm
++++ b/MoltenVK/MoltenVK/Commands/MVKCommandEncoderState.mm
+@@ -1818,7 +1818,7 @@ static void invalidateImplicitBuffer(MVKCommandEncoderState& state, VkPipelineBi
+ 		auto& buffer = _vkGraphics._vertexBuffers[binding.first];
+ 		switch (stage) {
+ 			case kMVKGraphicsStageVertex:
+-				[mvkEncoder.getMTLComputeEncoder(kMVKCommandUseTessellationVertexTessCtl) setBufferOffset: buffer.offset + firstInstance * binding.second
++				[mvkEncoder.getMTLTessComputeEncoder() setBufferOffset: buffer.offset + firstInstance * binding.second
+ 				                                                                                  atIndex: mtlBuffIdx];
+ 				break;
+ 			case kMVKGraphicsStageRasterization:
+diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.h b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.h
+index b18549c..99e1b52 100644
+--- a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.h
++++ b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.h
+@@ -264,6 +264,8 @@ protected:
+ 
+ 	id<MTLCommandBuffer> getActiveMTLCommandBuffer();
+ 	void setActiveMTLCommandBuffer(id<MTLCommandBuffer> mtlCmdBuff);
++	friend class MVKCommandEncoder;
++	id<MTLCommandBuffer> beginPrepassMTLCommandBuffer();
+ 	VkResult commitActiveMTLCommandBuffer(bool signalCompletion = false);
+ 	void finish() override;
+ 	virtual void submitCommandBuffers() {}
+diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
+index dec4b45..3ef2b40 100644
+--- a/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
++++ b/MoltenVK/MoltenVK/GPUObjects/MVKQueue.mm
+@@ -84,7 +84,14 @@
+ 	// Submit regardless of config result, to ensure submission semaphores and fences are signalled.
+ 	// The submissions will ensure a misconfiguration will be safe to execute.
+ 	VkResult rslt = qSubmit->getConfigurationResult();
+-	if (_execQueue) {
++	bool isAsync = _execQueue && (!getMVKConfig().synchronousQueueSubmits || mvkLiveSwitch(kMVKLiveSwitchAsyncSubmit));
++	if (_execQueue && !isAsync) {
++		// Submissions already handed to the dispatch queue have to run before this one.
++		std::unique_lock lock(_execQueueMutex);
++		while (_execQueueJobCount) { _execQueueConditionVariable.wait(lock); }
++	}
++	if (isAsync) {
++		mvkLiveCount(kMVKLiveCounterAsyncSubmits);
+ 		std::unique_lock lock(_execQueueMutex);
+ 		_execQueueJobCount++;
+ 
+@@ -300,9 +307,10 @@
+ 	_name = name;
+ }
+ 
++// The dispatch queue is always created, so that submissions can be moved onto it while the app runs (mvkLiveSwitch).
+ void MVKQueue::initExecQueue() {
+ 	_execQueue = nil;
+-	if ( !getMVKConfig().synchronousQueueSubmits ) {
++	{
+ 		// Determine the dispatch queue priority
+ 		dispatch_qos_class_t dqQOS;
+ 		switch (_globalPriority) {
+@@ -497,6 +505,19 @@
+ 	return _activeMTLCommandBuffer;
+ }
+ 
++// Commits the active MTLCommandBuffer and returns a new MTLCommandBuffer, retained for the caller and already
++// enqueued, that will execute after everything committed so far and before the new active MTLCommandBuffer,
++// which is created here too so that it queues behind. The caller commits and releases the returned buffer.
++id<MTLCommandBuffer> MVKQueueCommandBufferSubmission::beginPrepassMTLCommandBuffer() {
++	bool needsRetain = (!_device->hasResidencySet() &&
++						(getEnabledDescriptorIndexingFeatures().descriptorBindingPartiallyBound || getMVKConfig().liveCheckAllResources));
++	if (_activeMTLCommandBuffer) { commitActiveMTLCommandBuffer(); }
++	id<MTLCommandBuffer> mtlPrepassCmdBuff = [_queue->getMTLCommandBuffer(_commandUse, needsRetain) retain];
++	[mtlPrepassCmdBuff enqueue];
++	getActiveMTLCommandBuffer();
++	return mtlPrepassCmdBuff;
++}
++
+ // Commits the current active MTLCommandBuffer, if it exists, and sets a new active MTLCommandBuffer.
+ void MVKQueueCommandBufferSubmission::setActiveMTLCommandBuffer(id<MTLCommandBuffer> mtlCmdBuff) {
+ 

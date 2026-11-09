@@ -12,4 +12,5 @@ until grep -a -q -E 'Exit Bed|SpawnClosetArea' "$G" 2>/dev/null && [ "$(stat -f 
   kill -0 "$PID" 2>/dev/null || exit 0; sleep 5
 done
 sleep 20                                    # let the first frames of the world settle
+pkill -f '[p]wsh.exe.*dismiss.ps1' 2>/dev/null   # the dialog clicker has done its work once the world is up; it holds ~350 MB
 exec "$D/winegrid/balloon" auto "$PID" "$LOG"

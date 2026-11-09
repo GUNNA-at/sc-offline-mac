@@ -1,6 +1,7 @@
 #!/bin/zsh
 # profile.sh <name>: switch the game's graphics profile (takes effect at the next launch). Profiles live in ../profiles:
 #   <name>.cfg    lines for LIVE/user.cfg (placed between the profile markers)      <name>.attrs   SysSpec_* values for the menu
+#   <name>.cvars  settings macfix applies once the world has loaded and then holds (the ones user.cfg cannot carry); optional
 # With no name it lists the profiles and shows the active one.
 D="$(cd "$(dirname "$0")/.." && pwd)"; B="$HOME/Library/Application Support/CrossOver/Bottles/StarCitizen"
 LIVE="$B/drive_c/Program Files/Roberts Space Industries/StarCitizen/LIVE"; U="$LIVE/user.cfg"; A="$LIVE/user/client/0/Profiles/default/attributes.xml"
@@ -16,4 +17,6 @@ else: head = s[:a]
 open(u, 'w').write(head.rstrip('\n') + '\n-- >>> profile: %s (written by tools/profile.sh; edit profiles/%s.cfg, then run it again)\n%s\n-- <<< profile\n' % (name, name, body))
 PY
 [ -f "$D/profiles/$1.attrs" ] && python3 -I "$D/tools/set-quality.py" "$A" $(cat "$D/profiles/$1.attrs") >/dev/null
+C="$B/drive_c/users/crossover/macfix.cvars"
+if [ -f "$D/profiles/$1.cvars" ]; then cp "$D/profiles/$1.cvars" "$C.new" && mv -f "$C.new" "$C"; else rm -f "$C"; fi
 echo "profile '$1' is set for the next launch"

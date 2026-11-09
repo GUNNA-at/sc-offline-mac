@@ -38,6 +38,8 @@
  *   seat by default; the mod's crew.sit needs you aboard already), "!power <ship>", "!tp <zone entity> x y z".
  *   For trying settings in a running game: "!cvar <name>" reads a console variable of the game, "!cvar <name> <number>"
  *   sets it, "!exec <line>" runs a line on the game's console (through the console object the mod found; no whitelist).
+ *   C:\users\crossover\macfix.cvars ("name value" per line) lists variables to hold at a value: set once you are in the
+ *   world and again whenever the game puts one back. tools/profile.sh writes it from profiles/<name>.cvars.
  *
  * Every address below belongs to one build of the mod's dinput8.dll (0.7.7, PE timestamp 0x6acc0bc4, image size
  * 0xe75000, sha256 d6d43463...). The build and three code sites are checked at start; on any mismatch nothing is touched.
@@ -543,6 +545,24 @@ typedef struct sc_vehicles_v1 {
 typedef unsigned char (*find_entity_fn)(const char *name, uintptr_t *entity, uint64_t *id);
 typedef const char *(*teleport_entity_fn)(uint64_t id, double up);
 
+/* Reads one of the game's console variables, or sets it when `set` is given, through the console object the mod found
+ * for its own use (cvars.cpp): find a variable is slot 0xC0 of the console, read as float 0x20 and set a float 0x38 of
+ * the variable. The user.cfg whitelist is not in the way here. Game thread only.
+ * Returns 1 when done, 0 when the console is not there yet, -1 when there is no such variable. */
+static int game_cvar(const char *name, const float *set, float *before, float *after) {
+    uintptr_t slot = 0, con = 0, vt = 0, fn = 0, cvar = 0, cvt = 0, getf = 0, setf = 0;
+    if (!g_mod || !rd(g_mod + RVA_CONSOLE, &slot, sizeof slot) || !slot || !rd((const void *)slot, &con, sizeof con) || !con ||
+        !rd((const void *)con, &vt, sizeof vt) || !vt || !rd((const void *)(vt + 0xC0), &fn, sizeof fn) || !fn) return 0;
+    cvar = ((uintptr_t (*)(uintptr_t, const char *))fn)(con, name);
+    if (!cvar || !rd((const void *)cvar, &cvt, sizeof cvt) || !rd((const void *)(cvt + 0x20), &getf, sizeof getf) ||
+        !rd((const void *)(cvt + 0x38), &setf, sizeof setf) || !getf || !setf) return -1;
+    const float was = ((float (*)(uintptr_t))getf)(cvar);
+    if (before) *before = was;
+    if (set) ((void (*)(uintptr_t, float))setf)(cvar, *set);
+    if (after) *after = set ? ((float (*)(uintptr_t))getf)(cvar) : was;
+    return 1;
+}
+
 /* "!pose", "!find <name>", "!goto <name> [up]". On the game thread. */
 static void run_own_command(struct cmdline *c) {
     char *arg = strchr(c->text, ' ');
@@ -578,16 +598,14 @@ static void run_own_command(struct cmdline *c) {
         }
         char *val = strchr(arg, ' ');
         if (val) { *val++ = 0; while (*val == ' ') val++; }
-        uintptr_t cvar = 0, cvt = 0, getf = 0, setf = 0;
-        if (!rd((const void *)(vt + 0xC0), &fn, sizeof fn) || !fn) { mlog("[cmd] %s -> could not read the console", c->shown); return; }
-        cvar = ((uintptr_t (*)(uintptr_t, const char *))fn)(con, arg);
-        if (!cvar || !rd((const void *)cvar, &cvt, sizeof cvt) || !rd((const void *)(cvt + 0x20), &getf, sizeof getf) ||
-            !rd((const void *)(cvt + 0x38), &setf, sizeof setf) || !getf || !setf) { mlog("[cmd] !cvar %s -> no such variable", arg); return; }
-        const float before = ((float (*)(uintptr_t))getf)(cvar);
-        if (val && *val) {
-            ((void (*)(uintptr_t, float))setf)(cvar, (float)strtod(val, NULL));
-            mlog("[cmd] !cvar %s %s -> was %g, now %g", arg, val, before, ((float (*)(uintptr_t))getf)(cvar));
-        } else mlog("[cmd] !cvar %s -> %g", arg, before);
+        const int setting = val && *val;
+        float before = 0, after = 0;
+        const float want = setting ? (float)strtod(val, NULL) : 0;
+        const int r = game_cvar(arg, setting ? &want : NULL, &before, &after);
+        if (r == 0) mlog("[cmd] !cvar %s -> the game's console is not there yet", arg);
+        else if (r < 0) mlog("[cmd] !cvar %s -> no such variable", arg);
+        else if (setting) mlog("[cmd] !cvar %s %s -> was %g, now %g", arg, val, before, after);
+        else mlog("[cmd] !cvar %s -> %g", arg, before);
         return;
     }
     if (!g_mod || !arg || !*arg) { mlog("[cmd] %s -> needs an entity name", c->shown); return; }
@@ -769,6 +787,84 @@ static DWORD WINAPI worker(LPVOID unused) {
     return 0;
 }
 #else
+/* ---- macfix.cvars: settings to hold --------------------------------------------------------------------------------
+ * "name value" per line; # starts a comment. Once you are in the world every variable in the file is set to its value,
+ * and set again when the game has put it back or the file has changed. This is how a setting the game refuses in
+ * user.cfg (r.TSR.UpscalingPreset, for one) is made to stay, and how tools/profile.sh installs the part of a graphics
+ * profile that user.cfg cannot carry. No file: nothing is held. */
+struct held { char name[80]; float value; };
+struct held_set { int n, announce; struct held v[64]; };
+static struct held_set g_held;                 /* the worker thread's copy of the file */
+static volatile LONG g_held_busy, g_held_applied;
+
+static void held_task(void *ctx) {             /* on the game thread */
+    struct held_set *h = ctx;
+    const sc_spatial_v1 *sp = NULL;
+    double pos[3] = { 0, 0, 0 }, rot[4] = { 0, 0, 0, 1 };
+    uint64_t zone = 0;
+    if (g_api->query_service("teleport.spatial", 0x00010000u, (const void **)&sp) == SCO_OK && sp && sp->player_pose(pos, rot, &zone)) {
+        int changed = 0, unknown = 0, ok = 1;
+        for (int i = 0; i < h->n && ok; i++) {
+            float before = 0, after = 0;
+            const int r = game_cvar(h->v[i].name, NULL, &before, NULL);
+            if (r == 0) { ok = 0; break; }
+            if (r < 0) { unknown++; if (h->announce) mlog("[cvars] %s: the game has no such variable", h->v[i].name); continue; }
+            if (before == h->v[i].value) continue;
+            game_cvar(h->v[i].name, &h->v[i].value, NULL, &after);
+            mlog("[cvars] %s: %g -> %g", h->v[i].name, before, after);
+            changed++;
+        }
+        if (ok) {
+            if (h->announce) mlog("[cvars] %d held: %d set now, %d already there, %d unknown", h->n, changed, h->n - changed - unknown, unknown);
+            InterlockedExchange(&g_held_applied, 1);
+        }
+    }
+    free(h);
+    InterlockedExchange(&g_held_busy, 0);
+}
+
+static void held_step(ULONGLONG now) {
+    static FILETIME last;
+    static ULONGLONG last_try;
+    static int loaded;
+    WIN32_FILE_ATTRIBUTE_DATA a;
+    if (!GetFileAttributesExA(DIR "macfix.cvars", GetFileExInfoStandard, &a)) {
+        if (loaded) { loaded = 0; g_held.n = 0; mlog("[cvars] macfix.cvars is gone: nothing is held any more"); }
+        return;
+    }
+    if (!loaded || CompareFileTime(&a.ftLastWriteTime, &last)) {
+        static char buf[8192];
+        DWORD got = 0;
+        HANDLE f = CreateFileA(DIR "macfix.cvars", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, 0, NULL);
+        if (f == INVALID_HANDLE_VALUE) return;
+        ReadFile(f, buf, sizeof buf - 1, &got, NULL);
+        CloseHandle(f);
+        buf[got] = 0;
+        g_held.n = 0;
+        for (char *line = strtok(buf, "\r\n"); line && g_held.n < 64; line = strtok(NULL, "\r\n")) {
+            char name[80];
+            double value;
+            char *hash = strchr(line, '#');
+            if (hash) *hash = 0;
+            if (sscanf(line, " %79s %lf", name, &value) != 2) continue;
+            strcpy(g_held.v[g_held.n].name, name);
+            g_held.v[g_held.n++].value = (float)value;
+        }
+        last = a.ftLastWriteTime; loaded = 1; last_try = 0;
+        InterlockedExchange(&g_held_applied, 0);
+        mlog("[cvars] macfix.cvars: %d variables to hold once you are in the world", g_held.n);
+    }
+    if (!g_held.n || !g_mod || !g_api || !g_self) return;
+    if (now - last_try < (g_held_applied ? 30000u : 3000u)) return;        /* until it has been done: every 3 s; then a check every 30 s */
+    last_try = now;
+    if (InterlockedCompareExchange(&g_held_busy, 1, 0)) return;
+    struct held_set *copy = malloc(sizeof *copy);
+    if (!copy) { InterlockedExchange(&g_held_busy, 0); return; }
+    *copy = g_held;
+    copy->announce = !g_held_applied;
+    if (g_api->run_on_game_thread(g_self, held_task, copy) != SCO_OK) { free(copy); InterlockedExchange(&g_held_busy, 0); }
+}
+
 static DWORD WINAPI worker(LPVOID unused) {
     (void)unused;
     ULONGLONG last_slow = 0, last_fast = 0, last_keepalive = 0, last_status = 0;
@@ -787,6 +883,7 @@ static DWORD WINAPI worker(LPVOID unused) {
                 else if (!reported) { reported = 1; mlog("sc-offline's dinput8.dll (0.7.7) is not loaded yet"); }
             }
             if (g_mod) { padfix_install(); game_attach(); menu_attach(); }
+            held_step(now);
         }
         if (now - last_fast >= 250) { last_fast = now; read_commands(); }
         if (g_mod) {

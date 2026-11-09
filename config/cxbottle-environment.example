@@ -14,8 +14,12 @@
 "MVK_CONFIG_SHOULD_MAXIMIZE_CONCURRENT_COMPILATION" = "1"
 ;; shim: present frames without waiting for vertical sync
 "MVKSHIM_PRESENT_MODE" = "immediate"
-;; Diagnostics, on during the measured runs. Leave them out for normal play.
-;;"MVKSHIM_FRAME_STATS" = "1"
+;; shim: count frames, passes and draws (tools/fps.sh reads them; costs next to nothing)
+"MVKSHIM_FRAME_STATS" = "1"
+;; patched MoltenVK, patch 02: experiments that changed nothing measurable (see patches/README.md)
+;;"MVK_SC_TESS_PREPASS" = "1"
+;;"MVK_SC_ASYNC_SUBMIT" = "1"
+;; Diagnostics, on during the early measured runs. Leave them out for normal play.
 ;;"MVK_CONFIG_PERFORMANCE_TRACKING" = "1"
 ;;"MVK_CONFIG_PERFORMANCE_LOGGING_FRAME_COUNT" = "300"
 ;;"MVK_CONFIG_SHADER_DUMP_DIR" = "/private/tmp/sc-shaders"

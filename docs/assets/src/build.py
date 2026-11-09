@@ -18,10 +18,10 @@ OUT = os.path.dirname(HERE)
 THEMES = {
     # the printed page: ink on paper, plus the instrument-marking code used only for data
     "light": dict(ink="#1f2328", muted="#59636e", hair="#d1d9e0", paper="#ffffff",
-                  green="#1a7f37", yellow="#bf8700", red="#cf222e", tabred="#cf222e", soft="#f6f8fa"),
+                  green="#1a7f37", yellow="#bf8700", red="#cf222e", tabred="#cf222e", yellowink="#9a6700"),
     # the instrument face: light markings on the dark ground
     "dark": dict(ink="#f0f6fc", muted="#9198a1", hair="#3d444d", paper="#0d1117",
-                 green="#3fb950", yellow="#d29922", red="#f85149", tabred="#da3633", soft="#151b23"),
+                 green="#3fb950", yellow="#d29922", red="#f85149", tabred="#da3633", yellowink="#d29922"),
 }
 
 HB, H, C, CB = "Helvetica-Bold", "Helvetica", "Courier", "Courier-Bold"
@@ -152,7 +152,7 @@ def cover(theme):
         y += 37
     d.rect(40, 532, 432, 56, fill=ink)
     d.text(40 + 216, 569, "OFFLINE OPERATION ONLY", HB, 25, fill=t["paper"], anchor="middle", track=0.08)
-    d.text(840, 568, "ISSUE 1, 9 NOV 2026", C, 24, fill=t["muted"], anchor="end")
+    d.text(840, 568, "ISSUE 2, 9 NOV 2026", C, 24, fill=t["muted"], anchor="end")
 
     # three-view of the machine; its two dimensions are the two numbers the whole kit is about
     ox = 566                                                                 # front view, lid open
@@ -264,7 +264,7 @@ def performance(theme):
     d.text(x0, 64, "Runs m21 to m23, 9 November 2026", C, S)
     # the arc, straightened: yellow below the target, green from the target up
     tx = x0 + TARGET * px
-    d.text(x0, 112, "YELLOW: BELOW TARGET", CB, S, fill=t["yellow"])
+    d.text(x0, 112, "YELLOW: BELOW TARGET", CB, S, fill=t["yellowink"])
     d.text(tx + 8, 112, "GREEN: 25 AND ABOVE", CB, S, fill=t["green"])
     d.rect(x0, 122, TARGET * px, 9, fill=t["yellow"])
     d.rect(tx, 122, (60 - TARGET) * px, 9, fill=t["green"])

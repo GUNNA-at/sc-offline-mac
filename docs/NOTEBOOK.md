@@ -442,3 +442,59 @@ Reported: "my mouse is not working" in the M menu, and a take-off hail from the 
 - Still open: landing / returning to the hangar, the user's own hand on the mouse in the menu, and from before: a steady
   25-30 FPS in the heaviest city views, the "pretty" profile, removing the diagnostics (`MVKSHIM_FRAME_STATS`,
   `MVK_CONFIG_PERFORMANCE_TRACKING*`, `r_DisplayInfo`).
+
+## 2026-11-09 18:40-20:10 — runs m23 to m26: live settings, what limits each view, the upscaler, MoltenVK experiments, the `pretty` profile
+
+- **Live settings (new).** The mod keeps a pointer to the game's console (cvars.cpp `g_console`, dinput8 RVA 0x7D4FC0).
+  macfix uses it: `!cvar <name>` reads a console variable, `!cvar <name> <number>` sets it, `!exec <line>` runs a console
+  line (console slots 0xC0 find variable, 0x130 run line; variable slots 0x20 read float, 0x38 set float). The user.cfg
+  whitelist does not apply. Variable names: `strings` on StarCitizen.exe gives about 7,600 candidates (`DumpCommandsVars`
+  writes nothing in this build). `tools/fps.sh [s]` reads the shim's counters (frame rate, render passes, draws,
+  tessellated draws; needs `MVKSHIM_FRAME_STATS=1`) and the graphics chip's load from `ioreg`, so a setting can be
+  switched and measured in seconds in one and the same scene. `tools/bench.sh terrace|hall` puts the character at a
+  fixed spot and heading. Values read: r_Width x r_Height 1670 x 1080, r.TSR.UpscalingPreset 0, e_GsmLodsNum 5,
+  g_VIM_populationManagerTargetFPS 20, sys_max_worker_threads 0 with 14 logical CPUs seen.
+- **What limits which view** (`r_DisplayInfo 3` adds per-thread load and the replication layer's line):
+  - Spaceport hall (calm, 1,000-1,600 draws): bound by the graphics chip. Upscaler, lean profile: native 37.1 FPS,
+    Quality 45.9, Balanced 49.4, Performance 49.7, back to native 36.9 (m24); 35.3 -> 47.1 -> 35.3 in m23.
+  - Terrace with the city in view (4,800-5,400 draws, 30-40 tessellated draws, 105-150k patches): 21-23 FPS by day,
+    24-30 after the in-game sunset, when draws fall to about 3,900. Main thread 44-51 ms, of which the replication
+    layer's main-thread sync ("RL ... MTSync") is 16-20 ms (3 ms in the hall); render thread 7-8 ms; paging quiet
+    (under 100 decompressions/s); no thread saturated (seven threads at 55-65%). The upscaler gives 10% at most here.
+  - No effect within noise there (windows of 15-25 s differ by 3 FPS on their own; the scene's load drifts with the time
+    of day): e_ViewDistRatio 40 -> 15, e_LodRatio 3 -> 1, r.PlanetTerrain.Tessellation.MaxSubdivisions 7 -> 2,
+    e_GsmLodsNum 5 -> 2, e_DynamicLights 0 (one 31 FPS reading did not repeat), e_ShadowsCastViewDistRatio and its
+    Lights twin, e_ViewDistRatioLights 25 -> 8, g_VIM_V2_PerPlayerQuota 8, g_VIM_populationManagerTargetFPS 45,
+    sv_AISystem 0.
+- **MoltenVK patch 02** (`patches/moltenvk-1.4.2-02-tess-prepass-async-submit.patch`): two code paths that can be
+  switched while the game runs (`tools/live.sh <switch> on|off|default`, files in `/private/tmp/mvk-live/`, or the
+  bottle's `MVK_SC_TESS_PREPASS=1` / `MVK_SC_ASYNC_SUBMIT=1`). Both are off by default; neither changed the frame rate.
+  - *tess-prepass*: the vertex and tessellation-control compute stages of a render pass's tessellated draws go to a
+    MTLCommandBuffer of their own, queued ahead of the one carrying the pass, so the pass is ended and restarted once
+    instead of once per draw. Measured in m25: 22.5 -> 2.5 restarts per frame, no errors, no visible difference; frame
+    rate 26.1 / 25.5 / 30.1 off against 24.6 / 33.2 / 26.1 on, i.e. unchanged within noise. The first build (m24) never
+    took the new path: it excluded command buffers that carry timestamp queries, which is all of them here; fixed by
+    dropping the stage-counter fence at the split.
+  - *async-submit*: queue submissions are encoded on MoltenVK's dispatch queue instead of the game's render thread.
+    87 submissions a second moved; frame rate unchanged in hall and terrace. The render thread is not the limit.
+  - MoltenVK prints a `[mvk-live]` line every 5 s (frames, tessellated draws, restarts, splits). Its "gpu ms per frame"
+    (GPUEndTime - GPUStartTime summed over command buffers) rose from 28.7 to 42 with tess-prepass on while the frame
+    rate did not fall: the spans of the extra command buffers overlap, so that sum is not a usable measure.
+- **Dead end: a memory reserve.** `balloon` held 3 GB pinned while calm, to hand back at the first sign of paging. It
+  never filled: taking 0.1-0.5 GB already pushed decompressions past 10,000 a second (free memory 0.05-0.6 GB). This
+  Mac has no slack to hold back; removed. The drops after a hangar door opens or a jump across the city stay.
+- **Prettier and faster: the `pretty` profile.** The lean profile's distances and pools, plus the groups Shading,
+  PostProcessing, ShadowScreenSpace, TextureFiltering, TextureDetail and Fog at 3, Particles and ShadowMaps at 2, mip
+  bias 0, and the upscaler at Quality. Switched live in m25: hall 45.0 / 44.7 FPS (lean native 37.5, lean with Quality
+  46.5); terrace 25.0 / 22.6 (lean native 22.9 / 22.3). Picture compared at panel resolution: cleaner edges and
+  reflections. From a cold start (m26, 20:03): hall 50.6 / 47.5 / 56.0 FPS, terrace 24.4 / 30.0.
+- **Settings that stay** (macfix): `C:\users\crossover\macfix.cvars`, "name value" per line; set once you are in the world
+  and again when the game puts one back or the file changes. m26: `[cvars] 10 held: 10 set now` at spawn.
+  `tools/profile.sh <name>` installs `profiles/<name>.cvars` there, or removes it. Profiles: `pretty` (now selected),
+  `fast` (lean with the upscaler at Balanced), `lean`, `low`.
+- Housekeeping: shader dumps and MoltenVK's timing report are out of the bottle's environment (417 MB of dumps deleted);
+  the start-up dialog clicker (PowerShell, about 350 MB) is stopped once the world is up; `patches/install-moltenvk.sh`
+  builds and installs MoltenVK with both patches; `tools/build.sh` builds the helper tools.
+- Other software on the Mac while measuring: the Claude app about 2.2 GB, a Java process 0.4 GB, WindowServer 0.7 GB.
+- Still open: the city view is bound by the game's own main thread and its built-in server sync, not by anything the
+  kit touches; the drops when a new part of the city has to be paged in; landing; other Macs.

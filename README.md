@@ -1,25 +1,26 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.svg">
-    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on a 24 GB Apple Silicon Mac. Machine: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Offline operation only. Issue 1, 9 November 2026. A line drawing of the laptop gives its span as memory, 24 GB, in red, and its thickness as one page, 16 KB.">
+    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on a 24 GB Apple Silicon Mac. Machine: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Offline operation only. Issue 2, 9 November 2026. A line drawing of the laptop gives its span as memory, 24 GB, in red, and its thickness as one page, 16 KB.">
   </picture>
 </p>
 
-A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac from 3 to 6 frames per second to 20 to 53 indoors and 16 to 25 with a city in view, offline and single-player, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. The game was failing on memory, not on graphics speed. This handbook says what the machine does, where its limits are, and [how to set it up](#-normal-procedures).
+A kit of fixes and scripts that takes Star Citizen on a 24 GB Apple Silicon Mac from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view, offline and single-player, through CrossOver and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. The game was failing on memory, not on graphics speed. This handbook says what the machine does, where its limits are, and [how to set it up](#-normal-procedures).
 
 ## Performance specifications
 
 | Performance | Measured |
 |:--|:--|
-| Frame rate indoors: hab, spaceport hall, hangar | **20 to 53 FPS** |
-| Frame rate with the city in view: hangar door open, flying over it at night | **16 to 25 FPS** |
+| Frame rate indoors: hab, spaceport hall, hangar | **20 to 56 FPS** |
+| Frame rate with the city in view: hangar door open, flying over it at night | **16 to 30 FPS** |
 | Frame rate as found, before the fixes | 3 to 6 FPS |
+| Spaceport hall with the `pretty` profile, against the plain one | 47 to 56 FPS, was 35 to 41 |
 | Launch to standing in the world | about 5 minutes |
 | Memory the game needs: as found, then now | 44 to 59 GB, then 26 to 33 GB |
 | Take-off: clearance from the tower to hangar door open | about 12 seconds |
 | Network access of the game process | none: a macOS sandbox profile denies it |
 
-One machine, one evening: runs m21 to m23, 9 November 2026. Conditions are in [Section 5](#-performance).
+One machine, one evening: runs m21 to m26, 9 November 2026. Conditions are in [Section 5](#-performance).
 
 <p align="center">
   <img src="docs/media/takeoff.webp" width="600" alt="An animated sequence from the pilot seat: the hangar door opens onto the city, the ship lifts off and flies out over it at night.">
@@ -122,7 +123,7 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 </picture>
 
 ```
-FRAME RATE FALLS TO 2-5 FPS
+FRAME RATE FALLS TO 2 TO 5 FPS
 after a door opens or a teleport
 1. Wait ................. 20 TO 60 SEC
 2. Squeezer log ................ CHECK
@@ -246,13 +247,13 @@ The environment goes into the bottle's `cxbottle.conf`; [`config/cxbottle-enviro
 
 ```
 user.cfg ........................ COPY
-Profile ......................... LEAN
+Profile ....................... PRETTY
 ```
 
 Copy [`config/user.cfg.example`](config/user.cfg.example) to `LIVE\user.cfg`, then:
 
 ```bash
-./sc-offline-mac.sh profile lean
+./sc-offline-mac.sh profile pretty
 ```
 
 ### The mod's helper
@@ -321,7 +322,7 @@ Lift ................... SPACE, THEN W
     <img src="docs/assets/fig-5-1-frame-rate-light.svg" width="600" alt="Figure 5-1. Frame rate by scene, in frames per second: spaceport hall 36 to 53, ship terminal screen 25 to 37, hab 20 to 35, hangar in the seat 25 to 29, hangar door open onto the city 21 to 25, flying over the city at night 18 to 21, terrace outside the habs at night 16 to 21. As found, any scene: 3 to 6. The target is 25 and above.">
   </picture>
   <br>
-  Figure 5-1. Frame rate by scene.
+  Figure 5-1. Frame rate by scene, lean profile. Runs m21 to m23, 9 November 2026.
 </p>
 
 **Conditions.** Lean profile ([`profiles/lean.cfg`](profiles/lean.cfg)), 1728 x 1117, vertical sync off, Orison. Runs m21 to m23, 9 November 2026, read from the game's own counter.
@@ -346,8 +347,9 @@ Lift ................... SPACE, THEN W
 
 1. Right after a hangar door opens onto the city, or after a jump across it, the frame rate falls to 2 to 5 for a short while until the squeezer has made room.
 2. Night is heavier than day: more lights are drawn. The game's clock runs about six times real time, so the same view is day in one launch and night in the next. Do not compare launches without reading the clock.
-3. The target is 25 and above everywhere. The city views do not reach it yet.
-4. A jump to another planet costs a minute or more at 2 to 3 FPS.
+3. The target is 25 and above everywhere. The city views sit at or just under it.
+4. With the city in view the frame is bound by the game's own main thread: 44 to 51 ms, 16 to 20 of them spent syncing with the offline mod's built-in server (3 ms indoors). Graphics settings barely move it, and nothing in the kit touches it.
+5. A jump to another planet costs a minute or more at 2 to 3 FPS.
 
 **What each step gave.**
 
@@ -358,9 +360,23 @@ Lift ................... SPACE, THEN W
 | Lean profile, sync off | m14, m15 | 31 to 35 | 8 to 15 |
 | Patched MoltenVK | m18, m19 | – | 14 to 29 |
 | Squeezer | m20 | – | 25 to 31 |
-| Today | m21 to m23 | 20 to 35 | 16 to 25 |
+| Final plugin, lean profile | m21 to m23 | 20 to 35 | 16 to 25 |
+| `pretty` profile, upscaler at Quality | m25, m26 | 45 to 56 | 22 to 30 |
 
-Calm is a room with no city in view; City is a view with the city in it. A dash means not measured. The 3 in the first row is the owner's own first session, before run m1; the squeezer's 25 to 31 was a light city view.
+Calm is a room with no city in view; City is a view with the city in it. A dash means not measured. The 3 in the first row is the owner's own first session, before run m1; the squeezer's 25 to 31 was a light city view; the last row is the spaceport hall and the terrace outside the habs.
+
+**The upscaler and the `pretty` profile.** The game's own upscaler renders fewer pixels and reconstructs the picture. The game refuses that setting in `user.cfg`; macfix sets it (Section 7). Indoors, where the graphics chip is the limit, it buys a quarter to a third more frames, and the `pretty` profile spends part of that on better shading, shadows, textures and post-processing.
+
+| Spaceport hall, switched in a running game | FPS |
+|:--|:--|
+| Lean profile, native resolution | 37 |
+| Lean, upscaler at Quality (66%) | 46 |
+| Lean, upscaler at Balanced (57%) | 49 |
+| Lean, upscaler at Performance (50%) | 50 |
+| `pretty` profile (upscaler at Quality) | 45 |
+| `pretty` profile from a cold start | 47 to 56 |
+
+With the city in view the same switch read 23 to 25 for `pretty` against 22 to 23 for lean, and 24 to 30 from a cold start. Runs m24 to m26, 9 November 2026.
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-6-dark.svg"><img src="docs/assets/tab-6-light.svg" width="28" height="28" align="absmiddle" alt="Section 6."></picture> Weight and balance
 
@@ -372,7 +388,7 @@ An aircraft handbook has a chapter on how much the machine may carry and where. 
     <img src="docs/assets/fig-6-1-loading-light.svg" width="600" alt="Figure 6-1. Loading graph. As found the game needed 44 to 59 GB of memory on a Mac that has 24, at 3 to 6 FPS. With winegrid and the patched MoltenVK it needs 26 to 33 GB, at 10 to 30 FPS. With the squeezer 24 GB stays in memory and 10 to 13 GB of data the game never touches again sits in swap, at 16 to 53 FPS.">
   </picture>
   <br>
-  Figure 6-1. Loading graph.
+  Figure 6-1. Loading graph. Runs m10 to m23, 9 November 2026.
 </p>
 
 **Why it was overloaded.** Under Rosetta the game works in 4 KB pages; the Mac's memory comes in 16 KB pages. Wine commits memory the way Windows programs ask for it, and this game asks for its heap one 4 KB page at a time. Each of those pieces ended up as its own kernel object, rounded up to 16 KB. A million of them turned 21 GB of data into 35 to 50 GB of demand.
@@ -403,6 +419,8 @@ Metal has no tessellation shaders, so MoltenVK runs those stages as compute pass
 
 Source: [`patches/`](patches). Remove: put back the unpatched build, kept beside it as `libMoltenVK.real.dylib.khronos-1.4.2`.
 
+A second patch adds two code paths that can be switched while the game runs: tessellation compute queued ahead of its render pass (the pass is then interrupted once instead of once per tessellated draw: 22 restarts a frame became 2.5), and queue submissions encoded off the game's render thread. Both work and neither changed the frame rate, because the views that are slow are not limited there. They are off unless switched on with [`tools/live.sh`](tools/live.sh).
+
 ### mvkshim
 
 A small library that sits in front of MoltenVK. It reports the graphics chip as a discrete card, which the game insists on, and advertises a few features the game demands and then never needs. When Apple's shader compiler rejects one of the game's pipelines (a handful of water and particle variants do this every time), it builds an empty pipeline in its place so those few effects draw nothing instead of ending the game.
@@ -431,9 +449,28 @@ Switches: `C:\users\crossover\macfix.ctl`. Log: `C:\users\crossover\macfix.log`.
 
 `./sc-offline-mac.sh play` starts the mod's own launcher inside a `sandbox-exec` profile that denies network access to everything it starts, then a dialog dismisser, a crash watcher and the squeezer. `nettest` shows a Windows process inside the same sandbox failing to open a connection or resolve a name.
 
+### Live settings
+
+The mod keeps a pointer to the game's console for its own use. macfix borrows it, so the game's settings can be read and changed while it runs, including the ones `user.cfg` refuses:
+
+```bash
+tools/modcmd.sh "!cvar r.TSR.UpscalingPreset"
+tools/modcmd.sh "!cvar r.TSR.UpscalingPreset 1"
+tools/fps.sh 15
+```
+
+The first line reads a setting, the second sets it, the third reports the frame rate, draws and graphics load over the next 15 seconds. Settings that should stay go into `C:\users\crossover\macfix.cvars`, one `name value` per line: macfix sets them once the world has loaded and again whenever the game puts one back.
+
 ### Graphics profiles
 
-`./sc-offline-mac.sh profile lean` writes a block of settings into `LIVE/user.cfg` for the next launch. `lean` is below the game's Low on draw distance and model detail, which is what the measurements here used. `low` is the game's own Low. `pretty` raises shading, shadows and textures and has not been measured yet.
+`./sc-offline-mac.sh profile <name>` selects a profile for the next launch. Each has a part for `LIVE/user.cfg` and, where needed, a part for `macfix.cvars`.
+
+| Profile | What it is | Spaceport hall |
+|:--|:--|:--|
+| `pretty` | Lean distances and pools; shading, shadows, textures and post-processing raised; upscaler at Quality | 47 to 56 FPS |
+| `fast` | Lean, upscaler at Balanced | 49 FPS |
+| `lean` | Below the game's Low on draw distance and model detail, native resolution | 35 to 41 FPS |
+| `low` | The game's own Low | not measured |
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-8-dark.svg"><img src="docs/assets/tab-8-light.svg" width="28" height="28" align="absmiddle" alt="Section 8."></picture> Handling, service and maintenance
 
@@ -502,11 +539,13 @@ tools/modcmd.sh "?list"
 tools/keys.sh 300 M:80
 tools/look.sh shot1
 tools/rec out.mov 120
+tools/bench.sh terrace
+tools/live.sh tess-prepass on
 ```
 
-In order: run a mod command and print its reply, list every command the mod offers, bring the game forward and press M, take a screenshot with the pointer in it, record the screen for 120 seconds.
+In order: run a mod command and print its reply, list every command the mod offers, bring the game forward and press M, take a screenshot with the pointer in it, record the screen for 120 seconds, put the character at a fixed spot and heading for comparisons, flip one of the patched MoltenVK's switches.
 
-macfix adds its own commands for testing: `!pose`, `!find <entity>`, `!goto <entity>`, `!tp <zone> x y z`, `!seats <ship>`, `!sit <ship>`, `!power <ship>`. The recipe from ship terminal to open sky is in the notebook.
+macfix adds its own commands for testing: `!pose`, `!find <entity>`, `!goto <entity>`, `!tp <zone> x y z`, `!seats <ship>`, `!sit <ship>`, `!power <ship>`, `!cvar <name> [value]`, `!exec <console line>`. The recipe from ship terminal to open sky is in the notebook.
 
 ### The lab notebook
 
@@ -527,3 +566,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 | Issue | Date | Change |
 |:--|:--|:--|
 | 1 | 9 November 2026 | First issue |
+| 2 | 9 November 2026 | Live settings, the upscaler and the `pretty` profile; a second MoltenVK patch that changed nothing measurable and is off by default |

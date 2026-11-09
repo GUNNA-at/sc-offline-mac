@@ -1,0 +1,12 @@
+# pretty, the live part: macfix sets these once you are in the world and keeps them there (C:\users\crossover\macfix.cvars).
+# The game refuses the first one in user.cfg; the groups are set here so that they win over the menu's preset.
+r.TSR.UpscalingPreset 1        # the game's upscaler: 0 native, 1 Quality (66%), 2 Balanced (57%), 3 Performance (50%)
+sys_spec_Shading 3             # group levels: 1 Low, 2 Medium, 3 High, 4 Very High
+sys_spec_PostProcessing 3
+sys_spec_ShadowScreenSpace 3
+sys_spec_TextureFiltering 3
+sys_spec_TextureDetail 3
+sys_spec_Fog 3
+sys_spec_Particles 2
+sys_spec_ShadowMaps 2
+r_TexturesStreamingMipBias 0   # full-resolution textures up close (Low: 1, half resolution)
