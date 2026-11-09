@@ -1,0 +1,21 @@
+10:13:25 boot game mem/compressed: 302M 0B    | free 13.7GB swap 5671.94M compressor 14.5GB held in 0.8GB | cpu 100.0%
+10:13:56 boot game mem/compressed: 1375M 0B    | free 10.4GB swap 5663.94M compressor 14.3GB held in 0.7GB | cpu 100.0%
+10:14:26 boot game mem/compressed: 1396M 0B    | free 11.2GB swap 5663.94M compressor 14.2GB held in 0.7GB | cpu 99.7%
+10:14:56 boot game mem/compressed: 2125M 0B    | free 9.8GB swap 5663.94M compressor 14.2GB held in 0.7GB | cpu 98.4%
+10:15:27 boot game mem/compressed: 4036M 0B    | free 7.1GB swap 5647.94M compressor 14.1GB held in 0.7GB | cpu 172.1%
+10:15:57 boot game mem/compressed: 6072M 0B    | free 3.9GB swap 5647.94M compressor 14.1GB held in 0.7GB | cpu 112.3%
+10:16:28 boot game mem/compressed: 5999M 0B    | free 3.6GB swap 5631.94M compressor 14.1GB held in 0.6GB | cpu 103.9%
+10:16:59 loading game mem/compressed: 10G 3438M | free 0.1GB swap 5559.94M compressor 18.9GB held in 2.0GB | cpu 664.2%
+10:17:30 seeded game mem/compressed: 15G 8981M | free 0.1GB swap 5527.94M compressor 29.7GB held in 5.5GB | cpu 250.4%
+10:18:02 seeded game mem/compressed: 22G 18G   | free 0.1GB swap 5527.94M compressor 44.9GB held in 9.6GB | cpu 89.4%
+10:18:36 seeded game mem/compressed: 27G 20G   | free 0.1GB swap 7570.44M compressor 48.4GB held in 9.2GB | cpu 693.9%
+10:19:06 IN WORLD after 341 s
+10:19:09 WORLD game mem/compressed: 28G 21G   | free 0.0GB swap 8450.19M compressor 48.6GB held in 8.4GB | cpu 511.6%
+         thread cpu  44.8%  pri 63R  sys 0:56.10  user 2:18.64
+         thread cpu  34.6%  pri 36T  sys 0:15.21  user 0:09.71
+         thread cpu  31.7%  pri 36T  sys 0:13.79  user 0:05.78
+         thread cpu  30.0%  pri 36T  sys 0:15.21  user 0:09.81
+         thread cpu  28.8%  pri 36T  sys 0:15.29  user 0:09.80
+         thread cpu  27.9%  pri 36T  sys 0:15.70  user 0:11.03
+10:19:41 run ended
+frames:  | main thread:  | whole frame: 

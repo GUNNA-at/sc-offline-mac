@@ -1,0 +1,538 @@
+12:55:13 boot game mem/compressed: 302M 0B    | free 14.3GB swap 5475.94M compressor 14.4GB held in 1.0GB | cpu 108.7%
+12:55:43 boot game mem/compressed: 1375M 0B    | free 12.1GB swap 5475.94M compressor 14.1GB held in 0.8GB | cpu 99.0%
+12:56:13 boot game mem/compressed: 1396M 0B    | free 11.9GB swap 5475.94M compressor 13.9GB held in 0.8GB | cpu 100.0%
+12:56:43 boot game mem/compressed: 2127M 0B    | free 9.4GB swap 5459.94M compressor 13.8GB held in 0.7GB | cpu 97.8%
+12:57:14 boot game mem/compressed: 3940M 0B    | free 7.2GB swap 5459.94M compressor 13.8GB held in 0.7GB | cpu 196.7%
+12:57:44 boot game mem/compressed: 5901M 0B    | free 4.8GB swap 5405.00M compressor 13.7GB held in 0.7GB | cpu 339.1%
+12:58:15 boot game mem/compressed: 6014M 0B    | free 4.2GB swap 5389.00M compressor 13.6GB held in 0.7GB | cpu 107.7%
+12:58:45 loading game mem/compressed: 10G 0B    | free 0.1GB swap 5365.00M compressor 13.5GB held in 0.6GB | cpu 739.3%
+12:59:15 seeded game mem/compressed: 16G 4239M | free 0.1GB swap 5365.00M compressor 20.0GB held in 2.9GB | cpu 413.1%
+12:59:46 seeded game mem/compressed: 24G 18G   | free 0.0GB swap 5365.00M compressor 34.2GB held in 9.5GB | cpu 584.2%
+13:00:16 IN WORLD after 304 s
+13:00:16 WORLD game mem/compressed: 28G 20G   | free 0.1GB swap 7807.25M compressor 36.5GB held in 8.3GB | cpu 632.8%
+         thread cpu  61.1%  pri 28R  sys 0:37.58  user 2:16.93
+         thread cpu  29.4%  pri 28T  sys 0:01.16  user 0:07.06
+         thread cpu  29.2%  pri 28T  sys 0:01.06  user 0:07.84
+         thread cpu  27.3%  pri 28T  sys 0:04.69  user 0:09.88
+         thread cpu  27.0%  pri 28T  sys 0:04.77  user 0:10.08
+         thread cpu  25.9%  pri 28T  sys 0:04.78  user 0:09.89
+13:00:47 WORLD game mem/compressed: 26G 19G   | free 0.1GB swap 7487.25M compressor 33.4GB held in 7.3GB | cpu 870.7%
+         paging/s: decompress 11976  compress 6602  swapin 621  swapout 0  pagein 392
+         thread cpu  76.0%  pri 28R  sys 0:38.69  user 2:34.44
+         thread cpu  34.0%  pri 28T  sys 0:05.49  user 0:22.61
+         thread cpu  29.6%  pri 28T  sys 0:05.61  user 0:23.19
+         thread cpu  28.8%  pri 28T  sys 0:05.62  user 0:22.99
+         thread cpu  27.8%  pri 28T  sys 0:05.62  user 0:23.00
+         thread cpu  27.3%  pri 28T  sys 0:05.42  user 0:22.65
+13:01:18 WORLD game mem/compressed: 26G 20G   | free 0.1GB swap 7327.25M compressor 35.3GB held in 8.2GB | cpu 837.0%
+         paging/s: decompress 10677  compress 15424  swapin 322  swapout 0  pagein 1474
+         thread cpu  64.2%  pri 28R  sys 0:39.71  user 2:51.80
+         thread cpu  35.9%  pri 28T  sys 0:05.15  user 0:22.63
+         thread cpu  35.8%  pri 28T  sys 0:02.04  user 0:32.85
+         thread cpu  34.9%  pri 28T  sys 0:06.49  user 0:35.87
+         thread cpu  34.5%  pri 28T  sys 0:06.32  user 0:35.41
+         thread cpu  34.3%  pri 28T  sys 0:06.45  user 0:36.13
+13:01:49 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7247.25M compressor 35.6GB held in 8.5GB | cpu 754.1%
+         paging/s: decompress 12896  compress 14343  swapin 169  swapout 0  pagein 602
+         thread cpu  65.5%  pri 28R  sys 0:40.91  user 3:10.34
+         thread cpu  38.9%  pri 28T  sys 0:07.49  user 0:48.85
+         thread cpu  34.6%  pri 28T  sys 0:07.52  user 0:48.79
+         thread cpu  31.8%  pri 28T  sys 0:07.35  user 0:48.39
+         thread cpu  30.1%  pri 28T  sys 0:07.35  user 0:48.53
+         thread cpu  28.6%  pri 28T  sys 0:07.46  user 0:49.06
+13:02:20 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7231.25M compressor 35.5GB held in 8.5GB | cpu 863.7%
+         paging/s: decompress 24977  compress 25294  swapin 47  swapout 0  pagein 512
+         thread cpu  61.4%  pri 28R  sys 0:42.38  user 3:27.06
+         thread cpu  28.6%  pri 28T  sys 0:08.78  user 1:01.96
+         thread cpu  27.4%  pri 28T  sys 0:08.78  user 1:02.02
+         thread cpu  27.0%  pri 28T  sys 0:08.91  user 1:02.63
+         thread cpu  26.3%  pri 28T  sys 0:08.96  user 1:02.32
+         thread cpu  25.8%  pri 28T  sys 0:08.95  user 1:02.39
+13:02:51 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7167.19M compressor 35.7GB held in 8.6GB | cpu 849.3%
+         paging/s: decompress 22250  compress 23555  swapin 101  swapout 0  pagein 257
+         thread cpu  76.6%  pri 28R  sys 0:43.82  user 3:44.23
+         thread cpu  29.8%  pri 28T  sys 0:10.27  user 1:16.21
+         thread cpu  28.9%  pri 28T  sys 0:10.30  user 1:15.52
+         thread cpu  27.3%  pri 28T  sys 0:10.29  user 1:15.90
+         thread cpu  27.0%  pri 28T  sys 0:10.15  user 1:15.76
+         thread cpu  24.6%  pri 28T  sys 0:02.29  user 0:47.75
+13:03:22 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7167.19M compressor 35.7GB held in 8.6GB | cpu 786.1%
+         paging/s: decompress 24564  compress 24990  swapin 15  swapout 0  pagein 183
+         thread cpu  73.9%  pri 28R  sys 0:45.24  user 4:01.37
+         thread cpu  28.2%  pri 28T  sys 0:11.80  user 1:30.05
+         thread cpu  27.5%  pri 28T  sys 0:11.63  user 1:29.52
+         thread cpu  26.2%  pri 28T  sys 0:11.78  user 1:29.32
+         thread cpu  25.6%  pri 28T  sys 0:11.76  user 1:29.82
+         thread cpu  25.3%  pri 28T  sys 0:11.59  user 1:29.17
+13:03:53 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7143.19M compressor 35.8GB held in 8.7GB | cpu 802.2%
+         paging/s: decompress 24692  compress 25565  swapin 25  swapout 0  pagein 241
+         thread cpu  58.6%  pri 28R  sys 0:46.71  user 4:18.45
+         thread cpu  36.1%  pri 28T  sys 0:13.25  user 1:43.10
+         thread cpu  35.5%  pri 28T  sys 0:13.24  user 1:43.46
+         thread cpu  34.8%  pri 28T  sys 0:13.02  user 1:43.00
+         thread cpu  34.1%  pri 28T  sys 0:13.24  user 1:43.63
+         thread cpu  33.3%  pri 28T  sys 0:13.26  user 1:43.84
+13:04:24 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7143.19M compressor 35.8GB held in 8.6GB | cpu 832.6%
+         paging/s: decompress 28191  compress 28071  swapin 13  swapout 0  pagein 173
+         thread cpu  77.6%  pri 28R  sys 0:48.24  user 4:35.75
+         thread cpu  26.0%  pri 28T  sys 0:14.69  user 1:56.79
+         thread cpu  25.5%  pri 28T  sys 0:14.86  user 1:57.21
+         thread cpu  24.8%  pri 28T  sys 0:14.87  user 1:57.29
+         thread cpu  24.2%  pri 28T  sys 0:14.84  user 1:57.03
+         thread cpu  23.8%  pri 28T  sys 0:14.88  user 1:56.73
+13:04:55 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7143.19M compressor 35.7GB held in 8.6GB | cpu 849.4%
+         paging/s: decompress 16200  compress 16713  swapin 5  swapout 0  pagein 135
+         thread cpu  71.0%  pri 28R  sys 0:49.44  user 4:54.48
+         thread cpu  28.0%  pri 28T  sys 0:16.03  user 2:10.83
+         thread cpu  27.6%  pri 28T  sys 0:16.07  user 2:11.23
+         thread cpu  26.1%  pri 28T  sys 0:16.10  user 2:10.61
+         thread cpu  24.9%  pri 28T  sys 0:15.85  user 2:10.15
+         thread cpu  23.8%  pri 28T  sys 0:16.07  user 2:10.90
+13:05:26 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7127.19M compressor 35.3GB held in 8.4GB | cpu 849.8%
+         paging/s: decompress 25390  compress 24299  swapin 18  swapout 0  pagein 234
+         thread cpu  83.1%  pri 28R  sys 0:50.82  user 5:12.10
+         thread cpu  22.7%  pri 28T  sys 0:17.32  user 2:24.06
+         thread cpu  22.6%  pri 28T  sys 0:17.26  user 2:23.56
+         thread cpu  22.6%  pri 28T  sys 0:03.62  user 1:25.78
+         thread cpu  22.0%  pri 28T  sys 0:17.48  user 2:24.33
+         thread cpu  21.5%  pri 28T  sys 0:17.50  user 2:23.92
+13:05:57 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7127.19M compressor 34.7GB held in 8.1GB | cpu 843.9%
+         paging/s: decompress 4680  compress 4068  swapin 17  swapout 0  pagein 83
+         thread cpu  77.1%  pri 28R  sys 0:51.67  user 5:32.70
+         thread cpu  33.1%  pri 28T  sys 0:18.19  user 2:37.99
+         thread cpu  33.0%  pri 28T  sys 0:18.21  user 2:37.72
+         thread cpu  30.7%  pri 28T  sys 0:17.99  user 2:36.90
+         thread cpu  30.4%  pri 28T  sys 0:18.05  user 2:37.21
+         thread cpu  30.3%  pri 28T  sys 0:18.20  user 2:36.99
+13:06:28 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7127.19M compressor 35.0GB held in 8.2GB | cpu 828.6%
+         paging/s: decompress 4402  compress 5139  swapin 4  swapout 0  pagein 77
+         thread cpu  77.7%  pri 28R  sys 0:52.49  user 5:53.07
+         thread cpu  29.9%  pri 28T  sys 0:18.76  user 2:50.34
+         thread cpu  26.9%  pri 28T  sys 0:18.91  user 2:51.19
+         thread cpu  25.3%  pri 28T  sys 0:18.91  user 2:50.91
+         thread cpu  23.7%  pri 28T  sys 0:18.71  user 2:50.14
+         thread cpu  23.6%  pri 28T  sys 0:18.90  user 2:50.02
+13:06:59 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7119.19M compressor 34.7GB held in 8.1GB | cpu 851.7%
+         paging/s: decompress 2283  compress 1646  swapin 2  swapout 0  pagein 14
+         thread cpu  73.8%  pri 28R  sys 0:53.29  user 6:13.80
+         thread cpu  35.8%  pri 28T  sys 0:19.42  user 3:03.80
+         thread cpu  34.9%  pri 28T  sys 0:19.55  user 3:03.22
+         thread cpu  34.0%  pri 28T  sys 0:19.37  user 3:03.52
+         thread cpu  33.8%  pri 28T  sys 0:19.51  user 3:03.84
+         thread cpu  32.8%  pri 28T  sys 0:19.57  user 3:04.44
+13:07:30 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7111.19M compressor 34.8GB held in 8.1GB | cpu 817.7%
+         paging/s: decompress 3360  compress 3542  swapin 26  swapout 0  pagein 19
+         thread cpu  71.4%  pri 28R  sys 0:54.11  user 6:34.21
+         thread cpu  24.9%  pri 28T  sys 0:20.06  user 3:17.35
+         thread cpu  23.8%  pri 28T  sys 0:20.25  user 3:17.07
+         thread cpu  23.3%  pri 28T  sys 0:20.21  user 3:17.80
+         thread cpu  23.1%  pri 28T  sys 0:20.11  user 3:17.51
+         thread cpu  22.6%  pri 28T  sys 0:04.21  user 1:55.38
+13:08:01 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7111.19M compressor 35.0GB held in 8.3GB | cpu 825.1%
+         paging/s: decompress 4161  compress 4754  swapin 7  swapout 0  pagein 37
+         thread cpu  71.5%  pri 28R  sys 0:54.98  user 6:54.74
+         thread cpu  40.2%  pri 28T  sys 0:20.83  user 3:31.47
+         thread cpu  35.5%  pri 28T  sys 0:20.93  user 3:31.84
+         thread cpu  34.2%  pri 28T  sys 0:20.77  user 3:31.12
+         thread cpu  30.4%  pri 28T  sys 0:20.97  user 3:32.15
+         thread cpu  30.3%  pri 28T  sys 0:20.95  user 3:30.97
+13:08:32 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7111.19M compressor 34.9GB held in 8.2GB | cpu 834.1%
+         paging/s: decompress 3482  compress 3417  swapin 17  swapout 0  pagein 36
+         thread cpu  73.9%  pri 28R  sys 0:55.81  user 7:15.36
+         thread cpu  31.7%  pri 28T  sys 0:21.56  user 3:45.47
+         thread cpu  30.6%  pri 28T  sys 0:21.68  user 3:45.88
+         thread cpu  29.6%  pri 28T  sys 0:21.68  user 3:44.98
+         thread cpu  28.8%  pri 28T  sys 0:21.69  user 3:46.14
+         thread cpu  27.8%  pri 28T  sys 0:21.49  user 3:45.12
+13:09:03 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7103.19M compressor 34.9GB held in 8.3GB | cpu 853.2%
+         paging/s: decompress 4878  compress 5133  swapin 10  swapout 0  pagein 37
+         thread cpu  80.0%  pri 28R  sys 0:56.70  user 7:35.20
+         thread cpu  29.8%  pri 28T  sys 0:22.45  user 4:00.08
+         thread cpu  26.1%  pri 28T  sys 0:22.26  user 3:59.43
+         thread cpu  22.3%  pri 28T  sys 0:22.45  user 4:00.15
+         thread cpu  22.3%  pri 28T  sys 0:22.44  user 3:59.21
+         thread cpu  22.3%  pri 28T  sys 0:22.32  user 3:59.40
+13:09:34 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7039.19M compressor 35.4GB held in 8.5GB | cpu 841.1%
+         paging/s: decompress 6859  compress 7875  swapin 88  swapout 0  pagein 93
+         thread cpu  65.6%  pri 28R  sys 0:57.59  user 7:55.14
+         thread cpu  29.6%  pri 28T  sys 0:23.26  user 4:14.07
+         thread cpu  29.4%  pri 28T  sys 0:23.25  user 4:13.26
+         thread cpu  27.9%  pri 28T  sys 0:23.23  user 4:14.00
+         thread cpu  27.1%  pri 28T  sys 0:23.14  user 4:13.46
+         thread cpu  26.4%  pri 28T  sys 0:23.06  user 4:13.50
+13:10:05 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 7031.19M compressor 35.1GB held in 8.4GB | cpu 887.8%
+         paging/s: decompress 7132  compress 6724  swapin 7  swapout 0  pagein 19
+         thread cpu  67.6%  pri 28R  sys 0:58.57  user 8:13.93
+         thread cpu  34.5%  pri 28T  sys 0:24.09  user 4:29.37
+         thread cpu  33.9%  pri 28T  sys 0:24.09  user 4:29.43
+         thread cpu  33.8%  pri 28T  sys 0:23.91  user 4:28.84
+         thread cpu  33.0%  pri 28T  sys 0:24.11  user 4:29.42
+         thread cpu  32.8%  pri 28T  sys 0:23.98  user 4:29.04
+13:10:36 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 10750.12M compressor 38.1GB held in 6.0GB | cpu 575.9%
+         paging/s: decompress 64593  compress 70553  swapin 1088  swapout 8236  pagein 1080
+         thread cpu  36.5%  pri 36T  sys 0:26.88  user 4:39.47
+         thread cpu  36.1%  pri 63R  sys 1:02.13  user 8:28.65
+         thread cpu  34.9%  pri 36T  sys 0:26.93  user 4:39.64
+         thread cpu  34.6%  pri 36T  sys 0:22.17  user 3:22.63
+         thread cpu  31.6%  pri 40T  sys 0:05.87  user 2:41.08
+         thread cpu  30.3%  pri 36T  sys 0:27.01  user 4:40.03
+13:11:09 WORLD game mem/compressed: 27G 20G   | free 0.1GB swap 10729.69M compressor 33.8GB held in 4.2GB | cpu 954.1%
+         paging/s: decompress 32168  compress 23742  swapin 584  swapout 552  pagein 812
+         thread cpu  81.4%  pri 63R  sys 1:04.09  user 8:47.96
+         thread cpu  34.5%  pri 36T  sys 0:28.46  user 4:52.46
+         thread cpu  34.3%  pri 36T  sys 0:28.56  user 4:52.86
+         thread cpu  34.2%  pri 36T  sys 0:28.41  user 4:52.31
+         thread cpu  33.4%  pri 36T  sys 0:28.56  user 4:52.77
+         thread cpu  32.4%  pri 36T  sys 0:28.54  user 4:52.82
+13:11:40 WORLD game mem/compressed: 27G 19G   | free 0.1GB swap 10681.69M compressor 33.5GB held in 4.1GB | cpu 856.0%
+         paging/s: decompress 660  compress 0  swapin 91  swapout 0  pagein 81
+         thread cpu  80.2%  pri 28R  sys 1:04.86  user 9:10.05
+         thread cpu  31.1%  pri 28T  sys 0:29.14  user 5:06.67
+         thread cpu  30.6%  pri 28T  sys 0:29.20  user 5:07.27
+         thread cpu  30.6%  pri 28T  sys 0:29.11  user 5:06.88
+         thread cpu  29.8%  pri 28T  sys 0:29.18  user 5:07.20
+         thread cpu  28.2%  pri 28T  sys 0:24.26  user 3:47.50
+13:12:10 WORLD game mem/compressed: 27G 19G   | free 0.1GB swap 10633.69M compressor 33.3GB held in 4.0GB | cpu 769.6%
+         paging/s: decompress 431  compress 0  swapin 106  swapout 0  pagein 123
+         thread cpu  77.8%  pri 28R  sys 1:05.58  user 9:30.72
+         thread cpu  31.0%  pri 28T  sys 0:29.81  user 5:21.04
+         thread cpu  30.7%  pri 28T  sys 0:29.75  user 5:20.62
+         thread cpu  30.6%  pri 28T  sys 0:29.82  user 5:21.04
+         thread cpu  30.3%  pri 28T  sys 0:29.67  user 5:20.62
+         thread cpu  29.9%  pri 28T  sys 0:29.72  user 5:20.70
+13:12:42 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 10753.12M compressor 38.6GB held in 6.3GB | cpu 577.4%
+         paging/s: decompress 116561  compress 126409  swapin 403  swapout 1107  pagein 960
+         thread cpu  32.5%  pri 63R  sys 1:11.64  user 9:40.18
+         thread cpu  30.8%  pri 36T  sys 0:34.42  user 5:27.58
+         thread cpu  30.7%  pri 36T  sys 0:34.40  user 5:27.54
+         thread cpu  28.2%  pri 36T  sys 0:34.37  user 5:27.15
+         thread cpu  26.7%  pri 36T  sys 0:34.43  user 5:27.44
+         thread cpu  26.2%  pri 36T  sys 0:34.24  user 5:27.03
+13:13:14 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11290.56M compressor 37.7GB held in 5.4GB | cpu 679.7%
+         paging/s: decompress 153365  compress 153770  swapin 263  swapout 782  pagein 361
+         thread cpu  35.9%  pri 63R  sys 1:19.46  user 9:46.99
+         thread cpu  33.5%  pri 36T  sys 0:40.45  user 5:32.78
+         thread cpu  33.0%  pri 36T  sys 0:40.44  user 5:32.30
+         thread cpu  30.3%  pri 36T  sys 0:40.27  user 5:32.26
+         thread cpu  27.7%  pri 36T  sys 0:40.46  user 5:32.56
+         thread cpu  27.5%  pri 36T  sys 0:40.56  user 5:32.77
+13:13:47 WORLD game mem/compressed: 32G 22G   | free 0.0GB swap 11327.75M compressor 37.4GB held in 5.3GB | cpu 643.3%
+         paging/s: decompress 145473  compress 145757  swapin 317  swapout 460  pagein 729
+         thread cpu  41.4%  pri 63R  sys 1:27.17  user 9:53.28
+         thread cpu  35.2%  pri 36T  sys 0:46.41  user 5:37.85
+         thread cpu  33.4%  pri 36T  sys 0:46.17  user 5:37.47
+         thread cpu  33.3%  pri 36T  sys 0:46.21  user 5:38.02
+         thread cpu  29.5%  pri 36T  sys 0:46.35  user 5:37.80
+         thread cpu  29.1%  pri 36T  sys 0:46.06  user 5:37.48
+13:14:19 WORLD game mem/compressed: 32G 22G   | free 0.0GB swap 11281.94M compressor 37.9GB held in 5.6GB | cpu 632.0%
+         paging/s: decompress 128785  compress 130025  swapin 160  swapout 97  pagein 165
+         thread cpu  41.6%  pri 63R  sys 1:34.49  user 10:00.22
+         thread cpu  38.5%  pri 36T  sys 0:51.55  user 5:42.77
+         thread cpu  35.6%  pri 36T  sys 0:51.56  user 5:42.11
+         thread cpu  35.0%  pri 36T  sys 0:51.85  user 5:42.68
+         thread cpu  34.1%  pri 36T  sys 0:51.57  user 5:42.05
+         thread cpu  32.7%  pri 36T  sys 0:51.76  user 5:42.60
+13:14:51 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11330.50M compressor 37.7GB held in 5.4GB | cpu 463.8%
+         paging/s: decompress 117843  compress 117579  swapin 109  swapout 215  pagein 555
+         thread cpu  54.4%  pri 28R  sys 1:40.10  user 10:06.00
+         thread cpu  25.8%  pri 28T  sys 0:16.70  user 3:41.28
+         thread cpu  24.3%  pri 28T  sys 0:56.18  user 5:47.11
+         thread cpu  23.0%  pri 28T  sys 0:55.89  user 5:46.59
+         thread cpu  22.9%  pri 28T  sys 0:56.13  user 5:47.13
+         thread cpu  22.9%  pri 28T  sys 0:55.95  user 5:47.47
+13:15:22 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11469.75M compressor 37.6GB held in 5.2GB | cpu 445.8%
+         paging/s: decompress 85617  compress 86004  swapin 37  swapout 304  pagein 82
+         thread cpu  26.1%  pri 28T  sys 0:17.72  user 3:48.20
+         thread cpu  25.7%  pri 28R  sys 1:43.47  user 10:11.78
+         thread cpu  24.3%  pri 28T  sys 0:58.93  user 5:51.16
+         thread cpu  22.3%  pri 46T  sys 0:58.95  user 5:52.07
+         thread cpu  22.3%  pri 28T  sys 0:58.92  user 5:51.26
+         thread cpu  22.2%  pri 28T  sys 0:29.20  user 0:04.07
+13:15:53 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11445.75M compressor 37.8GB held in 5.4GB | cpu 534.3%
+         paging/s: decompress 81028  compress 80795  swapin 38  swapout 0  pagein 44
+         thread cpu  32.1%  pri 28R  sys 1:46.90  user 10:17.04
+         thread cpu  28.2%  pri 28T  sys 1:02.06  user 5:55.98
+         thread cpu  26.1%  pri 28T  sys 1:02.04  user 5:56.07
+         thread cpu  26.0%  pri 28T  sys 1:02.03  user 5:56.87
+         thread cpu  24.4%  pri 28T  sys 1:02.29  user 5:56.43
+         thread cpu  24.0%  pri 28T  sys 1:02.05  user 5:55.97
+13:16:24 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11413.75M compressor 37.6GB held in 5.3GB | cpu 387.8%
+         paging/s: decompress 87616  compress 89099  swapin 68  swapout 0  pagein 72
+         thread cpu  25.9%  pri 28T  sys 0:19.66  user 4:02.00
+         thread cpu  19.8%  pri 28T  sys 1:05.34  user 6:00.78
+         thread cpu  18.9%  pri 28R  sys 1:50.28  user 10:22.07
+         thread cpu  18.4%  pri 28T  sys 1:05.11  user 6:00.56
+         thread cpu  17.6%  pri 28T  sys 1:05.38  user 6:01.16
+         thread cpu  16.9%  pri 28T  sys 1:05.03  user 6:00.60
+13:16:56 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11389.75M compressor 37.6GB held in 5.3GB | cpu 449.5%
+         paging/s: decompress 81743  compress 81722  swapin 36  swapout 0  pagein 112
+         thread cpu  30.6%  pri 28T  sys 0:20.60  user 4:08.98
+         thread cpu  28.3%  pri 28R  sys 1:53.64  user 10:27.27
+         thread cpu  27.9%  pri 28T  sys 1:08.44  user 6:05.84
+         thread cpu  24.9%  pri 28T  sys 1:08.10  user 6:06.07
+         thread cpu  24.4%  pri 28T  sys 1:08.36  user 6:05.32
+         thread cpu  24.1%  pri 28T  sys 1:08.15  user 6:05.31
+13:17:27 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11389.75M compressor 37.6GB held in 5.3GB | cpu 496.4%
+         paging/s: decompress 83518  compress 83716  swapin 19  swapout 0  pagein 14
+         thread cpu  32.1%  pri 28R  sys 1:57.12  user 10:32.99
+         thread cpu  30.0%  pri 28T  sys 1:11.50  user 6:10.56
+         thread cpu  29.0%  pri 20T  sys 1:01.79  user 4:34.96
+         thread cpu  27.5%  pri 21T  sys 1:11.21  user 6:09.96
+         thread cpu  26.8%  pri 22T  sys 1:11.15  user 6:10.02
+         thread cpu  26.6%  pri 22T  sys 1:11.10  user 6:09.84
+13:17:58 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11588.12M compressor 37.7GB held in 5.2GB | cpu 479.1%
+         paging/s: decompress 75479  compress 75433  swapin 106  swapout 541  pagein 38
+         thread cpu  50.5%  pri 28R  sys 2:00.14  user 10:40.16
+         thread cpu  25.7%  pri 28T  sys 0:22.38  user 4:22.89
+         thread cpu  20.0%  pri 28T  sys 1:13.82  user 6:15.40
+         thread cpu  19.3%  pri 28T  sys 0:31.85  user 0:02.45
+         thread cpu  19.0%  pri 28T  sys 1:14.22  user 6:14.88
+         thread cpu  18.5%  pri 28T  sys 1:13.88  user 6:14.52
+13:18:29 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11556.12M compressor 37.7GB held in 5.2GB | cpu 419.1%
+         paging/s: decompress 69508  compress 69564  swapin 70  swapout 0  pagein 88
+         thread cpu  53.5%  pri 28R  sys 2:03.13  user 10:47.37
+         thread cpu  26.6%  pri 28T  sys 0:23.21  user 4:29.82
+         thread cpu  23.5%  pri 28T  sys 1:16.51  user 6:20.09
+         thread cpu  20.8%  pri 28T  sys 1:16.94  user 6:19.53
+         thread cpu  20.7%  pri 28T  sys 1:16.52  user 6:19.19
+         thread cpu  19.7%  pri 28T  sys 1:16.52  user 6:19.17
+13:19:00 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11532.12M compressor 37.6GB held in 5.1GB | cpu 444.1%
+         paging/s: decompress 74160  compress 74093  swapin 30  swapout 0  pagein 17
+         thread cpu  50.4%  pri 28R  sys 2:06.18  user 10:55.13
+         thread cpu  29.4%  pri 28T  sys 0:22.51  user 0:01.19
+         thread cpu  26.6%  pri 28T  sys 0:24.04  user 4:36.73
+         thread cpu  25.2%  pri 28T  sys 1:19.22  user 6:24.78
+         thread cpu  24.0%  pri 28T  sys 1:19.21  user 6:23.87
+         thread cpu  23.5%  pri 28T  sys 1:19.20  user 6:23.75
+13:19:31 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11516.12M compressor 37.6GB held in 5.2GB | cpu 497.9%
+         paging/s: decompress 76475  compress 76931  swapin 22  swapout 0  pagein 662
+         thread cpu  48.8%  pri 28R  sys 2:09.30  user 11:02.56
+         thread cpu  22.6%  pri 28T  sys 0:24.89  user 4:43.58
+         thread cpu  20.2%  pri 28T  sys 1:22.55  user 6:28.87
+         thread cpu  19.7%  pri 28T  sys 1:22.39  user 6:28.48
+         thread cpu  19.7%  pri 28T  sys 1:21.93  user 6:28.10
+         thread cpu  19.1%  pri 28T  sys 0:41.96  user 0:04.55
+13:20:02 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11538.81M compressor 37.6GB held in 5.2GB | cpu 469.0%
+         paging/s: decompress 74384  compress 74514  swapin 28  swapout 46  pagein 17
+         thread cpu  62.6%  pri 28R  sys 2:12.49  user 11:09.84
+         thread cpu  24.0%  pri 28T  sys 0:25.79  user 4:50.54
+         thread cpu  18.6%  pri 28T  sys 0:23.33  user 0:01.10
+         thread cpu  18.4%  pri 28T  sys 1:24.77  user 6:33.56
+         thread cpu  18.1%  pri 28T  sys 1:25.30  user 6:32.94
+         thread cpu  16.9%  pri 28T  sys 1:24.77  user 6:32.65
+13:20:33 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11458.81M compressor 37.7GB held in 5.3GB | cpu 395.0%
+         paging/s: decompress 74623  compress 75369  swapin 183  swapout 0  pagein 843
+         thread cpu  27.5%  pri 28T  sys 1:27.36  user 6:37.00
+         thread cpu  25.4%  pri 28T  sys 0:26.55  user 4:57.25
+         thread cpu  24.4%  pri 46T  sys 0:45.13  user 0:04.68
+         thread cpu  24.3%  pri 28T  sys 1:27.29  user 6:37.06
+         thread cpu  24.1%  pri 28T  sys 1:27.25  user 6:37.91
+         thread cpu  23.6%  pri 28T  sys 1:27.87  user 6:37.72
+13:21:05 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11426.81M compressor 37.8GB held in 5.4GB | cpu 521.8%
+         paging/s: decompress 81213  compress 81064  swapin 62  swapout 0  pagein 55
+         thread cpu  40.4%  pri 63R  sys 2:19.27  user 11:24.23
+         thread cpu  33.9%  pri 36T  sys 1:30.77  user 6:41.75
+         thread cpu  31.9%  pri 36T  sys 1:30.65  user 6:41.81
+         thread cpu  31.8%  pri 36T  sys 1:18.58  user 4:57.04
+         thread cpu  30.9%  pri 36T  sys 1:31.13  user 6:41.97
+         thread cpu  29.2%  pri 36T  sys 1:31.25  user 6:42.26
+13:21:37 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11394.81M compressor 37.8GB held in 5.4GB | cpu 711.6%
+         paging/s: decompress 138684  compress 139596  swapin 30  swapout 0  pagein 131
+         thread cpu  68.2%  pri 63R  sys 2:27.18  user 11:32.82
+         thread cpu  28.9%  pri 36T  sys 1:37.08  user 6:47.19
+         thread cpu  25.8%  pri 36T  sys 1:36.42  user 6:47.46
+         thread cpu  25.2%  pri 36T  sys 1:36.97  user 6:47.07
+         thread cpu  24.7%  pri 36T  sys 1:36.48  user 6:46.55
+         thread cpu  24.7%  pri 36T  sys 1:36.47  user 6:46.73
+13:22:09 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11394.81M compressor 37.7GB held in 5.3GB | cpu 452.8%
+         paging/s: decompress 130881  compress 131023  swapin 9  swapout 0  pagein 188
+         thread cpu  31.5%  pri 28R  sys 2:34.09  user 11:41.18
+         thread cpu  27.0%  pri 46T  sys 0:29.61  user 0:00.98
+         thread cpu  26.3%  pri 28T  sys 0:31.82  user 5:18.89
+         thread cpu  24.4%  pri 28T  sys 1:41.89  user 6:51.43
+         thread cpu  23.1%  pri 28T  sys 1:42.24  user 6:51.93
+         thread cpu  22.6%  pri 28T  sys 1:41.60  user 6:51.48
+13:22:40 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11386.81M compressor 37.6GB held in 5.3GB | cpu 479.1%
+         paging/s: decompress 73562  compress 73851  swapin 12  swapout 0  pagein 85
+         thread cpu  23.1%  pri 28T  sys 0:32.65  user 5:25.79
+         thread cpu  22.9%  pri 28R  sys 2:37.09  user 11:48.37
+         thread cpu  19.3%  pri 28T  sys 1:44.98  user 6:56.41
+         thread cpu  19.2%  pri 28T  sys 1:44.65  user 6:55.81
+         thread cpu  19.0%  pri 28T  sys 1:44.46  user 6:56.88
+         thread cpu  19.0%  pri 28T  sys 1:44.39  user 6:55.95
+13:23:11 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11378.81M compressor 37.7GB held in 5.4GB | cpu 470.5%
+         paging/s: decompress 76459  compress 76422  swapin 13  swapout 0  pagein 33
+         thread cpu  31.9%  pri 28R  sys 2:40.38  user 11:54.88
+         thread cpu  28.5%  pri 28T  sys 1:47.24  user 7:00.47
+         thread cpu  27.1%  pri 28T  sys 0:33.53  user 5:32.75
+         thread cpu  24.1%  pri 28T  sys 1:47.44  user 7:00.24
+         thread cpu  23.7%  pri 28T  sys 1:47.92  user 7:00.95
+         thread cpu  23.3%  pri 28T  sys 1:47.78  user 7:00.89
+13:23:42 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11378.81M compressor 37.8GB held in 5.4GB | cpu 411.6%
+         paging/s: decompress 73826  compress 73160  swapin 15  swapout 0  pagein 61
+         thread cpu  43.5%  pri 28R  sys 2:43.36  user 12:01.93
+         thread cpu  24.4%  pri 28T  sys 0:34.33  user 5:39.68
+         thread cpu  22.8%  pri 28T  sys 1:50.46  user 7:05.34
+         thread cpu  22.7%  pri 28T  sys 1:50.15  user 7:04.80
+         thread cpu  21.6%  pri 28T  sys 1:49.98  user 7:05.09
+         thread cpu  21.4%  pri 28T  sys 1:50.56  user 7:05.49
+13:24:13 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11370.81M compressor 38.0GB held in 5.6GB | cpu 352.6%
+         paging/s: decompress 77393  compress 77801  swapin 30  swapout 0  pagein 73
+         thread cpu  27.9%  pri 28R  sys 2:46.41  user 12:08.94
+         thread cpu  27.6%  pri 28T  sys 1:52.61  user 7:10.13
+         thread cpu  25.2%  pri 28T  sys 0:35.17  user 5:46.54
+         thread cpu  24.9%  pri 28T  sys 1:52.66  user 7:09.56
+         thread cpu  23.5%  pri 28T  sys 1:52.81  user 7:09.39
+         thread cpu  21.4%  pri 28T  sys 1:53.07  user 7:09.64
+13:24:44 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11354.81M compressor 37.6GB held in 5.4GB | cpu 464.9%
+         paging/s: decompress 74133  compress 75306  swapin 19  swapout 0  pagein 402
+         thread cpu  29.3%  pri 28T  sys 0:35.99  user 5:53.35
+         thread cpu  25.9%  pri 28T  sys 1:55.51  user 7:13.76
+         thread cpu  25.3%  pri 28R  sys 2:49.48  user 12:15.90
+         thread cpu  22.4%  pri 46T  sys 0:41.97  user 0:01.82
+         thread cpu  20.7%  pri 28T  sys 1:55.91  user 7:14.32
+         thread cpu  19.9%  pri 28T  sys 1:55.51  user 7:13.59
+13:25:15 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11354.81M compressor 37.6GB held in 5.3GB | cpu 503.4%
+         paging/s: decompress 74987  compress 74353  swapin 7  swapout 0  pagein 31
+         thread cpu  28.2%  pri 28T  sys 0:36.85  user 6:00.39
+         thread cpu  27.4%  pri 28T  sys 0:39.78  user 0:01.34
+         thread cpu  26.4%  pri 28T  sys 1:58.25  user 7:17.87
+         thread cpu  25.2%  pri 28T  sys 1:57.98  user 7:18.20
+         thread cpu  25.1%  pri 28R  sys 2:52.62  user 12:23.09
+         thread cpu  24.8%  pri 28T  sys 1:57.97  user 7:18.89
+13:25:46 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11346.81M compressor 37.6GB held in 5.4GB | cpu 433.7%
+         paging/s: decompress 73592  compress 73743  swapin 12  swapout 0  pagein 57
+         thread cpu  33.2%  pri 28R  sys 2:55.65  user 12:30.89
+         thread cpu  26.7%  pri 28T  sys 2:00.62  user 7:22.78
+         thread cpu  26.2%  pri 28T  sys 0:37.66  user 6:07.37
+         thread cpu  23.0%  pri 28T  sys 2:00.95  user 7:22.49
+         thread cpu  22.4%  pri 28T  sys 2:00.61  user 7:23.33
+         thread cpu  21.8%  pri 28T  sys 2:01.39  user 7:23.03
+13:26:17 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11346.81M compressor 37.7GB held in 5.4GB | cpu 402.1%
+         paging/s: decompress 72678  compress 73104  swapin 12  swapout 0  pagein 45
+         thread cpu  31.9%  pri 28R  sys 2:58.60  user 12:38.83
+         thread cpu  28.6%  pri 25T  sys 0:38.47  user 6:14.32
+         thread cpu  20.7%  pri 46T  sys 1:08.65  user 0:05.31
+         thread cpu  20.7%  pri 28T  sys 2:03.54  user 7:26.55
+         thread cpu  19.4%  pri 28T  sys 2:03.33  user 7:27.75
+         thread cpu  19.1%  pri 28T  sys 2:03.57  user 7:26.86
+13:26:48 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11282.81M compressor 37.6GB held in 5.4GB | cpu 506.9%
+         paging/s: decompress 75103  compress 75956  swapin 110  swapout 0  pagein 45
+         thread cpu  23.6%  pri 28T  sys 0:39.26  user 6:21.20
+         thread cpu  22.2%  pri 28R  sys 3:01.51  user 12:46.42
+         thread cpu  21.7%  pri 28T  sys 2:05.93  user 7:31.99
+         thread cpu  21.6%  pri 28T  sys 2:06.68  user 7:31.72
+         thread cpu  19.0%  pri 28T  sys 2:05.91  user 7:31.40
+         thread cpu  18.8%  pri 28T  sys 2:06.17  user 7:31.10
+13:27:19 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11274.81M compressor 37.9GB held in 5.6GB | cpu 353.4%
+         paging/s: decompress 73308  compress 73186  swapin 23  swapout 0  pagein 145
+         thread cpu  35.1%  pri 28R  sys 3:04.53  user 12:53.09
+         thread cpu  27.4%  pri 46T  sys 0:46.22  user 0:01.56
+         thread cpu  27.3%  pri 28T  sys 2:09.37  user 7:36.21
+         thread cpu  25.5%  pri 28T  sys 0:40.07  user 6:28.19
+         thread cpu  25.3%  pri 28T  sys 2:08.53  user 7:36.34
+         thread cpu  25.2%  pri 28T  sys 2:08.96  user 7:35.52
+13:27:50 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11258.81M compressor 37.8GB held in 5.5GB | cpu 362.0%
+         paging/s: decompress 75028  compress 75214  swapin 28  swapout 0  pagein 730
+         thread cpu  34.4%  pri 28R  sys 3:07.46  user 13:00.43
+         thread cpu  25.3%  pri 28T  sys 0:40.84  user 6:35.09
+         thread cpu  21.7%  pri 28T  sys 0:48.10  user 0:01.60
+         thread cpu  20.4%  pri 28T  sys 2:10.99  user 7:39.99
+         thread cpu  20.0%  pri 28T  sys 2:11.92  user 7:40.28
+         thread cpu  19.3%  pri 28T  sys 2:11.27  user 7:39.68
+13:28:21 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11250.81M compressor 37.7GB held in 5.5GB | cpu 393.8%
+         paging/s: decompress 67450  compress 68120  swapin 12  swapout 0  pagein 823
+         thread cpu  24.4%  pri 28T  sys 0:41.62  user 6:41.92
+         thread cpu  22.2%  pri 28R  sys 3:10.17  user 13:09.27
+         thread cpu  22.1%  pri 28T  sys 2:13.86  user 7:43.89
+         thread cpu  21.6%  pri 28T  sys 2:14.41  user 7:44.48
+         thread cpu  21.3%  pri 28T  sys 2:13.68  user 7:43.65
+         thread cpu  19.5%  pri 28T  sys 2:13.50  user 7:44.60
+13:28:52 WORLD game mem/compressed: 33G 21G   | free 0.0GB swap 11242.81M compressor 37.7GB held in 5.5GB | cpu 413.0%
+         paging/s: decompress 65995  compress 65944  swapin 17  swapout 0  pagein 395
+         thread cpu  23.5%  pri 28T  sys 0:42.34  user 6:48.82
+         thread cpu  23.2%  pri 46T  sys 2:16.37  user 7:48.22
+         thread cpu  21.1%  pri 28R  sys 3:12.99  user 13:16.92
+         thread cpu  19.5%  pri 28T  sys 2:16.93  user 7:48.89
+         thread cpu  19.5%  pri 28T  sys 2:16.23  user 7:47.77
+         thread cpu  19.5%  pri 28T  sys 2:15.95  user 7:48.91
+13:29:23 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11234.81M compressor 37.8GB held in 5.6GB | cpu 441.6%
+         paging/s: decompress 66692  compress 67220  swapin 14  swapout 0  pagein 441
+         thread cpu  31.8%  pri 28R  sys 3:15.66  user 13:25.90
+         thread cpu  26.0%  pri 46T  sys 0:43.05  user 6:55.75
+         thread cpu  25.4%  pri 28T  sys 2:18.71  user 7:52.38
+         thread cpu  22.8%  pri 28T  sys 2:18.34  user 7:53.09
+         thread cpu  22.5%  pri 28T  sys 2:19.31  user 7:53.11
+         thread cpu  21.9%  pri 28T  sys 2:18.18  user 7:52.61
+13:29:54 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11226.81M compressor 37.6GB held in 5.5GB | cpu 410.7%
+         paging/s: decompress 77860  compress 78052  swapin 7  swapout 0  pagein 1119
+         thread cpu  35.6%  pri 28R  sys 3:18.68  user 13:32.41
+         thread cpu  22.9%  pri 28T  sys 0:43.82  user 7:02.58
+         thread cpu  20.5%  pri 46T  sys 0:56.40  user 0:01.82
+         thread cpu  17.7%  pri 28T  sys 2:21.23  user 7:56.34
+         thread cpu  16.4%  pri 28T  sys 2:21.24  user 7:56.55
+         thread cpu  16.0%  pri 28T  sys 2:20.79  user 7:56.70
+13:30:25 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11218.81M compressor 37.9GB held in 5.6GB | cpu 399.7%
+         paging/s: decompress 79057  compress 79641  swapin 10  swapout 0  pagein 773
+         thread cpu  32.1%  pri 28R  sys 3:21.67  user 13:39.49
+         thread cpu  24.9%  pri 28T  sys 2:23.93  user 8:00.60
+         thread cpu  23.5%  pri 28T  sys 0:44.60  user 7:09.35
+         thread cpu  21.0%  pri 28T  sys 2:24.66  user 8:01.31
+         thread cpu  18.7%  pri 28T  sys 2:23.64  user 8:01.30
+         thread cpu  18.6%  pri 28T  sys 2:23.84  user 8:00.32
+13:30:56 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11382.44M compressor 37.6GB held in 5.4GB | cpu 401.7%
+         paging/s: decompress 75578  compress 75927  swapin 14  swapout 354  pagein 392
+         thread cpu  27.0%  pri 28T  sys 0:45.37  user 7:16.01
+         thread cpu  25.0%  pri 28T  sys 2:26.00  user 8:04.55
+         thread cpu  24.3%  pri 28R  sys 3:24.64  user 13:46.71
+         thread cpu  23.4%  pri 28T  sys 2:26.41  user 8:03.99
+         thread cpu  21.9%  pri 28T  sys 2:26.51  user 8:04.58
+         thread cpu  21.3%  pri 28T  sys 2:27.28  user 8:05.44
+13:31:27 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11366.44M compressor 37.6GB held in 5.4GB | cpu 408.3%
+         paging/s: decompress 76265  compress 78083  swapin 42  swapout 0  pagein 309
+         thread cpu  42.1%  pri 28R  sys 3:27.71  user 13:53.93
+         thread cpu  26.7%  pri 28T  sys 0:51.72  user 0:03.68
+         thread cpu  26.1%  pri 28T  sys 0:46.10  user 7:22.83
+         thread cpu  21.7%  pri 28T  sys 2:29.17  user 8:08.62
+         thread cpu  20.2%  pri 28T  sys 2:29.16  user 8:08.12
+         thread cpu  20.0%  pri 28T  sys 2:28.69  user 8:08.68
+13:31:58 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11366.44M compressor 37.6GB held in 5.4GB | cpu 472.2%
+         paging/s: decompress 78580  compress 79357  swapin 19  swapout 0  pagein 246
+         thread cpu  28.8%  pri 28R  sys 3:30.96  user 14:00.99
+         thread cpu  24.1%  pri 28T  sys 1:03.04  user 0:02.59
+         thread cpu  23.3%  pri 28T  sys 0:46.80  user 7:29.48
+         thread cpu  22.0%  pri 28T  sys 2:31.62  user 8:13.47
+         thread cpu  21.5%  pri 28T  sys 2:31.91  user 8:12.28
+         thread cpu  20.8%  pri 28T  sys 2:31.86  user 8:12.01
+13:32:29 WORLD game mem/compressed: 32G 21G   | free 0.1GB swap 11405.81M compressor 37.7GB held in 5.4GB | cpu 495.5%
+         paging/s: decompress 76246  compress 77051  swapin 27  swapout 97  pagein 189
+         thread cpu  34.4%  pri 28R  sys 3:33.97  user 14:08.02
+         thread cpu  29.2%  pri 27T  sys 1:29.79  user 0:05.94
+         thread cpu  25.8%  pri 28T  sys 0:47.68  user 7:36.40
+         thread cpu  24.7%  pri 28T  sys 2:34.55  user 8:16.27
+         thread cpu  23.1%  pri 28T  sys 2:34.62  user 8:16.66
+         thread cpu  22.9%  pri 28T  sys 2:34.16  user 8:16.80
+13:33:00 WORLD game mem/compressed: 33G 21G   | free 0.1GB swap 11427.94M compressor 37.6GB held in 5.2GB | cpu 474.3%
+         paging/s: decompress 71679  compress 72062  swapin 16  swapout 78  pagein 37
+         thread cpu  29.1%  pri 28R  sys 3:36.95  user 14:16.27
+         thread cpu  25.7%  pri 28T  sys 0:48.50  user 7:43.17
+         thread cpu  25.3%  pri 28T  sys 2:37.01  user 8:22.13
+         thread cpu  23.9%  pri 28T  sys 1:32.37  user 0:06.00
+         thread cpu  20.2%  pri 28T  sys 2:38.09  user 8:22.21
+         thread cpu  19.4%  pri 28T  sys 2:36.85  user 8:21.17
+13:33:32 WORLD game mem/compressed: 32G 21G   | free 0.0GB swap 11411.94M compressor 37.8GB held in 5.4GB | cpu 396.3%
+         paging/s: decompress 75092  compress 75260  swapin 28  swapout 0  pagein 297
+         thread cpu  41.3%  pri 28R  sys 3:39.93  user 14:23.69
+         thread cpu  27.0%  pri 28T  sys 0:49.35  user 7:50.26
+         thread cpu  22.3%  pri 28T  sys 2:40.06  user 8:25.33
+         thread cpu  21.4%  pri 28T  sys 2:39.68  user 8:26.54
+         thread cpu  21.2%  pri 28T  sys 2:39.84  user 8:25.06
+         thread cpu  21.2%  pri 28T  sys 2:39.48  user 8:25.64
+13:34:03 WORLD game mem/compressed: 31G 21G   | free 0.1GB swap 11371.94M compressor 37.4GB held in 5.2GB | cpu 426.9%
+         paging/s: decompress 70819  compress 70688  swapin 82  swapout 0  pagein 64
+         thread cpu  27.9%  pri 28T  sys 1:36.56  user 0:06.10
+         thread cpu  27.5%  pri 28T  sys 0:50.25  user 7:57.23
+         thread cpu  27.4%  pri 28T  sys 2:42.23  user 8:30.01
+         thread cpu  22.3%  pri 28T  sys 2:42.60  user 8:29.69
+         thread cpu  22.2%  pri 28T  sys 2:42.90  user 8:29.72
+         thread cpu  21.9%  pri 28T  sys 2:42.48  user 8:31.01

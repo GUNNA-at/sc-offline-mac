@@ -1,0 +1,7 @@
+13:34:25 boot game mem/compressed: 294M 0B    | free 12.9GB swap 5381.81M compressor 14.3GB held in 1.0GB | cpu 99.7%
+13:34:55 boot game mem/compressed: 1367M 0B    | free 10.6GB swap 5373.81M compressor 14.0GB held in 0.9GB | cpu 98.7%
+13:35:25 boot game mem/compressed: 1388M 0B    | free 10.5GB swap 5373.81M compressor 13.9GB held in 0.8GB | cpu 98.8%
+13:35:55 boot game mem/compressed: 2121M 0B    | free 7.6GB swap 5325.81M compressor 13.6GB held in 0.8GB | cpu 100.1%
+13:36:25 FAILED: Fatal Error Thrown: Required VkPhysicalDeviceFeatures not found: {tessellationShader}
+13:36:46 run ended
+frames: 0 | main thread:  | whole frame: 

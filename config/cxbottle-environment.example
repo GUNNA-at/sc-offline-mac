@@ -1,0 +1,22 @@
+;; Environment for the StarCitizen bottle: the [EnvironmentVariables] section of the bottle's cxbottle.conf
+;; (~/Library/Application Support/CrossOver/Bottles/StarCitizen/cxbottle.conf). These are the values the measurements used.
+[EnvironmentVariables]
+;; winegrid: on for the game only
+"WINEGRID" = "1"
+"WINEGRID_ONLY" = "StarCitizen.exe"
+;; Wine: Mach-semaphore synchronisation on, D3DMetal off (it deadlocks on this macOS), DXVK on for the launcher
+"WINEMSYNC" = "1"
+"WINED3DMETAL" = "0"
+"WINEDXVK" = "1"
+;; MoltenVK: no Metal argument buffers (every resource would be pinned in memory), exact math, compile shaders in parallel
+"MVK_CONFIG_USE_METAL_ARGUMENT_BUFFERS" = "0"
+"MVK_CONFIG_FAST_MATH_ENABLED" = "0"
+"MVK_CONFIG_SHOULD_MAXIMIZE_CONCURRENT_COMPILATION" = "1"
+;; shim: present frames without waiting for vertical sync
+"MVKSHIM_PRESENT_MODE" = "immediate"
+;; Diagnostics, on during the measured runs. Leave them out for normal play.
+;;"MVKSHIM_FRAME_STATS" = "1"
+;;"MVK_CONFIG_PERFORMANCE_TRACKING" = "1"
+;;"MVK_CONFIG_PERFORMANCE_LOGGING_FRAME_COUNT" = "300"
+;;"MVK_CONFIG_SHADER_DUMP_DIR" = "/private/tmp/sc-shaders"
+;;"MVKSHIM_SPV_DIR" = "/private/tmp/sc-spv"

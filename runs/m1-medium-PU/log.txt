@@ -1,0 +1,27 @@
+09:05:49 boot game mem/compressed: 298M 0B    | free 11.8GB swap 5258.00M | cpu 99.4%
+09:06:19 boot game mem/compressed: 1371M 0B    | free 9.0GB swap 5250.00M | cpu 99.0%
+09:06:50 boot game mem/compressed: 1392M 0B    | free 8.6GB swap 5242.00M | cpu 98.4%
+09:07:20 boot game mem/compressed: 2157M 0B    | free 7.1GB swap 5234.00M | cpu 100.0%
+09:07:50 boot game mem/compressed: 3905M 0B    | free 4.6GB swap 5234.00M | cpu 100.4%
+09:08:21 boot game mem/compressed: 6002M 0B    | free 1.1GB swap 5226.00M | cpu 110.5%
+09:08:51 boot game mem/compressed: 6002M 0B    | free 0.9GB swap 5218.00M | cpu 104.2%
+09:09:22 loading game mem/compressed: 12G 5085M | free 0.1GB swap 5218.00M | cpu 871.2%
+09:09:54 seeded game mem/compressed: 15G 9271M | free 0.1GB swap 5218.00M | cpu 408.0%
+09:10:26 seeded game mem/compressed: 22G 17G   | free 0.1GB swap 5218.00M | cpu 479.9%
+09:10:59 seeded game mem/compressed: 27G 21G   | free 0.0GB swap 7878.56M | cpu 414.1%
+09:11:29 IN WORLD after 340 s
+09:11:33 WORLD game mem/compressed: 28G 21G   | free 0.0GB swap 8771.88M | cpu 543.0%
+09:12:06 WORLD game mem/compressed: 29G 21G   | free 0.1GB swap 8728.62M | cpu 467.7%
+09:12:39 WORLD game mem/compressed: 29G 21G   | free 0.1GB swap 9114.62M | cpu 527.1%
+09:13:12 WORLD game mem/compressed: 29G 22G   | free 0.0GB swap 9123.81M | cpu 463.2%
+09:13:44 WORLD game mem/compressed: 29G 21G   | free 0.0GB swap 9316.50M | cpu 334.2%
+09:14:17 WORLD game mem/compressed: 29G 21G   | free 0.1GB swap 9237.38M | cpu 424.3%
+09:14:50 WORLD game mem/compressed: 29G 22G   | free 0.1GB swap 9313.38M | cpu 485.3%
+09:15:23 WORLD game mem/compressed: 29G 21G   | free 0.1GB swap 9317.81M | cpu 469.5%
+09:15:56 WORLD game mem/compressed: 29G 22G   | free 0.1GB swap 9408.75M | cpu 436.5%
+09:16:28 WORLD game mem/compressed: 29G 22G   | free 0.0GB swap 9408.06M | cpu 400.2%
+09:17:01 WORLD game mem/compressed: 30G 22G   | free 0.0GB swap 9563.38M | cpu 335.8%
+09:17:34 WORLD game mem/compressed: 30G 22G   | free 0.0GB swap 9515.38M | cpu 447.2%
+09:17:34 done: 360 s in world, stopping
+09:17:37 run ended
+frames:  | main thread:  | whole frame: 

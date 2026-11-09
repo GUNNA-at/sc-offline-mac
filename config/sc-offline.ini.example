@@ -1,0 +1,12 @@
+; The values the measurements used, in C:\users\crossover\sc-offline\sc-offline.ini (the mod writes the rest itself).
+; boot_map = PU loads the Stanton system only; PU_All loads every system and needs far more memory.
+channel = LIVE
+boot_map = PU
+start_ship = DRAK_Cutlass_Black
+start =
+plugins = on
+asop = on
+asop_fleet_list = ships
+block_network = on
+check_updates = off
+game = C:\Program Files\Roberts Space Industries\StarCitizen

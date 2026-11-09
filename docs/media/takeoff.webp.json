@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin, not generated: frames from 40 s to 108 s, one every 0.75 s, of the project's own screen recording of the game (videos/takeoff-full.mov, run m22, 9 November 2026, MacBook Pro 16-inch M4 Pro), extracted with tools/dumpframes.swift and assembled with img2webp at 8 frames per second.",
+  "createdAt": "2026-11-09T17:35:20.571Z"
+}

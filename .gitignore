@@ -1,0 +1,54 @@
+# Only what is listed here is published. Run output, compiled binaries, game data and local files stay out.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/PRODUCT.md
+!/DESIGN.md
+!/.impeccable/
+!/sc-offline-mac.sh
+!/sc-launcher.sh
+!/Star Citizen Offline.command
+!/config/
+!/docs/
+!/macfix/
+!/mvkshim/
+!/patches/
+!/plugins/
+!/profiles/
+!/runs/
+!/tools/
+!/vk1wrap/
+!/winegrid/
+
+# compiled output (tools/build.sh and the install scripts make these)
+*.exe
+*.dll
+*.dylib
+*.o
+*.new
+.DS_Store
+/docs/assets/src/textpath
+/tools/activate
+/tools/psotest
+/tools/rec
+/tools/rtcompile
+/tools/whiteness
+/tools/winlist
+/winegrid/balloon
+/winegrid/fbtest
+/winegrid/grid_test
+/mvkshim/superseded-pagefix/pagefix_test
+
+# working files
+*.bak-*
+/tools/*.png
+/tools/analysis/
+/runs/*/*.png
+/shots/
+
+# extracted from the game's own archive: not ours to publish
+/tools/game-cvargroups/
+
+# review captures of the README, regenerated on demand
+/.impeccable/review/

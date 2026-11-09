@@ -1,0 +1,32 @@
+-- sc-offline-mac: keep the CryEngine watchdog from killing the game while a level loads slowly under MoltenVK
+sys_watchdog_enable_hard_timeout = 0
+sys_watchdog_hard_timeout = 3600
+sys_watchdog_hard_timeout_loading = 3600
+sys_watchdog_timeout = 3600
+-- sc-offline-mac: skip the 235k-pipeline "Optimizing Shaders" warm-up (pipelines are then built on demand)
+r.PSOCacheGen = 0
+-- sc-offline-mac: FPS/memory overlay while we measure (remove this line to hide it)
+r_DisplayInfo = 1
+-- sc-offline-mac: no vertical sync (it snaps the frame rate to 30/20/15/12/10) and no frame cap while playing
+r_VSync = 0
+sys_maxFps = 60
+sys_maxIdleFps = 60
+-- >>> profile: lean (written by tools/profile.sh; edit profiles/lean.cfg, then run it again)
+-- lean: everything at the game's Low, and below Low on what makes busy views expensive. Fastest, plainest.
+e_ViewDistRatio = 40
+-- ^ how far objects are drawn. Low: 75
+e_ViewDistRatioLights = 25
+-- ^ how far lights are drawn. Low: 50
+e_LodRatio = 3
+-- ^ how soon simpler models replace detailed ones. Low: 5
+ca_AttachmentCullingRation = 100
+-- ^ how far character attachments are drawn. Low: 150
+w_planetsideScatterLevelDist = 450
+-- ^ rocks and plants on planet surfaces. Low: 750
+e_ShadowsCastViewDistRatio = 0.5
+-- ^ how far objects cast shadows. Low: 0.8
+r_TexturesStreamingPoolSize = 1000
+-- ^ memory for streamed textures in MB. Low: 1400
+r_ShadowsPoolSize = 2048
+-- ^ shadow map pool. Low: 4096
+-- <<< profile

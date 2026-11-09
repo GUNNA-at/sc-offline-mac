@@ -1,0 +1,58 @@
+======================================================================
+StarCitizen.exe [40116]: 64-bit (translated)    Footprint: 29 GB (4096 bytes per page)
+======================================================================
+
+  Dirty      Clean  Reclaimable    Regions    Category
+    ---        ---          ---        ---    ---
+  21 GB        0 B          0 B    1474184    untagged (VM_ALLOCATE)
+4932 MB        0 B          0 B       3973    Owned physical footprint (unmapped) (graphics)
+1166 MB        0 B          0 B       3240    IOAccelerator (graphics)
+ 325 MB        0 B          0 B         14    MALLOC_MEDIUM
+ 286 MB        0 B          0 B         45    MALLOC_SMALL
+ 238 MB    1716 KB          0 B       4934    WINE_RESERVE
+ 171 MB        0 B          0 B          2    Rosetta JIT
+ 155 MB        0 B          0 B          1    page table
+ 127 MB        0 B          0 B        146    MALLOC_TINY
+ 121 MB        0 B          0 B        807    Owned physical footprint (unmapped)
+  48 MB        0 B          0 B      12190    Rosetta Generic
+  24 MB        0 B          0 B          3    CG image
+8192 KB        0 B          0 B          1    Rosetta IndirectBranch
+7616 KB        0 B          0 B         13    CoreAnimation
+7552 KB    3776 KB          0 B          4    IOSurface
+1984 KB        0 B          0 B        998    __DATA
+1900 KB        0 B          0 B         41    WINE_TOP_DOWN
+1684 KB        0 B          0 B       1042    __DATA_CONST
+1408 KB        0 B          0 B         30    IOAccelerator
+1360 KB     200 MB          0 B        995    mapped file
+1304 KB        0 B          0 B        142    stack
+ 863 KB        0 B          0 B        867    __DATA_DIRTY
+ 804 KB        0 B          0 B        262    Rosetta Thread Context
+ 636 KB        0 B          0 B          5    CoreUI image data
+ 576 KB        0 B          0 B          1    libdispatch
+ 548 KB        0 B          0 B          2    Rosetta Arena
+ 524 KB        0 B          0 B        262    Rosetta Return Stack
+ 276 KB        0 B          0 B         29    MALLOC metadata
+ 252 KB        0 B          0 B         23    IOKit
+ 128 KB        0 B          0 B          1    Accelerate image backing stores
+  77 KB        0 B          0 B       2072    unused dyld shared cache area
+  60 KB        0 B          0 B          1    dyld private memory
+  48 KB        0 B          0 B          1    Activity Tracing
+  16 KB        0 B          0 B         24    MALLOC_LARGE
+  12 KB        0 B          0 B          3    CoreGraphics
+ 8192 B        0 B          0 B          1    os_alloc_once
+ 4096 B    4132 KB          0 B       1066    __TEXT
+ 4096 B        0 B          0 B          1    Foundation
+ 4096 B        0 B          0 B          1    ColorSync
+ 4096 B        0 B          0 B          1    __TPRO_CONST
+    0 B        0 B       4096 B          2    ImageIO
+    0 B     356 KB          0 B         35    __LINKEDIT
+    0 B        0 B          0 B          1    __FONT_DATA
+    0 B        0 B          0 B          1    __INFO_FILTER
+    0 B        0 B          0 B          1    __CTF
+    ---        ---          ---        ---    ---
+  29 GB     210 MB       4096 B    1507470    TOTAL
+
+Auxiliary data:
+    phys_footprint: 29 GB
+    phys_footprint_peak: 29 GB
+

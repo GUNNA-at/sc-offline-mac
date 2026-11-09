@@ -1,0 +1,118 @@
+diff --git a/MoltenVK/MoltenVK/Commands/MVKCommandEncodingPool.mm b/MoltenVK/MoltenVK/Commands/MVKCommandEncodingPool.mm
+index 5711340..f0edf0c 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKCommandEncodingPool.mm
++++ b/MoltenVK/MoltenVK/Commands/MVKCommandEncodingPool.mm
+@@ -83,7 +83,9 @@
+         return _dedicatedMtlBufferAllocator.acquireMTLBufferRegion(length);
+     }
+     if (isPrivate) {
+-        return _privateMtlBufferAllocator.acquireMTLBufferRegion(length);
++        // One allocator for the whole device: the scratch buffers of tessellation draws are large, and a
++        // separate set per command pool multiplies them by the number of pools the app records from.
++        return _commandPool->getDevice()->getSharedPrivateTempBufferAllocator()->acquireMTLBufferRegion(length);
+     }
+     return _mtlBufferAllocator.acquireMTLBufferRegion(length);
+ }
+diff --git a/MoltenVK/MoltenVK/Commands/MVKMTLBufferAllocation.mm b/MoltenVK/MoltenVK/Commands/MVKMTLBufferAllocation.mm
+index 3787d6b..e2e1cea 100644
+--- a/MoltenVK/MoltenVK/Commands/MVKMTLBufferAllocation.mm
++++ b/MoltenVK/MoltenVK/Commands/MVKMTLBufferAllocation.mm
+@@ -71,7 +71,7 @@
+     if (!--_mtlBuffers[ba->_poolIndex].allocationCount) {
+         [ba->_mtlBuffer setPurgeableState: MTLPurgeableStateVolatile];
+     }
+-    returnObject(ba);
++    returnObjectToFront(ba);		// last in, first out: only as many buffers as are in flight stay in use
+ }
+ 
+ void MVKMTLBufferAllocationPool::returnAllocation(MVKMTLBufferAllocation* ba) {
+diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKDevice.h b/MoltenVK/MoltenVK/GPUObjects/MVKDevice.h
+index 534a414..e063e41 100644
+--- a/MoltenVK/MoltenVK/GPUObjects/MVKDevice.h
++++ b/MoltenVK/MoltenVK/GPUObjects/MVKDevice.h
+@@ -1026,6 +1026,13 @@ public:
+ 
+ 	~MVKDevice() override;
+ 
++	/**
++	 * The allocator of private (GPU-only) temporary buffers shared by all command pools of this device.
++	 * Tessellation draws take several multi-megabyte scratch buffers each; with one allocator per command
++	 * pool every pool keeps its own set, and an app that records from dozens of pools pins gigabytes.
++	 */
++	class MVKMTLBufferAllocator* getSharedPrivateTempBufferAllocator();
++
+     /**
+      * Returns a reference to this object suitable for use as a Vulkan API handle.
+      * This is the compliment of the getMVKDevice() method.
+@@ -1115,6 +1122,8 @@ protected:
+ 	id<MTLResidencySet> _residencySet = nil;
+ #endif
+ 	uint32_t _visibilityBufferCount = 0;
++	class MVKMTLBufferAllocator* _sharedPrivateTempBufferAllocator = nullptr;
++	std::mutex _sharedPrivateTempBufferAllocatorLock;
+ 	int _capturePipeFileDesc = -1;
+ 	bool _isPerformanceTracking = false;
+ 	bool _isCurrentlyAutoGPUCapturing = false;
+diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKDevice.mm b/MoltenVK/MoltenVK/GPUObjects/MVKDevice.mm
+index 9772757..fcd0a2d 100644
+--- a/MoltenVK/MoltenVK/GPUObjects/MVKDevice.mm
++++ b/MoltenVK/MoltenVK/GPUObjects/MVKDevice.mm
+@@ -18,6 +18,7 @@
+ 
+ #include "MVKInstance.h"
+ #include "MVKDevice.h"
++#include "MVKMTLBufferAllocation.h"
+ #include "MVKQueue.h"
+ #include "MVKSurface.h"
+ #include "MVKBuffer.h"
+@@ -5531,6 +5532,14 @@ static uint32_t mvkGetEntryProperty(io_registry_entry_t entry, CFStringRef prope
+ 	}
+ }
+ 
++MVKMTLBufferAllocator* MVKDevice::getSharedPrivateTempBufferAllocator() {
++	std::lock_guard<std::mutex> lock(_sharedPrivateTempBufferAllocatorLock);
++	if ( !_sharedPrivateTempBufferAllocator ) {
++		_sharedPrivateTempBufferAllocator = new MVKMTLBufferAllocator(this, _physicalDevice->_metalFeatures.maxMTLBufferSize, true, false, MTLStorageModePrivate);
++	}
++	return _sharedPrivateTempBufferAllocator;
++}
++
+ MVKDevice::~MVKDevice() {
+ 	if (_isPerformanceTracking) {
+ 		auto perfLogStyle = getMVKConfig().activityPerformanceLoggingStyle;
+@@ -5549,6 +5558,7 @@ static uint32_t mvkGetEntryProperty(io_registry_entry_t entry, CFStringRef prope
+ 	}
+ 
+ 	if (_commandResourceFactory) { _commandResourceFactory->destroy(); }
++	if (_sharedPrivateTempBufferAllocator) { _sharedPrivateTempBufferAllocator->destroy(); _sharedPrivateTempBufferAllocator = nullptr; }
+ 
+ 	for (auto &fences: _barrierFences) for (auto fence: fences) [fence release];
+ 
+diff --git a/MoltenVK/MoltenVK/Utility/MVKObjectPool.h b/MoltenVK/MoltenVK/Utility/MVKObjectPool.h
+index 558239b..0135fe5 100644
+--- a/MoltenVK/MoltenVK/Utility/MVKObjectPool.h
++++ b/MoltenVK/MoltenVK/Utility/MVKObjectPool.h
+@@ -125,6 +125,23 @@ public:
+ 		}
+ 	}
+ 
++	/**
++	 * Like returnObject(), but the object becomes the NEXT one handed out (last in, first out).
++	 * A pool used this way keeps reusing the same few objects and leaves the rest untouched.
++	 */
++	void returnObjectToFront(T* obj) {
++		if ( !obj ) { return; }
++
++		if (_isPooling) {
++			obj->_next = _head;
++			_head = obj;
++			if ( !_tail ) { _tail = obj; }
++			_counts.resident++;
++		} else {
++			destroyObject(obj);
++		}
++	}
++
+ 	/** A thread-safe version of the acquireObject() function. */
+ 	T* acquireObjectSafely() {
+ 		std::lock_guard<std::mutex> lock(_lock);

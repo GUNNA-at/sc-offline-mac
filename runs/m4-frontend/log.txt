@@ -1,0 +1,17 @@
+09:49:02 boot game mem/compressed: 306M 0B    | free 13.5GB swap 5688.69M | cpu 42.5%
+09:49:32 boot game mem/compressed: 1375M 0B    | free 11.4GB swap 5672.69M | cpu 100.0%
+09:50:02 boot game mem/compressed: 1395M 0B    | free 11.1GB swap 5632.69M | cpu 100.0%
+09:50:33 boot game mem/compressed: 2127M 0B    | free 9.7GB swap 5624.69M | cpu 100.0%
+09:51:03 boot game mem/compressed: 3843M 0B    | free 7.1GB swap 5608.69M | cpu 100.1%
+09:51:34 boot game mem/compressed: 6059M 0B    | free 3.0GB swap 5536.69M | cpu 113.3%
+09:52:05 boot game mem/compressed: 6009M 0B    | free 2.5GB swap 5536.69M | cpu 107.6%
+09:52:36 seeded game mem/compressed: 8726M 687M  | free 0.7GB swap 5536.69M | cpu 100.9%
+09:53:07 seeded game mem/compressed: 9180M 673M  | free 0.1GB swap 5536.69M | cpu 148.9%
+09:53:38 seeded game mem/compressed: 9194M 671M  | free 0.1GB swap 5536.69M | cpu 149.1%
+09:54:09 seeded game mem/compressed: 9198M 671M  | free 0.1GB swap 5536.69M | cpu 144.8%
+09:54:40 seeded game mem/compressed: 9208M 682M  | free 0.2GB swap 5536.69M | cpu 151.9%
+09:55:11 seeded game mem/compressed: 9217M 682M  | free 0.1GB swap 5536.69M | cpu 143.9%
+09:55:42 seeded game mem/compressed: 9220M 709M  | free 0.2GB swap 5520.69M | cpu 149.7%
+09:56:12 done: 420 s since start, stopping
+09:56:13 run ended
+frames:  | main thread:  | whole frame: 
