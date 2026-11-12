@@ -132,14 +132,14 @@ class Doc:
 # The handbook is written for the type, every Mac with Apple silicon, and says so in the line under the title. The plate
 # below it is the one airframe that has flown: the configuration every number in the handbook was measured on.
 PLATE = [("TESTED ON", "MacBook Pro 16-inch, M4 Pro"), ("MEMORY", "24 GB"), ("MACOS", "26.2"),
-         ("CROSSOVER", "26.3"), ("GAME", "LIVE 4.10.2"), ("MOD", "sc-offline 0.7.7")]
+         ("WINE", "WineHQ 11.0, CrossOver 26.3"), ("GAME", "LIVE 4.10.2"), ("MOD", "sc-offline 0.7.7")]
 PLACARDS = ["OFFLINE OPERATION ONLY", "RESEARCH AND STUDY ONLY"]     # the two standing rules, one placard each
-ISSUE = "ISSUE 3, 9 NOV 2026"
+ISSUE = "ISSUE 4, 12 NOV 2026"
 
 
 def cover(theme):
     d = Doc(880, 700, theme, "sc-offline-mac operating handbook: Star Citizen, offline, on Macs with Apple silicon. "
-            "Tested on one machine so far: a MacBook Pro 16-inch, M4 Pro, with 24 GB, macOS 26.2, CrossOver 26.3, "
+            "Tested on one machine so far: a MacBook Pro 16-inch, M4 Pro, with 24 GB, macOS 26.2, Wine (WineHQ 11.0, CrossOver 26.3), "
             "game LIVE 4.10.2, mod sc-offline 0.7.7. Offline operation only. Research and study only.")
     t = d.t
     ink, red = t["ink"], t["red"]
@@ -215,7 +215,7 @@ W, S = 600, 17      # the figure measure, and the one lettering size used inside
 
 LAYERS = [  # (what you provide, its note, [(kit part, what it does)])
     ("STAR CITIZEN", "with the sc-offline mod", [("macfix", "repairs the mod's window handle")]),
-    ("WINE (CROSSOVER)", "runs the Windows game", [("winegrid", "4 KB commits stop costing 16 KB"),
+    ("WINE", "WineHQ's build or CrossOver", [("winegrid", "4 KB commits stop costing 16 KB"),
                                                    ("vk1wrap", "answers two Windows-only extensions")]),
     ("MOLTENVK", "Vulkan on Metal", [("mvkshim", "presents the GPU, rescues pipelines"),
                                      ("moltenvk patch", "one shared pool of scratch buffers")]),

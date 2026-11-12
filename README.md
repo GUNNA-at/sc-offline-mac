@@ -1,11 +1,11 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.svg">
-    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 3, 9 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
+    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. Wine: WineHQ 11.0, CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 4, 12 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
   </picture>
 </p>
 
-A kit of fixes and scripts, published as research, for running Star Citizen offline and single-player on Macs with Apple silicon, through [CrossOver](https://www.codeweavers.com/crossover) and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. On the one machine tested so far, a MacBook Pro 16-inch with an M4 Pro and 24 GB, it took the game from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view. The game was failing on memory, not on graphics speed, and the cause is one every Mac with Apple silicon shares: memory comes in 16 KB pages, and the game asks for it 4 KB at a time. This handbook says what the kit does, where its limits are, and [how to set it up](#-normal-procedures).
+A kit of fixes, published as research, for running Star Citizen offline and single-player on Macs with Apple silicon, through Wine and the [sc-offline](https://github.com/scuba-sc/sc-offline) mod. Since Issue 4 [a launcher](#the-launcher) sets everything up, and [CrossOver](https://www.codeweavers.com/crossover) is no longer needed. On the one machine tested so far, a MacBook Pro 16-inch with an M4 Pro and 24 GB, it took the game from 3 to 6 frames per second to 20 to 56 indoors and 16 to 30 with a city in view. The game was failing on memory, not on graphics speed, and the cause is one every Mac with Apple silicon shares: memory comes in 16 KB pages, and the game asks for it 4 KB at a time. This handbook says what the kit does, where its limits are, and [how to set it up](#-normal-procedures).
 
 ## Notice
 
@@ -24,7 +24,7 @@ This repository is published for research and education only: a study of why a l
 | Take-off: clearance from the tower to hangar door open | about 12 seconds |
 | Network access of the game process | none: a macOS sandbox profile denies it |
 
-One machine, one evening: a MacBook Pro 16-inch with an M4 Pro and 24 GB, runs m21 to m26, 9 November 2026. No other Mac has been measured yet. Conditions are in [Section 5](#-performance).
+One machine, one evening: a MacBook Pro 16-inch with an M4 Pro and 24 GB, runs m21 to m26, 9 November 2026. No other Mac has been measured yet. Conditions are in [Section 5](#-performance). Those runs used CrossOver. On WineHQ's own build, through the launcher, one view has been compared so far: the hab, 34 to 36 FPS, against 29 to 38 on CrossOver the same day (12 November 2026).
 
 <p align="center">
   <img src="docs/media/takeoff.webp" width="600" alt="An animated sequence from the pilot seat: the hangar door opens onto the city, the ship lifts off and flies out over it at night.">
@@ -41,16 +41,16 @@ Power on, clearance from the tower, the door opens, lift-off, out over the city 
 | 1 | [General](#-general) | What is in the kit and where each part sits |
 | 2 | [Limitations](#-limitations) | Offline and research only, which Macs it applies to, what was tested, what is not verified |
 | 3 | [Emergency procedures](#-emergency-procedures) | The frame rate collapses, the menu ignores the mouse, the game dies while loading |
-| 4 | [Normal procedures](#-normal-procedures) | Where to get the mod and CrossOver, setup from an empty bottle, starting the game, the first take-off |
+| 4 | [Normal procedures](#-normal-procedures) | The launcher, or setup by hand with CrossOver; starting the game, the first take-off |
 | 5 | [Performance](#-performance) | Frame rates by scene, with conditions, and what each fix gave |
 | 6 | [Weight and balance](#-weight-and-balance) | Where the memory goes, before and after |
 | 7 | [Systems](#-systems) | How each fix works, its log, how to remove it |
-| 8 | [Handling, service and maintenance](#-handling-service-and-maintenance) | After an update of CrossOver, the mod or the game |
+| 8 | [Handling, service and maintenance](#-handling-service-and-maintenance) | After an update of the launcher, CrossOver, the mod or the game |
 | 9 | [Supplements](#-supplements) | Test tools, the lab notebook, licence, credits |
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-1-dark.svg"><img src="docs/assets/tab-1-light.svg" width="28" height="28" align="absmiddle" alt="Section 1."></picture> General
 
-The kit does not contain the game, CrossOver or the mod. You bring your own copies of those; the official sources of the mod and CrossOver are listed in [Section 4](#before-you-start). The kit adds seven parts around them, each with a script that installs it and a way to take it out again.
+The kit does not contain the game, Wine or the mod. The launcher fetches Wine, DXVK, the publisher's launcher and the mod from the projects that make them, and you bring your own copy of the game; the sources are listed in [Section 4](#the-launcher). The kit adds eight parts around them. The launcher installs them all; each also has a script of its own and a way to take it out again.
 
 <p align="center">
   <picture>
@@ -69,7 +69,8 @@ The kit does not contain the game, CrossOver or the mod. You bring your own copi
 | [mvkshim](mvkshim) | Presents the graphics chip; swaps rejected pipelines for empty ones | The game starts |
 | [vk1wrap](vk1wrap) | Answers two Windows-only Vulkan extensions | The game starts |
 | [macfix](macfix) | Repairs the mod's dead window handle | Menu, hotkeys and tower work |
-| [launcher](sc-offline-mac.sh) | Starts the game with no network, plus the squeezer | One command to play |
+| [launcher](launcher) | An app that sets everything up, starts the game with no network and shows the start and the flight as they happen | One window to set up and play, without CrossOver |
+| [start script](sc-offline-mac.sh) | The same start for a CrossOver bottle, from Terminal | One command to play |
 
 Three kinds of notice are used in this handbook, in GitHub's own colours:
 
@@ -84,11 +85,11 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-2-dark.svg"><img src="docs/assets/tab-2-light.svg" width="28" height="28" align="absmiddle" alt="Section 2."></picture> Limitations
 
-**Offline operation only.** The launcher runs the game inside a `sandbox-exec` profile that denies all network access to the game's process tree, and `./sc-offline-mac.sh nettest` proves it from inside Windows. Nothing here is meant for the official servers and nothing here has been used with them.
+**Offline operation only.** The launcher and the start script run the game inside a `sandbox-exec` profile that denies all network access to the game's process tree, and `./sc-offline-mac.sh nettest` proves it from inside Windows. Nothing here is meant for the official servers and nothing here has been used with them.
 
 **Research and study only.** The repository is published to document a problem and its fix: why a large Windows program runs out of memory on Apple silicon, what each change does about it, and the measurements, so that others can study, repeat or correct them. It is experimental, home-built work. Nothing here is for sale and nothing here asks for money. It comes with no warranty. If you run it, you do so at your own risk and under the agreements that bind you, the game's terms of service among them: read them first. Nothing in this handbook is legal advice.
 
-**Your own copy.** The repository holds no game files or assets, no CrossOver or Wine binaries and no copy of the mod. It does not provide the game: you need your own copy, installed with the publisher's launcher under your own account. This is an unofficial fan project. It is not affiliated with or endorsed by the Cloud Imperium group of companies or Roberts Space Industries. The screenshots and the take-off recording show the game, whose imagery belongs to its publisher (© Cloud Imperium Rights LLC and Cloud Imperium Rights Ltd.). They are shown without charge, as evidence for the measurements. If you hold rights in anything shown here and want it changed or removed, [open an issue](https://github.com/GUNNA-at/sc-offline-mac/issues).
+**Your own copy.** The repository holds no game files or assets, no CrossOver or Wine binaries and no copy of the mod, and neither does the launcher: it downloads Wine, DXVK and the mod from their own projects and the publisher's launcher from the publisher. It does not provide the game: you need your own copy, installed with the publisher's launcher under your own account. This is an unofficial fan project. It is not affiliated with or endorsed by the Cloud Imperium group of companies or Roberts Space Industries. The screenshots and the take-off recording show the game, whose imagery belongs to its publisher (© Cloud Imperium Rights LLC and Cloud Imperium Rights Ltd.). They are shown without charge, as evidence for the measurements. If you hold rights in anything shown here and want it changed or removed, [open an issue](https://github.com/GUNNA-at/sc-offline-mac/issues).
 
 **For Macs with Apple silicon.** The fault this kit fixes comes from the 16 KB page, and every Mac with Apple silicon has it, MacBook or desktop, whichever chip is in it. Nothing in the scripts or the code is tied to one model. The kit has run on one machine only, so on every other Mac it is untested, and the memory installed decides how much of the game's load goes to swap ([Section 6](#-weight-and-balance)). Macs with Intel processors are outside its scope: their pages are 4 KB, the fault does not arise, and nothing here was tried on one. If you run the kit on another Mac, [report what you found](https://github.com/GUNNA-at/sc-offline-mac/issues/new?template=tested-mac.yml): each report becomes a tested configuration.
 
@@ -98,7 +99,8 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 |:--|:--|
 | Machine | MacBook Pro 16-inch, M4 Pro, 24 GB |
 | macOS | 26.2 |
-| CrossOver | 26.3 (Wine with MSync on, D3DMetal off) |
+| CrossOver | 26.3 (Wine with MSync on, D3DMetal off): every figure of Section 5 |
+| Wine without CrossOver | WineHQ 11.0, the official Mac build, with DXVK for macOS 1.10.3, through the launcher: one view compared |
 | Game | LIVE 4.10.2, build 4.10.197.2878, Vulkan renderer |
 | Mod | sc-offline 0.7.7, `boot_map = PU` (the Stanton system only) |
 | MoltenVK | 1.4.2, patched |
@@ -109,16 +111,19 @@ Three kinds of notice are used in this handbook, in GitHub's own colours:
 
 - macfix works by address inside the mod's `dinput8.dll` 0.7.7. On any other build it checks, logs that it found something else, and does nothing.
 - A CrossOver update replaces the patched `ntdll.so` and MoltenVK. Run the install scripts again ([Section 8](#-handling-service-and-maintenance)).
+- The launcher takes WineHQ 11.0_1 and DXVK 1.10.3 and no other version, each checked against its published checksum.
 
 **Not verified.**
 
+- The scenes of Section 5 on WineHQ's build. Only the hab view was compared with CrossOver.
+- The game's download through the launcher after sign-in. The test machine had the game already and no room for a second copy; every step before it was run in a fresh folder.
 - Any other Mac. After the fixes the game still asks for 26 to 33 GB, so with less than 24 GB expect heavy paging or a failure to load, and with more it should be easier. Neither has been measured.
 - Landing, and returning to a hangar.
 - Sessions longer than a few hours.
 - More than one star system loaded (`boot_map = PU_All` carries 2.6 million entities instead of 1.6 million).
 
 > [!CAUTION]
-> Never press **Launch Game** in the RSI Launcher inside this bottle. It installs the anti-cheat service and takes the game online. Use the launcher only to install and verify the game.
+> Never press **Launch Game** in the RSI Launcher. It installs the anti-cheat service and takes the game online. Use the publisher's launcher only to install, verify and update the game.
 
 > [!WARNING]
 > Never run `sample` or `vmmap` on the game. They freeze the process long enough for the engine to declare a hung graphics device and exit. `footprint`, `top`, `vm_stat` and `ps -M` are safe.
@@ -180,9 +185,69 @@ SHIP IS POWERED BUT DOES NOT MOVE
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-4-dark.svg"><img src="docs/assets/tab-4-light.svg" width="28" height="28" align="absmiddle" alt="Section 4."></picture> Normal procedures
 
-This is not a one-click installer. These are the steps that were done on the test machine, in the order that works. Allow an evening, most of it the game download.
+There are two ways to set this up. The launcher does it by itself and needs neither CrossOver nor Homebrew. The procedure by hand is the one the figures of Section 5 were measured with; it needs CrossOver, and it is kept for anyone who wants each step in their own hands. Either way, allow an evening, most of it the game download.
 
-### Before you start
+### The launcher
+
+<p align="center">
+  <img src="docs/media/launcher-flight.png" width="600" alt="The launcher's window with the game running. A sidebar with four pages: Play, Setup, Settings, Log. On the Play page a dark panel with a drawn planet, the title Star Citizen, the line Offline, on this Mac, and the status In flight, 6:25. Under it a slim bar: blue up to a mark at 24 GB, amber beyond it, with the note 26.8 GB in use by the game, 2.8 GB past this Mac's 24 GB. Two buttons: Stop, and Multiplayer marked Soon. Four tiles: frame rate 30 FPS, compressed 3.0 GB, swap 11.7 GB, paging 590 per second.">
+  <br>
+  Figure 4-1. The launcher six minutes after Single player was pressed: the game holds 26.8 GB on a Mac with 24, and runs at 30 FPS. 12 November 2026.
+</p>
+
+```
+Mac .................... APPLE SILICON
+Free disk ..................... 200 GB
+Launcher .................... DOWNLOAD
+Download mark ................. REMOVE
+Set up ......................... PRESS
+Rosetta, if asked ..... AGREE YOURSELF
+Publisher's launcher ......... SIGN IN
+Install, in that launcher ...... PRESS
+Launch Game button ............. NEVER
+Single player .................. PRESS
+```
+
+Download `sc-offline-mac.app.zip` from [the latest release](https://github.com/GUNNA-at/sc-offline-mac/releases/latest) and unpack it. The app is not signed with an Apple developer certificate, so macOS refuses to open it while it carries the mark of a download. Remove the mark once:
+
+```bash
+xattr -dr com.apple.quarantine ~/Downloads/sc-offline-mac.app
+```
+
+Then open it and press Set up. The launcher fetches each part from the project that makes it and checks every file against its published checksum.
+
+| Part | Comes from |
+|:--|:--|
+| Wine 11.0 | [WineHQ's official Mac package](https://github.com/Gcenx/macOS_Wine_builds/releases/tag/11.0_1), 177 MB |
+| DXVK 1.10.3 | [DXVK for macOS](https://github.com/Gcenx/DXVK-macOS/releases/tag/v1.10.3-20230507-repack), 3 MB |
+| RSI Launcher | [the publisher's download site](https://robertsspaceindustries.com/en/download), 346 MB |
+| sc-offline 0.7.7 | [the mod's release](https://github.com/scuba-sc/sc-offline/releases/tag/v0.7.7), 3 MB |
+| The kit's own parts | inside the app |
+| The game | the publisher's launcher, with your own account |
+
+It stops where the step is yours:
+
+- **Rosetta 2**, if the Mac does not have it. Apple asks you to agree to its licence, so the launcher opens Terminal with the command typed and waits.
+- **The publisher's launcher.** You sign in, you accept its terms, and you press Install there. The launcher shows the download and carries on when you close that window.
+- **A game the Mac already has.** If one is found in a CrossOver bottle on the same disk, the launcher offers to move it into its own folder: a rename, nothing is copied, and a link stays behind for the bottle.
+
+Everything it sets up is in `~/Library/Application Support/sc-offline-mac`. Nothing is installed anywhere else, and no file of Wine is changed. To remove it all, delete that folder and the app. If the launcher moved your game there, the game goes with the folder.
+
+The same program answers in Terminal, with one line of JSON per event:
+
+```bash
+sc-offline-mac.app/Contents/MacOS/sc-offline-mac status
+sc-offline-mac.app/Contents/MacOS/sc-offline-mac setup
+sc-offline-mac.app/Contents/MacOS/sc-offline-mac play
+```
+
+Multiplayer is on the window, marked Soon and switched off. Nothing behind it exists yet.
+
+### By hand, with CrossOver
+
+These are the steps that were done on the test machine before the launcher existed, in the order that works.
+
+#### Before you start
 
 ```
 Mac .................... APPLE SILICON
@@ -211,9 +276,9 @@ The kit contains no copy of the mod, CrossOver or Wine. These are their official
 
 Take `sc-offline-v0.7.7.zip` from the mod's release, not GitHub's source code archive. macfix is tied to that version ([Section 2](#-limitations)).
 
-CrossOver is a paid product with a free trial. Wine needs no download of its own: CrossOver contains its own build, that build is the one the kit patches, and CodeWeavers publishes [its source](https://www.codeweavers.com/crossover/source). Wine from WineHQ without CrossOver has not been tried, and the install scripts expect CrossOver in the Applications folder.
+CrossOver is a paid product with a free trial. Wine needs no download of its own here: CrossOver contains its own build, that build is the one these scripts patch, and CodeWeavers publishes [its source](https://www.codeweavers.com/crossover/source). The scripts of this procedure expect CrossOver in the Applications folder. Without CrossOver, use the launcher: it runs the game on WineHQ's own build.
 
-### The bottle and the game
+#### The bottle and the game
 
 ```
 Bottle "StarCitizen" .......... CREATE
@@ -229,7 +294,7 @@ Launch Game button ............. NEVER
 
 The RSI Launcher draws a white window under CrossOver unless it is started with the flags in [`sc-launcher.sh`](sc-launcher.sh).
 
-### The mod
+#### The mod
 
 ```
 sc-offline 0.7.7 .............. UNPACK
@@ -239,7 +304,7 @@ Game path ........................ SET
 
 Unpack `sc-offline-v0.7.7.zip` from [the mod's release](https://github.com/scuba-sc/sc-offline/releases/tag/v0.7.7) to `C:\users\crossover\sc-offline` in the bottle. [`config/sc-offline.ini.example`](config/sc-offline.ini.example) shows the values used.
 
-### The graphics layer
+#### The graphics layer
 
 ```
 Patched MoltenVK ...... BUILD, INSTALL
@@ -253,7 +318,7 @@ mvkshim/build-and-install.sh
 vk1wrap/build-and-install.sh
 ```
 
-### The memory layer
+#### The memory layer
 
 ```
 winegrid ..................... INSTALL
@@ -266,7 +331,7 @@ winegrid/install.sh
 
 The environment goes into the bottle's `cxbottle.conf`; [`config/cxbottle-environment.example`](config/cxbottle-environment.example) has the lines.
 
-### Game settings
+#### Game settings
 
 ```
 user.cfg ........................ COPY
@@ -279,7 +344,7 @@ Copy [`config/user.cfg.example`](config/user.cfg.example) to `LIVE\user.cfg`, th
 ./sc-offline-mac.sh profile pretty
 ```
 
-### The mod's helper
+#### The mod's helper
 
 ```
 macfix ....................... INSTALL
@@ -295,10 +360,12 @@ The mod ships its creative plugin (god mode, noclip) switched off, and the switc
 <p align="center">
   <img src="docs/media/mod-menu.jpg" width="600" alt="The mod's menu over the game, Player tab, with the God mode box ticked and the status line reading God mode on.">
   <br>
-  Figure 4-1. The mod's menu with God mode ticked. Run m22, 9 November 2026.
+  Figure 4-2. The mod's menu with God mode ticked. Run m22, 9 November 2026.
 </p>
 
 ### Starting
+
+In the launcher, press Single player. By hand:
 
 ```bash
 ./sc-offline-mac.sh play
@@ -317,7 +384,7 @@ Mod menu ........................... M
 <p align="center">
   <img src="docs/media/takeoff-frames.jpg" width="600" alt="Six frames from the pilot seat: the closed hangar door, the powered cockpit, the door opening onto the city, the door open, the ship lifted in front of the opening, and flight over the city.">
   <br>
-  Figure 4-2. Six moments of the take-off. Run m22, 9 November 2026.
+  Figure 4-3. Six moments of the take-off. Run m22, 9 November 2026.
 </p>
 
 ```
@@ -470,7 +537,17 @@ The mod finds the game's window one second after start and keeps the handle. Und
 
 Switches: `C:\users\crossover\macfix.ctl`. Log: `C:\users\crossover\macfix.log`. Remove: delete `data\plugins\macfix` in the mod's folder.
 
-### The launcher and the sandbox
+### The launcher
+
+One program, in [`launcher/`](launcher): the setup and start logic in `Sources/Engine.swift`, a window that shows it, and the same commands in Terminal. It leaves Wine as downloaded. The kit's libraries are found through `DYLD_LIBRARY_PATH` and winegrid is loaded with `DYLD_INSERT_LIBRARIES`, so there is no patched `ntdll.so` to redo after an update. It starts the game inside the same `sandbox-exec` profile as the start script, presses OK on the game's start-up boxes with [`tools/dismiss.c`](tools/dismiss.c), runs the squeezer once the world is up, and takes the mod out of the game folder after every stop. It refuses to open the publisher's launcher while the game runs.
+
+Wine without CrossOver needed four things that CrossOver supplies without saying so: Rosetta asked to report AVX (`ROSETTA_ADVERTISE_AVX=1`), DXVK so that Direct3D 11 can name a graphics adapter (the game asks Direct3D which adapter to use and then draws with Vulkan), the same adapter identity on both sides, and two features the shim now advertises so that DXVK grants feature level 11.1. The notebook entry of 12 November gives each failure with its message.
+
+The window shows what the machine reports: the stage of a start from `Game.log`, the frame rate from the shim's log against the 25 FPS target, and the game's memory on a bar with a mark where the memory installed ends. Its backdrop is drawn by the app; a picture of your own can be set in Settings and stays on your Mac. Build: `launcher/build.sh`.
+
+Logs: `~/Library/Application Support/sc-offline-mac/logs`. Remove: delete `~/Library/Application Support/sc-offline-mac` and the app.
+
+### The start script and the sandbox
 
 `./sc-offline-mac.sh play` starts the mod's own launcher inside a `sandbox-exec` profile that denies network access to everything it starts, then a dialog dismisser, a crash watcher and the squeezer. `nettest` shows a Windows process inside the same sandbox failing to open a connection or resolve a name.
 
@@ -500,6 +577,15 @@ The first line reads a setting, the second sets it, the third reports the frame 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-8-dark.svg"><img src="docs/assets/tab-8-light.svg" width="28" height="28" align="absmiddle" alt="Section 8."></picture> Handling, service and maintenance
 
 ```
+AFTER A LAUNCHER UPDATE
+1. New app ...................... OPEN
+2. Kit parts ........... SHOWN NOT YET
+3. Set up ...................... PRESS
+```
+
+The launcher's own parts carry its version. A newer app shows them as not yet set and replaces them. Wine and DXVK stay as they are.
+
+```
 AFTER A CROSSOVER UPDATE
 1. winegrid .................. INSTALL
 2. Patched MoltenVK .......... INSTALL
@@ -523,7 +609,7 @@ AFTER A GAME UPDATE
 Not tried.
 ```
 
-Expect to repeat the pipeline and whitelist checks recorded in the notebook.
+Expect to repeat the pipeline and whitelist checks recorded in the notebook. With the launcher, the publisher's launcher opens from the Settings page for the update itself.
 
 ```
 REMOVING EVERYTHING
@@ -550,7 +636,8 @@ CrossOver's own MoltenVK was kept as `libMoltenVK.dylib.cx-26.3.0` beside the ot
 - winegrid: `/private/tmp/winegrid.log`
 - MoltenVK shim: `/private/tmp/mvkshim.log`
 - Squeezer: `/private/tmp/sc-squeezer.log`
-- Launcher: `sc-offline-mac.log` in the bottle's folder
+- Start script: `sc-offline-mac.log` in the bottle's folder
+- Launcher: `~/Library/Application Support/sc-offline-mac/logs`
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/tab-9-dark.svg"><img src="docs/assets/tab-9-light.svg" width="28" height="28" align="absmiddle" alt="Section 9."></picture> Supplements
 
@@ -584,7 +671,7 @@ The cover and figures are drawn by [`docs/assets/src/build.py`](docs/assets/src/
 
 GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one. The licence covers what was written for this repository. The game imagery in [`docs/media`](docs/media) is not ours to license. The [Notice](#notice) says why the work is published; it adds no condition to the licence.
 
-This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, and [Wine](https://www.winehq.org/) as shipped in [CrossOver](https://www.codeweavers.com/crossover) by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
+This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, [DXVK](https://github.com/doitsujin/dxvk) in [its build for macOS](https://github.com/Gcenx/DXVK-macOS), and [Wine](https://www.winehq.org/), both in [WineHQ's Mac packages](https://github.com/Gcenx/macOS_Wine_builds) built by Gcenx and as shipped in [CrossOver](https://www.codeweavers.com/crossover) by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
 
 ### Log of revisions
 
@@ -593,3 +680,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 | 1 | 9 November 2026 | First issue |
 | 2 | 9 November 2026 | Live settings, the upscaler and the `pretty` profile; a second MoltenVK patch that changed nothing measurable and is off by default |
 | 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only. Official sources of the mod, CrossOver and Wine listed |
+| 4 | 12 November 2026 | CrossOver no longer needed: the game runs on WineHQ's own Mac build. A launcher sets everything up and starts the game |
