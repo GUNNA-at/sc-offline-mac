@@ -70,9 +70,14 @@ main { min-width: 0; min-height: 0; }
 /* ---------- the Play page: the panel with the backdrop ---------- */
 .hero { position: relative; flex: 1; min-height: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #0b0d12; display: flex; }
 .art { position: absolute; inset: 0; }
-.art svg, .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-#craft { offset-path: path("M300 150 C 420 150 540 165 640 172"); offset-rotate: auto; offset-distance: var(--way, 10%); transition: offset-distance 2.2s linear; }
-.art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 10, 14, .88) 0%, rgba(8, 10, 14, .58) 44%, rgba(8, 10, 14, 0) 76%), linear-gradient(0deg, rgba(8, 10, 14, .55) 0%, rgba(8, 10, 14, 0) 46%); }
+.art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.art[data-art="aurora"] img { object-position: 62% 50%; }
+.art[data-art="sunrise"] img { object-position: 50% 0%; }
+.art[data-art="cliffs"] img { object-position: 50% 30%; }
+.art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8, 10, 14, .82) 0%, rgba(8, 10, 14, .5) 34%, rgba(8, 10, 14, 0) 62%), linear-gradient(90deg, rgba(8, 10, 14, .42) 0%, rgba(8, 10, 14, 0) 58%); }
+.art[data-art="own"]::after { background: linear-gradient(90deg, rgba(8, 10, 14, .88) 0%, rgba(8, 10, 14, .58) 44%, rgba(8, 10, 14, 0) 76%), linear-gradient(0deg, rgba(8, 10, 14, .55) 0%, rgba(8, 10, 14, 0) 46%); }   /* an unknown picture gets the heavier veil */
+.credit { margin-bottom: auto; font-size: 12px; color: rgba(243, 245, 248, .66); text-shadow: 0 1px 2px rgba(0, 0, 0, .8); }   /* at the top of the panel, on the text's own left edge */
+.credit[hidden] { display: block; visibility: hidden; }
 .hero-body { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 32px 30px; }
 .hero h1 { font-size: 44px; line-height: 1.04; font-weight: 700; letter-spacing: -0.03em; }
 .tagline { color: var(--muted); font-size: 15px; margin-top: 8px; }
@@ -190,6 +195,11 @@ main { min-width: 0; min-height: 0; }
 .row-label h3 { font-size: 15px; font-weight: 600; }
 .row-label p { color: var(--muted); font-size: 13px; margin-top: 3px; max-width: 58ch; -webkit-user-select: text; user-select: text; }
 .row-actions { display: flex; align-items: center; gap: 16px; flex: none; }
+.swatches { display: flex; gap: 10px; flex: none; }
+.swatches button { width: 60px; height: 38px; border-radius: 8px; overflow: hidden; opacity: .62; box-shadow: 0 0 0 1px var(--line-strong); transition: opacity .15s; }
+.swatches button img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.swatches button:hover { opacity: 1; }
+.swatches button[aria-checked="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 .segmented { display: flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); flex: none; }
 .segmented button { height: 30px; padding: 0 14px; border-radius: 8px; color: var(--muted); font-size: 13px; font-weight: 500; transition: background-color .15s var(--ease), color .15s; }
 .segmented button:hover { color: var(--text); }

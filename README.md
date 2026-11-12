@@ -1,7 +1,7 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.svg">
-    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. Wine: WineHQ 11.0, CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 4, 12 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
+    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. Wine: WineHQ 11.0, CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 5, 12 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
   </picture>
 </p>
 
@@ -190,9 +190,9 @@ There are two ways to set this up. The launcher does it by itself and needs neit
 ### The launcher
 
 <p align="center">
-  <img src="docs/media/launcher-flight.png" width="600" alt="The launcher's window with the game running. A sidebar with four pages: Play, Setup, Settings, Log. On the Play page a dark panel with a drawn planet, the title Star Citizen, the line Offline, on this Mac, and the status In flight, 6:25. Under it a slim bar: blue up to a mark at 24 GB, amber beyond it, with the note 26.8 GB in use by the game, 2.8 GB past this Mac's 24 GB. Two buttons: Stop, and Multiplayer marked Soon. Four tiles: frame rate 30 FPS, compressed 3.0 GB, swap 11.7 GB, paging 590 per second.">
+  <img src="docs/media/launcher-ready.png" width="600" alt="The launcher's window, set up and ready to start. A sidebar with four pages: Play, Setup, Settings, Log. On the Play page a panel filled by a photograph: Earth, green under the aurora, at the right, and the Milky Way at the left, with the credit line Photo: NASA, Don Pettit at the top. On it the title Star Citizen, the line Offline, on this Mac, the status Ready, an empty bar marked with the four stages of a start, and two buttons: Single player, and Multiplayer marked Soon. Four tiles: this Mac, M4 Pro with 24 GB; the game, 4.10.2; the graphics profile, pretty; free disk, 16 GB.">
   <br>
-  Figure 4-1. The launcher six minutes after Single player was pressed: the game holds 26.8 GB on a Mac with 24, and runs at 30 FPS. 12 November 2026.
+  Figure 4-1. The launcher, set up and ready, version 0.1.1. In flight the bar under the status shows the game's memory against the Mac's: six minutes after Single player was pressed on the test machine it read 26.8 GB held on a Mac with 24, at 30 FPS. 12 November 2026.
 </p>
 
 ```
@@ -543,7 +543,7 @@ One program, in [`launcher/`](launcher): the setup and start logic in `Sources/E
 
 Wine without CrossOver needed four things that CrossOver supplies without saying so: Rosetta asked to report AVX (`ROSETTA_ADVERTISE_AVX=1`), DXVK so that Direct3D 11 can name a graphics adapter (the game asks Direct3D which adapter to use and then draws with Vulkan), the same adapter identity on both sides, and two features the shim now advertises so that DXVK grants feature level 11.1. The notebook entry of 12 November gives each failure with its message.
 
-The window shows what the machine reports: the stage of a start from `Game.log`, the frame rate from the shim's log against the 25 FPS target, and the game's memory on a bar with a mark where the memory installed ends. Its backdrop is drawn by the app; a picture of your own can be set in Settings and stays on your Mac. Build: `launcher/build.sh`.
+The window shows what the machine reports: the stage of a start from `Game.log`, the frame rate from the shim's log against the 25 FPS target, and the game's memory on a bar with a mark where the memory installed ends. Its backdrop is a photograph from NASA's open archives, credited on the panel: three come with the app and Settings switches between them, or takes a picture of your own, which stays on your Mac. Build: `launcher/build.sh`.
 
 Logs: `~/Library/Application Support/sc-offline-mac/logs`. Remove: delete `~/Library/Application Support/sc-offline-mac` and the app.
 
@@ -669,9 +669,9 @@ The cover and figures are drawn by [`docs/assets/src/build.py`](docs/assets/src/
 
 ### Licence and credits
 
-GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one. The licence covers what was written for this repository. The game imagery in [`docs/media`](docs/media) is not ours to license. The [Notice](#notice) says why the work is published; it adds no condition to the licence.
+GPL-3.0, see [`LICENSE`](LICENSE). The mod's plugin interface requires it of plugins, and macfix is one. The licence covers what was written for this repository. The game imagery in [`docs/media`](docs/media) is not ours to license. Neither are the three photographs on the launcher's Play page: they come from NASA's open archives, and their sources, credits and terms are in [`launcher/ui/art/CREDITS.md`](launcher/ui/art/CREDITS.md). The [Notice](#notice) says why the work is published; it adds no condition to the licence.
 
-This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, [DXVK](https://github.com/doitsujin/dxvk) in [its build for macOS](https://github.com/Gcenx/DXVK-macOS), and [Wine](https://www.winehq.org/), both in [WineHQ's Mac packages](https://github.com/Gcenx/macOS_Wine_builds) built by Gcenx and as shipped in [CrossOver](https://www.codeweavers.com/crossover) by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. This project is not affiliated with any of them, and none of them has approved it.
+This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scuba-sc, [MoltenVK](https://github.com/KhronosGroup/MoltenVK) by the Khronos Group, [DXVK](https://github.com/doitsujin/dxvk) in [its build for macOS](https://github.com/Gcenx/DXVK-macOS), and [Wine](https://www.winehq.org/), both in [WineHQ's Mac packages](https://github.com/Gcenx/macOS_Wine_builds) built by Gcenx and as shipped in [CrossOver](https://www.codeweavers.com/crossover) by CodeWeavers. Star Citizen, Roberts Space Industries and Cloud Imperium are trademarks of the Cloud Imperium group of companies. Mac, macOS, CrossOver, Wine, Vulkan, Windows and the other product names in this handbook are trademarks of their respective owners. The launcher's backdrops are photographs by NASA (one of them by the astronaut Don Pettit) and by NASA, ESA, CSA and STScI. This project is not affiliated with any of them, and none of them has approved it.
 
 ### Log of revisions
 
@@ -681,3 +681,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 | 2 | 9 November 2026 | Live settings, the upscaler and the `pretty` profile; a second MoltenVK patch that changed nothing measurable and is off by default |
 | 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only. Official sources of the mod, CrossOver and Wine listed |
 | 4 | 12 November 2026 | CrossOver no longer needed: the game runs on WineHQ's own Mac build. A launcher sets everything up and starts the game |
+| 5 | 12 November 2026 | The launcher's backdrop is a photograph from NASA's open archives in place of a drawing; three come with the app, version 0.1.1 |

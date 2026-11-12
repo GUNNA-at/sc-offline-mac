@@ -20,7 +20,7 @@ struct Fetch {
 }
 
 final class Engine {
-    static let version = "0.1.0"
+    static let version = "0.1.1"
 
     // Pinned sources. Each is the project's own official release channel; every file is checked against its digest.
     static let wine = Fetch(url: "https://github.com/Gcenx/macOS_Wine_builds/releases/download/11.0_1/wine-stable-11.0_1-osx64.tar.xz",

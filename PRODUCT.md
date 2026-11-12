@@ -51,7 +51,7 @@ Name: sc-offline-mac. No logo. No use of the game's logos, trade dress or in-gam
 
 The README keeps the pilot's operating handbook (the owner's choice, 9 November 2026).
 
-The launcher follows the game-launcher standard, played straight: laconic and modern, in the company of the RSI Launcher and CurseForge. This is the owner's standing preference of 12 November 2026, in their words "он должен быть лаконичным, современным, как в самом лаунчере rsi или curse forge", given after an instrument-panel design in the handbook's style was built and rejected. The published app carries no imagery of the game: its backdrop is drawn by the app, and a person may set a picture of their own that stays on their Mac.
+The launcher follows the game-launcher standard, played straight: laconic and modern, in the company of the RSI Launcher and CurseForge. This is the owner's standing preference of 12 November 2026, in their words "он должен быть лаконичным, современным, как в самом лаунчере rsi или curse forge", given after an instrument-panel design in the handbook's style was built and rejected. The published app carries no imagery of the game: its backdrop is a real photograph, one of three from NASA's open archives that come with the app and are credited in it, and a person may set a picture of their own that stays on their Mac. A backdrop drawn by the app was built first and rejected by the owner on 12 November 2026 as looking generated ("слишком ai slop"); nothing on the backdrop is drawn or generated.
 
 ## Evidence on Hand
 

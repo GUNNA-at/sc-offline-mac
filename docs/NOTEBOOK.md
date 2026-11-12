@@ -562,3 +562,8 @@ at about the same frame rate in the one view compared, once five things CrossOve
   owner asked for a plain modern launcher instead, and that is what ships: a sidebar, a panel with a drawn backdrop,
   one bright button, a slim bar under one line of status, four tiles. In flight on the test machine it read 26.8 GB
   held by the game against 24 installed, 30 FPS, 11.7 GB of swap (12:36).
+- 13:10: the drawn backdrop (a planet's limb, orbits, stars) read as generated and was replaced the same day by
+  photographs from NASA's open archives, only cut to shape and resized: Earth under the aurora beside the Milky Way
+  (iss072e574663, Don Pettit), an orbital sunrise (iss061e123823) and the Webb telescope's Cosmic Cliffs. Sources
+  and terms: `launcher/ui/art/CREDITS.md`. Settings switches between the three. Published as version 0.1.1; the README's Figure 4-1 is now the ready
+  window with the first of them.

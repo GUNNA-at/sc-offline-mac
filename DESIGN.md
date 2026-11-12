@@ -448,7 +448,7 @@ It is an app someone operates, so its materials are the ordinary ones of a deskt
 - The system typeface in sentence case: 12, 13 and 15 for the interface, then 20, 22 and 44, each with one job.
 - Rounded: 10 for controls, 12 for cards and the large buttons, 14 for the hero panel.
 - Opaque fills on everything laid over the backdrop. No blur, no glass.
-- A backdrop the app draws itself, or the person's own picture. No imagery or logos of the game.
+- A photograph for a backdrop: one of three from NASA's open archives, or the person's own picture. Nothing drawn or generated, and no imagery or logos of the game.
 - Authored line icons of one weight.
 - In flight nothing animates and nothing transitions.
 
@@ -595,7 +595,7 @@ Flat. There are no shadows, no gradients and no blurred edges anywhere in the fi
 
 Flat, by tonal layering. Depth is four charcoal steps (ground, rail, surface, raised) and hairlines. There is no drop shadow anywhere in the app. The only `box-shadow` values are inset rings that act as borders: 1 px of a hairline on a control or a notice, 1.5 px on a step mark.
 
-Gradients exist in three places and nowhere else: inside the drawn backdrop, in the veil over it (from the left, 88 per cent of near-black falling to none at 76 per cent of the width; from below, 55 per cent falling to none at 46 per cent of the height), and in the bar's fill, where blue meets amber at a hard stop with no blend. No blur is applied to any part of the interface; the blur filters belong to the drawing of the planet.
+Gradients exist in two places and nowhere else: in the veil over the backdrop (over a photograph that comes with the app: from below, 82 per cent of near-black falling to 50 at a third of the height and to none at 62 per cent, and from the left, 42 per cent falling to none at 58 per cent of the width; over a picture of the person's own, which may be anything, the heavier one: from the left, 88 per cent falling to none at 76 per cent of the width, and from below, 55 per cent falling to none at 46 per cent of the height), and in the bar's fill, where blue meets amber at a hard stop with no blend. No blur is applied to any part of the interface.
 
 ## Shapes
 
@@ -673,7 +673,7 @@ Every component here is interactive or reports live state. A focused control sho
 
 **Sidebar navigation.** Four tabs in a vertical list: icon, name, 36 high, radius 10, muted at rest. Under the pointer: the hover tint and text colour. Selected: the selected tint and text colour. Setup carries a count of the steps left, a small pill in `launcher-raised`, hidden at zero. Arrow keys move between tabs and Command with 1 to 4 selects one.
 
-**Hero and backdrop.** A panel with radius 14, a hairline border and its content clipped. The backdrop is drawn by the app: a planet's limb with a blue rim, two orbits, a moon and 110 stars from a fixed seed, so the sky is the same every time. If the person has chosen a picture, it replaces the drawing and covers the panel. Either way the veil lies over it. On a dotted course across the sky sits the craft, a small white triangle at 72 per cent: at the start of its course at rest, moving along it as a start progresses, at the end in flight.
+**Hero and backdrop.** A panel with radius 14, a hairline border and its content clipped. The backdrop is a photograph that covers the panel. Three come with the app, all from NASA's open archives and only cut to shape and resized (`launcher/ui/art/CREDITS.md`): Earth green under the aurora beside the Milky Way, taken from the space station by Don Pettit (the one shown first), an orbital sunrise on Earth's limb, and the Webb telescope's Cosmic Cliffs. Each is placed so that its subject stays clear of the text: the planet at the right, the line of the sunrise above the title. A line of 12 px text at the top left of the panel, on the same left edge as the title, says what the picture is and whose it is. Settings shows the three as small pictures, 60 by 38 with radius 8, the chosen one ringed in the accent, next to the button for a picture of the person's own. If the person has chosen their own, it replaces the photograph and the credit line goes. Either way the veil lies over it. Nothing on the backdrop moves.
 
 **Status line.** The signature. A round dot of 8, one sentence in Lead, and at the right one figure in muted 13 that shortens with an ellipsis before it wraps. The dot is faint while checking or not set up, blue while working, amber when it is the person's turn, red after a failure, green when ready and in flight.
 
@@ -701,14 +701,14 @@ Every component here is interactive or reports live state. A focused control sho
 
 **Log.** A list in the monospace face at 12, newest first: a time in faint in a 72 column, then the line, rows 5 above and below with hairlines between. When empty it says "Nothing yet." in the system face.
 
-**Motion.** One easing, cubic-bezier(.16, 1, .3, 1), carries every change of state: colours of the sidebar items, buttons and segments in 0.15 s, the switch in 0.18 s, the bar's reveal in 0.5 s. Two things move otherwise, by intent: a press scales a button to 0.98 in 0.08 s, and the craft travels its course by `offset-distance` in 2.2 s at a constant speed, because it follows a clock. There are no keyframe animations and nothing loops. A "still" mode holds everything at rest: it is set when the person asks macOS for reduced motion, or with `still` in the address when pictures are taken, and it removes every transition.
+**Motion.** One easing, cubic-bezier(.16, 1, .3, 1), carries every change of state: colours of the sidebar items, buttons and segments in 0.15 s, the switch in 0.18 s, the bar's reveal in 0.5 s. One thing moves otherwise, by intent: a press scales a button to 0.98 in 0.08 s. There are no keyframe animations and nothing loops. A "still" mode holds everything at rest: it is set when the person asks macOS for reduced motion, or with `still` in the address when pictures are taken, and it removes every transition.
 
 ### Launcher Named Rules
 **The Said Once Rule.** The status line says the state once: a dot, one sentence, one figure at its right. Nothing else on the page repeats that sentence. The command a person needs is on the primary button and is not repeated in the notice beside it.
 
 **The Source On This Mac Rule.** No number without a source on this Mac. Every figure the launcher shows is read from the machine it runs on, or says where it was measured. A reading that does not exist yet is an en dash, never an estimate. Opened without the app, the page says "Simulated readings." in front of the line that names the one Mac measured, and the version reads "simulator".
 
-**The Own Picture Rule.** The launcher carries no imagery, logo or interface styling of the game. The backdrop is a scene the app draws itself, or a picture the person chose, which stays on their Mac.
+**The Own Picture Rule.** The launcher carries no imagery, logo or interface styling of the game. The backdrop is a photograph: one of three from NASA's open archives that come with the app, each credited on the panel, or a picture the person chose, which stays on their Mac. Nothing on it is drawn or generated.
 
 **The Corrected In Place Rule.** When the engine reports, a row, a tile or a control is corrected where it stands. Nothing is rebuilt and nothing moves without cause; the row that needs the person is scrolled into view.
 
@@ -744,7 +744,7 @@ Every component here is interactive or reports live state. A focused control sho
 - **Do** give every control its hover, focus, pressed and disabled state, and keep the focus ring: 2 px of `launcher-accent-up`, 3 px off the control.
 - **Do** pair every state colour with words: a dot with its sentence, a coloured value with its note.
 - **Do** set changing numbers in tabular numerals, and show an en dash where there is no reading yet.
-- **Do** use the one easing, cubic-bezier(.16, 1, .3, 1), for a change of state, at 0.15 to 0.18 s, and transition only colour, transform, clip-path and the craft's place on its course.
+- **Do** use the one easing, cubic-bezier(.16, 1, .3, 1), for a change of state, at 0.15 to 0.18 s, and transition only colour, transform, opacity and clip-path.
 - **Do** draw a new icon on the 20 grid with a 1.6 round stroke in the current text colour.
 - **Do** write ranges with the word "to" here as in the README, and label any reading that is simulated.
 

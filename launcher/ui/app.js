@@ -1,11 +1,17 @@
 // The launcher's interface. It draws what the engine reports and sends back what the person presses; it decides
 // nothing about how anything is set up or started. Opened in a browser without the app, a small simulator stands in for
 // the engine (add ?demo=fresh, setup, hold, ready, start, flight, fatal or failed to the address; &tab= picks a page,
-// &still=1 holds everything at rest).
+// &still=1 holds everything at rest, &art=aurora, sunrise or cliffs picks the backdrop).
 "use strict";
 (() => {
   const $ = (id) => document.getElementById(id);
   const NS = "http://www.w3.org/2000/svg";
+  // the pictures that come with the app: photographs from NASA's open archives, only cut to shape and resized (art/CREDITS.md)
+  const ARTS = [
+    { id: "aurora", name: "Aurora and the Milky Way", credit: "Earth under the aurora, and the Milky Way. Photo: NASA, Don Pettit" },
+    { id: "sunrise", name: "Orbital sunrise", credit: "Sunrise over Earth, from the space station. Photo: NASA" },
+    { id: "cliffs", name: "Cosmic Cliffs", credit: "Cosmic Cliffs in the Carina Nebula. Image: NASA, ESA, CSA, STScI" },
+  ];
   const native = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.engine;
   const query = new URLSearchParams(location.search);
   const TARGET_FPS = 25;
@@ -30,19 +36,6 @@
 
   const still = query.has("still") || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   if (still) document.documentElement.classList.add("still");
-
-  // the backdrop's stars: the same sky every time, drawn once
-  (() => {
-    let seed = 20261112; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-    const g = $("stars");
-    for (let i = 0; i < 110; i++) {
-      const x = rnd() * 960, y = rnd() * 460, r = 0.45 + rnd() * rnd() * 1.3;
-      if (Math.hypot(x - 722, y - 600) < 424) continue;                       // not on the planet
-      const c = document.createElementNS(NS, "circle");
-      c.setAttribute("cx", x.toFixed(1)); c.setAttribute("cy", y.toFixed(1)); c.setAttribute("r", r.toFixed(2)); c.setAttribute("opacity", (0.25 + rnd() * 0.6).toFixed(2));
-      g.appendChild(c);
-    }
-  })();
 
   // ---------- words ----------
   const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
@@ -147,8 +140,6 @@
       else { text = steps.some((s) => s.id !== "mac" && s.state === "done") ? "Setup is not finished" : "Not set up yet"; aside = next ? `next: ${next.title}` : aside;
         label = steps.some((s) => s.id !== "mac" && s.state === "done") ? "Continue setup" : "Set up"; ico = "setup"; }
     }
-    const way = ph === "flight" ? 1 : ph === "start" ? 0.08 + 0.92 * Number($("bar-fill").style.getPropertyValue("--p") || 0) : 0.08;
-    if (changed("way", way.toFixed(3))) $("craft").style.setProperty("--way", (way * 100).toFixed(1) + "%");
     $("dot").className = "dot" + (dot ? " " + dot : "");
     put($("status-text"), text); put($("status-aside"), aside);
     const primary = $("primary"); put($("primary-label"), label); primary.disabled = disabled;
@@ -342,13 +333,24 @@
   }
   window.launcher = { receive };
 
-  // the person's own picture as the backdrop: it replaces the drawn scene and never leaves this Mac
-  function setArt(url) {
-    const art = document.querySelector(".art"); let img = art.querySelector("img");
-    if (!url) { if (img) img.remove(); $("scene").style.display = ""; $("art-reset").hidden = true; return; }
-    if (!img) { img = document.createElement("img"); img.alt = ""; art.appendChild(img); }
-    img.src = url; $("scene").style.display = "none"; $("art-reset").hidden = false;
+  // the backdrop: one of the photographs that come with the app, or a picture of the person's own, which never leaves this Mac
+  let ownArt = null;
+  function showArt() {
+    const pick = ARTS.find((a) => a.id === (query.get("art") || stored("art"))) || ARTS[0], src = ownArt || `art/${pick.id}.jpg`;
+    if (changed("art", src)) $("scene").src = src;
+    document.querySelector(".art").dataset.art = ownArt ? "own" : pick.id;
+    put($("credit"), ownArt ? "" : pick.credit); $("credit").hidden = !!ownArt;
+    for (const b of $("arts").children) b.setAttribute("aria-checked", String(!ownArt && b.dataset.id === pick.id));
   }
+  function setArt(url) { ownArt = url; showArt(); }
+  ARTS.forEach((a) => {
+    const b = document.createElement("button"), i = document.createElement("img");
+    b.type = "button"; b.setAttribute("role", "radio"); b.setAttribute("aria-label", a.name); b.title = a.name; b.dataset.id = a.id;
+    i.src = `art/${a.id}-s.jpg`; i.alt = ""; b.appendChild(i);
+    b.onclick = () => { stored("art", a.id); if (ownArt) send("resetArt"); ownArt = null; showArt(); };
+    $("arts").appendChild(b);
+  });
+  showArt();
 
   // ---------- controls ----------
   function pressPrimary() {
@@ -369,7 +371,6 @@
   $("open-launcher").addEventListener("click", () => { send("openLauncher"); selectTab("play"); });
   $("mute").addEventListener("click", () => { const on = $("mute").getAttribute("aria-checked") !== "true"; $("mute").setAttribute("aria-checked", String(on)); if (status) status.muted = on; send("mute", { on }); });
   $("art-pick").addEventListener("click", () => send("pickArt"));
-  $("art-reset").addEventListener("click", () => send("resetArt"));
   $("about-repo").addEventListener("click", () => send("open", { url: "https://github.com/GUNNA-at/sc-offline-mac" }));
 
   const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
@@ -393,7 +394,7 @@
     const steps = (states) => [["mac", "This Mac", "Apple M4 Pro, 24 GB, macOS 26.2"], ["wine", "Wine", "WineHQ 11.0, the official Mac build"], ["dxvk", "DXVK", "1.10.3 for macOS"], ["kit", "Kit parts", "MoltenVK, shim, winegrid, squeezer"],
       ["prefix", "Windows folder", "Windows 11 settings, DXVK and the Vulkan wrapper in place"], ["rsi", "Publisher's launcher", "installed"], ["game", "Game", "Star Citizen 4.10.2 (12913470)"], ["mod", "sc-offline mod", "sc-offline 0.7.7"], ["tune", "macfix and profile", "profile: pretty"]]
       .map(([id, title, detail], i) => Object.assign({ id, title, detail, state: states[i] || "todo" }, id === "rsi" ? { installed: true } : {}));
-    const base = (states, extra) => Object.assign({ type: "status", version: "0.1.0", ready: states.every((s) => s === "done"), gameRunning: false, launcherOpen: false, busy: false, profile: "pretty", profiles: ["fast", "lean", "low", "pretty"], muted: false,
+    const base = (states, extra) => Object.assign({ type: "status", version: "0.1.1", ready: states.every((s) => s === "done"), gameRunning: false, launcherOpen: false, busy: false, profile: "pretty", profiles: ["fast", "lean", "low", "pretty"], muted: false,
       machine: { chip: "Apple M4 Pro", memoryGB: 24, freeGB: 15.2, macos: "26.2", appleSilicon: true, rosetta: true }, tested: { mac: "MacBook Pro 16-inch, M4 Pro", memory: "24 GB", macos: "26.2", game: "LIVE 4.10.2", mod: "sc-offline 0.7.7" }, steps: steps(states) }, extra || {});
     const D = "done", T = "todo";
     const scenes = {

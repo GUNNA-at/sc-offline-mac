@@ -42,6 +42,11 @@ libMoltenVK.dylib (the shim), libwinegrid.dylib, balloon, vulkan-1.dll, macfix.d
 
 The launcher downloads Wine, DXVK, the sc-offline mod and the publisher's launcher from their own sources when you
 press SET UP. None of them is in this folder. No game files are in this folder.
+
+The pictures on the launcher's Play page (the ui/art folder of the app) are photographs from NASA's open archives,
+only cut to shape and resized: iss072e574663 (NASA, Don Pettit), iss061e123823 (NASA) and the Webb telescope's
+Cosmic Cliffs (NASA, ESA, CSA, STScI). Their sources and terms are in ui/art/CREDITS.md. None of these bodies has
+anything to do with this project or endorses it.
 NOTICE
 
 # the app

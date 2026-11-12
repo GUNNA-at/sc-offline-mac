@@ -948,11 +948,6 @@
         "purpose": "A button while pressed."
       },
       {
-        "name": "launcher-craft",
-        "value": "offset-distance 2.2s linear",
-        "purpose": "The craft on its course: 8% at rest, 8 to 100% through a start, 100% in flight. Constant speed, because it follows a clock."
-      },
-      {
         "name": "launcher-flight-rest",
         "value": "body[data-phase=\"flight\"] *: animation none, transition none",
         "purpose": "In flight nothing animates or transitions at all."
@@ -1456,7 +1451,7 @@
       },
       {
         "name": "The Own Picture Rule",
-        "body": "The launcher carries no imagery, logo or interface styling of the game. The backdrop is a scene the app draws itself, or a picture the person chose, which stays on their Mac.",
+        "body": "The launcher carries no imagery, logo or interface styling of the game. The backdrop is a photograph: one of three from NASA's open archives that come with the app, each credited on the panel, or a picture the person chose, which stays on their Mac. Nothing on it is drawn or generated.",
         "section": "components",
         "surface": "launcher"
       },
@@ -1509,7 +1504,7 @@
         "The system typeface in sentence case: 12, 13 and 15 for the interface, then 20, 22 and 44, each with one job.",
         "Rounded: 10 for controls, 12 for cards and the large buttons, 14 for the hero panel.",
         "Opaque fills on everything laid over the backdrop. No blur, no glass.",
-        "A backdrop the app draws itself, or the person's own picture. No imagery or logos of the game.",
+        "A photograph for a backdrop: one of three from NASA's open archives, or the person's own picture. Nothing drawn or generated, and no imagery or logos of the game.",
         "Authored line icons of one weight.",
         "In flight nothing animates and nothing transitions."
       ],
@@ -1519,7 +1514,7 @@
         "Do give every control its hover, focus, pressed and disabled state, and keep the focus ring: 2 px of `launcher-accent-up`, 3 px off the control.",
         "Do pair every state colour with words: a dot with its sentence, a coloured value with its note.",
         "Do set changing numbers in tabular numerals, and show an en dash where there is no reading yet.",
-        "Do use the one easing, cubic-bezier(.16, 1, .3, 1), for a change of state, at 0.15 to 0.18 s, and transition only colour, transform, clip-path and the craft's place on its course.",
+        "Do use the one easing, cubic-bezier(.16, 1, .3, 1), for a change of state, at 0.15 to 0.18 s, and transition only colour, transform, opacity and clip-path.",
         "Do draw a new icon on the 20 grid with a 1.6 round stroke in the current text colour.",
         "Do write ranges with the word \"to\" here as in the README, and label any reading that is simulated."
       ],
