@@ -573,3 +573,13 @@ at about the same frame rate in the one view compared, once five things CrossOve
   8 November in another way (it left at the administrator-rights step) and was unpacked with 7-Zip instead; the
   by-hand procedure had not said so. Handbook Issue 6 says it. The launcher app never runs that installer. Not
   verified: the two unpack commands of the handbook with installer 2.19.2, and anything on an M5 Max.
+- 13:25: the two unpack commands, run as written with installer 2.19.2 (362,326,280 bytes, sha512 as in the
+  publisher's `latest.yml`), into an empty folder. `7zz x` on the installer gives 19 files, among them
+  `$PLUGINSDIR/app-64.7z` (218,169,419 bytes); that archive unpacks to 489 files, 709 MB, version 2.19.2.9357.
+  Against the copy in use since 8 November (2.19.1.9316): the same 489 paths, five files differ (the program, its
+  `app.asar`, `elevate.exe` and two gRPC tools), which is the version. The installer holds one 7z signature, and the
+  archive the launcher app cuts out at it is byte for byte `app-64.7z` (same sha256). Also found: the installer
+  carries three background videos outside the archive (`resources/app.asar.unpacked/app/assets/videos`, 112 MB)
+  that neither the by-hand way nor the app installs; the copy in use has never had them. Not tried: the 2.19.2
+  copy started under CrossOver (no licence on the test machine now); what the publisher's launcher shows with the
+  videos in place.

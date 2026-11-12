@@ -295,7 +295,7 @@ Launch Game button ............. NEVER
 > [!WARNING]
 > Do not run the publisher's installer. It does not complete under CrossOver or Wine. On the test machine it stopped at the step that asks Windows for administrator rights. On another Mac it said the RSI Launcher was running and could not be closed, however often Retry was pressed ([issue 1](https://github.com/GUNNA-at/sc-offline-mac/issues/1)).
 
-Unpack the installer instead. What it would install is one archive stored inside it, `app-64.7z`, and its contents go where the installer would have put them:
+Unpack the installer instead. What matters in it is one archive, `app-64.7z`, with the RSI Launcher's own files. They go where the installer would have put them:
 
 ```bash
 7zz x "RSI Launcher-Setup-2.19.2.exe" -orsi-setup
@@ -305,7 +305,7 @@ Unpack the installer instead. What it would install is one archive stored inside
 7zz x "$(find rsi-setup -name app-64.7z)" -o"$HOME/Library/Application Support/CrossOver/Bottles/StarCitizen/drive_c/Program Files/Roberts Space Industries/RSI Launcher"
 ```
 
-This is how the RSI Launcher was put in place on the test machine, with installer 2.19.1. The two commands as written here have not been rerun with 2.19.2. The launcher app does the same by itself, with 2.19.2, and needs no 7-Zip.
+Both commands were run on the test machine on 12 November 2026 with installer 2.19.2: 489 files, 709 MB, the same set of files as the copy the test machine has used since 8 November, which was put in place this way from 2.19.1. The archive is byte for byte the one the launcher app cuts out of the installer, so the app does the same by itself and needs no 7-Zip. The installer also carries three background videos outside the archive, 112 MB. Neither way installs them, and the RSI Launcher has worked without them. Not checked: a start of the 2.19.2 copy under CrossOver. Under WineHQ 11.0 it draws its sign-in page.
 
 The RSI Launcher draws a white window under CrossOver unless it is started with the flags in [`sc-launcher.sh`](sc-launcher.sh).
 
