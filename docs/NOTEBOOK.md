@@ -498,3 +498,67 @@ Reported: "my mouse is not working" in the M menu, and a take-off hail from the 
 - Other software on the Mac while measuring: the Claude app about 2.2 GB, a Java process 0.4 GB, WindowServer 0.7 GB.
 - Still open: the city view is bound by the game's own main thread and its built-in server sync, not by anything the
   kit touches; the drops when a new part of the city has to be paged in; landing; other Macs.
+
+## 2026-11-12 10:25-12:00 — without CrossOver: the game on the official WineHQ build, and a launcher
+
+Question: does the kit need CrossOver, or will an open-source Wine do? Answer: the official WineHQ build runs the game,
+at about the same frame rate in the one view compared, once five things CrossOver was supplying are supplied.
+
+- **Candidates.** WineHQ's official macOS packages (`Gcenx/macOS_Wine_builds`): stable 11.0_1, tested; devel 11.21,
+  downloaded and not needed. The Sikarugir engine `WS12WineSikarugir11.0_1` (it carries MSync): its first process exits
+  during start-up with no message when run outside its own wrapper app, so it was dropped.
+- **What CrossOver was supplying**, found one failure at a time on WineHQ 11.0:
+  1. `ROSETTA_ADVERTISE_AVX=1`. CrossOver's `wine` wrapper sets it for every bottle. Without it the game stops within
+     seconds with a breakpoint exception (0x80000003 in StarCitizen.exe).
+  2. DXVK. The game asks Direct3D 11 for the adapters first (Game.log, "Logging video adapters": name, video memory,
+     feature level, displays connected) and only then draws with Vulkan. On Wine's own Direct3D: "Feature level:
+     unknown", then "None of the adapters available to the game process have a display connected", then the fatal
+     "Failed to open render library". DXVK for macOS 1.10.3 (`Gcenx/DXVK-macOS`, the `-builtin` repack: `d3d11.dll`
+     and `d3d10core.dll`, Wine's own `dxgi.dll` stays) cures it. `WINEDLLPATH` does not put it ahead of Wine's own
+     files (Wine 11 looks in its own folder first), so the two files go into `system32` with the "Wine builtin DLL"
+     stamp at offset 0x40 zeroed, and `d3d11,d3d10core=n,b`.
+  3. The adapter's identity. Wine's `dxgi` takes it from wined3d, which says "NVIDIA GeForce 6800". With
+     `VideoPciVendorID` 0x1002 and `VideoPciDeviceID` 0x66af under `HKCU\Software\Wine\Direct3D` it is the identity the
+     shim gives the Vulkan device, and the game logs "Radeon RX Vega 20 (vendor = 0x1002, device = 0x66af), Feature
+     level: DX11.1 (SM 5.0), Displays connected: yes".
+  4. Feature level 11.1. This DXVK grants it only with `logicOp` and `variableMultisampleRate`, and MoltenVK reports
+     neither. The shim now advertises both and strips them at `vkCreateDevice` (`MVKSHIM_NO_FL111=1` turns that off).
+     `tools/dxgitest.c` prints what DXGI and Direct3D 11 report in a prefix; it reads the same in the CrossOver bottle
+     and in the new one (feature level b100, one output).
+  5. The dialog clicker. PowerShell 7 does not start in a plain prefix. `tools/dismiss.c` does the same job as a
+     160 KB native program.
+- **The Wine build is not modified.** The kit's libraries are found through `DYLD_LIBRARY_PATH` (the shim under both
+  names Wine asks for, `libMoltenVK.dylib` and `libvulkan.1.dylib`), and winegrid is loaded with
+  `DYLD_INSERT_LIBRARIES`: the WineHQ builds are ad-hoc signed, so dyld honours both, and `winegrid.log` says
+  "on: 1 mmap and 1 munmap import(s) of ntdll.so redirected". The variables have to be set by `env` after
+  `sandbox-exec`: a system program that is handed them directly refuses to start ("have 'x86_64,arm64', need
+  'arm64e'").
+- **MSync** is not in the WineHQ builds (no `WINEMSYNC` in `ntdll.so` or `wineserver`). Nothing hung without it.
+- **Measured**, `pretty` profile, the view from the hab bed, 240 s in the world, all on 12 November:
+
+  | Run | Wine | In the world after | Frame rate once the squeeze is done |
+  |:--|:--|:--|:--|
+  | oss-stable-3 | WineHQ 11.0, cold shader cache | 273 s | 32 to 33 |
+  | cx-base-1 | CrossOver 26.3 | 304 s | 29 to 38, mostly 36 to 38 |
+  | oss-stable-4 | WineHQ 11.0 | 273 s | 27 to 34, with compiler runs on the Mac at the same time |
+  | launcher, second start | WineHQ 11.0, the launcher's own prefix | 279 s | 34 to 36 |
+
+  One view only. The other scenes of Section 5 have not been measured on WineHQ.
+- **The publisher's launcher** on WineHQ 11.0: its installer stops as it does under CrossOver. What it would install
+  is one 7z archive stored inside it; found by the 7z signature, with its length taken from its start header, it
+  unpacks with macOS's own `tar` in 9 s, and the launcher draws its sign-in page with the same Chromium flags as
+  before (`--use-gl=angle --use-angle=swiftshader --in-process-gpu`).
+- **The launcher** (`launcher/`): one program with the setup and start logic (`Sources/Engine.swift`), a window that
+  shows it (`ui/`), and the same commands on the command line. Tried: a complete fresh setup in a temporary folder up
+  to the sign-in step (Wine 177 MB, DXVK and the prefix in about 40 s; the publisher's launcher 346 MB; the mod from
+  its release), each download checked against its published checksum; adopting the installed game by rename (146 GB,
+  instant, a link left behind); start, stop and the live readings. A start goes boot, renderer at 75 s, level at
+  181 s, seeded at 225 s, world at 279 s. Not tried: the game's download after sign-in (no room for a second copy),
+  any other Mac.
+- A stopped or crashed run leaves the mod in the game folder (`Bin64/sc-offline.installed`); the launcher runs the
+  mod's own `uninstall` after every stop and before it opens the publisher's launcher, and refuses to open that
+  launcher while the game runs.
+- The launcher's window was built twice on this day. The first was one large gauge in the handbook's style; the
+  owner asked for a plain modern launcher instead, and that is what ships: a sidebar, a panel with a drawn backdrop,
+  one bright button, a slim bar under one line of status, four tiles. In flight on the test machine it read 26.8 GB
+  held by the game against 24 installed, 30 FPS, 11.7 GB of swap (12:36).

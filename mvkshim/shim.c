@@ -133,17 +133,30 @@ static PFN_vkGetPhysicalDeviceFeatures real_gpdf = NULL;
 static PFN_vkGetPhysicalDeviceFeatures2 real_gpdf2 = NULL, real_gpdf2khr = NULL;
 static PFN_vkCreateDevice real_create_device = NULL;
 static int fake_features(void) { return getenv("MVKSHIM_NO_FAKE_FEATURES") == NULL; }
+static int faked_logicop = 0, faked_vmsr = 0;      /* set once the shim has reported a feature the device does not have */
 static void bump(VkPhysicalDeviceFeatures *f) {
     if (!f || !fake_features()) return;
     static int once = 0;
     if (!once) { once = 1; slog("features real: geometryShader=%u depthBounds=%u pipelineStatisticsQuery=%u -> advertising all three", f->geometryShader, f->depthBounds, f->pipelineStatisticsQuery); }
     f->geometryShader = VK_TRUE; f->depthBounds = VK_TRUE; f->pipelineStatisticsQuery = VK_TRUE;
+    /* DXVK grants Direct3D feature level 11.1 only with these two as well, and the game refuses an adapter below 11.1.
+     * (It asks Direct3D which adapter to use and then draws with Vulkan.) MVKSHIM_NO_FL111=1 leaves them as they are. */
+    if (!getenv("MVKSHIM_NO_FL111")) {
+        static int once2 = 0;
+        if (!once2) { once2 = 1; slog("features real: logicOp=%u variableMultisampleRate=%u -> advertising both (Direct3D feature level 11.1)", f->logicOp, f->variableMultisampleRate); }
+        if (!f->logicOp) { f->logicOp = VK_TRUE; faked_logicop = 1; }
+        if (!f->variableMultisampleRate) { f->variableMultisampleRate = VK_TRUE; faked_vmsr = 1; }
+    }
 }
 static void strip(VkPhysicalDeviceFeatures *f, const char *where) {
     if (!f) return;
     if (f->geometryShader || f->depthBounds || f->pipelineStatisticsQuery)
         slog("vkCreateDevice: engine enabled geometryShader=%u depthBounds=%u pipelineStatisticsQuery=%u in %s -> stripping", f->geometryShader, f->depthBounds, f->pipelineStatisticsQuery, where);
     f->geometryShader = VK_FALSE; f->depthBounds = VK_FALSE; f->pipelineStatisticsQuery = VK_FALSE;
+    if ((faked_logicop && f->logicOp) || (faked_vmsr && f->variableMultisampleRate))
+        slog("vkCreateDevice: logicOp=%u variableMultisampleRate=%u enabled in %s -> stripping what the device lacks", f->logicOp, f->variableMultisampleRate, where);
+    if (faked_logicop) f->logicOp = VK_FALSE;
+    if (faked_vmsr) f->variableMultisampleRate = VK_FALSE;
 }
 /* MVKSHIM_NO_TESSELLATION=1: tell the game the GPU has no tessellation shaders. Metal has none either: MoltenVK emulates
  * them with a compute pass per draw plus private scratch buffers sized for the worst case (kept in a pool for good). */

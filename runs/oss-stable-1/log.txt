@@ -1,0 +1,8 @@
+10:33:47 boot game mem/compressed: 242M 0B    | free 2.1GB swap 3989.19M compressor 14.4GB held in 2.5GB | cpu 99.2%
+         gpu: busy 59% (tiler 16%, renderer 58%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 1.1 GB of 2.4 GB allocated
+10:34:18 boot game mem/compressed: 1205M 0B    | free 0.6GB swap 3989.19M compressor 14.4GB held in 2.4GB | cpu 0.0%
+         gpu: busy 55% (tiler 14%, renderer 55%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 1.0 GB of 2.3 GB allocated
+10:34:48 boot game mem/compressed: 1205M 0B    | free 0.2GB swap 3989.19M compressor 14.3GB held in 2.4GB | cpu 0.0%
+         gpu: busy 55% (tiler 14%, renderer 55%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 1.2 GB of 2.5 GB allocated
+10:35:18 boot game mem/compressed: 1205M 0B    | free 0.1GB swap 3989.19M compressor 14.3GB held in 2.3GB | cpu 0.0%
+         gpu: busy 56% (tiler 14%, renderer 56%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 1.0 GB of 2.3 GB allocated

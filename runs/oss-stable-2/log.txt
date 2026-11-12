@@ -1,0 +1,9 @@
+10:36:18 boot game mem/compressed: 250M 0B    | free 0.8GB swap 3989.19M compressor 14.3GB held in 2.3GB | cpu 99.6%
+         gpu: busy 59% (tiler 17%, renderer 59%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 1.0 GB of 2.3 GB allocated
+10:36:48 boot game mem/compressed: 2191M 0B    | free 0.3GB swap 3989.19M compressor 14.3GB held in 2.3GB | cpu 103.8%
+         gpu: busy 55% (tiler 14%, renderer 55%) | parameter buffer 86 MB | split scenes 0 | gpu memory in use 1.0 GB of 2.4 GB allocated
+10:37:18 boot game mem/compressed: 2179M 0B    | free 0.2GB swap 3989.19M compressor 14.2GB held in 2.3GB | cpu 100.2%
+         gpu: busy 55% (tiler 14%, renderer 55%) | parameter buffer 84 MB | split scenes 0 | gpu memory in use 0.9 GB of 2.3 GB allocated
+10:37:48 FAILED: Fatal Error Thrown: Failed to open render library.
+10:38:08 run ended
+frames: 0 | main thread:  | whole frame: 
