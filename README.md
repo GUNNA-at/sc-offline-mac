@@ -1,7 +1,7 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.svg">
-    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. Wine: WineHQ 11.0, CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 5, 12 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
+    <img src="docs/assets/cover-light.svg" width="880" alt="sc-offline-mac operating handbook. Star Citizen, offline, on Macs with Apple silicon. Tested on: MacBook Pro 16-inch, M4 Pro. Memory: 24 GB. macOS 26.2. Wine: WineHQ 11.0, CrossOver 26.3. Game: LIVE 4.10.2. Mod: sc-offline 0.7.7. Two placards: Offline operation only. Research and study only. Issue 6, 12 November 2026. A line drawing of the laptop gives its span as memory, 24 GB as tested, in red, and its thickness as one page, 16 KB.">
   </picture>
 </p>
 
@@ -261,7 +261,7 @@ sc-offline mod ................. 0.7.7
 ```
 
 ```bash
-brew install mingw-w64 vulkan-headers
+brew install mingw-w64 vulkan-headers sevenzip
 ```
 
 The memory line is the test machine's, not a tested minimum. What to expect with more or less is in [Section 6](#-weight-and-balance).
@@ -285,12 +285,27 @@ Bottle "StarCitizen" .......... CREATE
 Windows version ........... 11, 64-BIT
 MSync ............................. ON
 D3DMetal ......................... OFF
-RSI Launcher ................. INSTALL
+RSI Launcher ......... UNPACK, NOT RUN
 sc-launcher.sh ................... RUN
 Sign in ..................... YOURSELF
 Game, LIVE channel ........... INSTALL
 Launch Game button ............. NEVER
 ```
+
+> [!WARNING]
+> Do not run the publisher's installer. It does not complete under CrossOver or Wine. On the test machine it stopped at the step that asks Windows for administrator rights. On another Mac it said the RSI Launcher was running and could not be closed, however often Retry was pressed ([issue 1](https://github.com/GUNNA-at/sc-offline-mac/issues/1)).
+
+Unpack the installer instead. What it would install is one archive stored inside it, `app-64.7z`, and its contents go where the installer would have put them:
+
+```bash
+7zz x "RSI Launcher-Setup-2.19.2.exe" -orsi-setup
+```
+
+```bash
+7zz x "$(find rsi-setup -name app-64.7z)" -o"$HOME/Library/Application Support/CrossOver/Bottles/StarCitizen/drive_c/Program Files/Roberts Space Industries/RSI Launcher"
+```
+
+This is how the RSI Launcher was put in place on the test machine, with installer 2.19.1. The two commands as written here have not been rerun with 2.19.2. The launcher app does the same by itself, with 2.19.2, and needs no 7-Zip.
 
 The RSI Launcher draws a white window under CrossOver unless it is started with the flags in [`sc-launcher.sh`](sc-launcher.sh).
 
@@ -682,3 +697,4 @@ This work stands on [sc-offline](https://github.com/scuba-sc/sc-offline) by scub
 | 3 | 9 November 2026 | Scope stated: for Macs with Apple silicon, tested on one. Purpose stated: research and study only. Official sources of the mod, CrossOver and Wine listed |
 | 4 | 12 November 2026 | CrossOver no longer needed: the game runs on WineHQ's own Mac build. A launcher sets everything up and starts the game |
 | 5 | 12 November 2026 | The launcher's backdrop is a photograph from NASA's open archives in place of a drawing; three come with the app, version 0.1.1 |
+| 6 | 12 November 2026 | By hand: the publisher's installer is unpacked, not run. It does not complete under CrossOver or Wine, as the first report from another Mac showed ([issue 1](https://github.com/GUNNA-at/sc-offline-mac/issues/1)) |

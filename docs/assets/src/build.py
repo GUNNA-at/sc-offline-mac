@@ -134,7 +134,7 @@ class Doc:
 PLATE = [("TESTED ON", "MacBook Pro 16-inch, M4 Pro"), ("MEMORY", "24 GB"), ("MACOS", "26.2"),
          ("WINE", "WineHQ 11.0, CrossOver 26.3"), ("GAME", "LIVE 4.10.2"), ("MOD", "sc-offline 0.7.7")]
 PLACARDS = ["OFFLINE OPERATION ONLY", "RESEARCH AND STUDY ONLY"]     # the two standing rules, one placard each
-ISSUE = "ISSUE 5, 12 NOV 2026"
+ISSUE = "ISSUE 6, 12 NOV 2026"
 
 
 def cover(theme):

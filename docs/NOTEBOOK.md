@@ -567,3 +567,9 @@ at about the same frame rate in the one view compared, once five things CrossOve
   (iss072e574663, Don Pettit), an orbital sunrise (iss061e123823) and the Webb telescope's Cosmic Cliffs. Sources
   and terms: `launcher/ui/art/CREDITS.md`. Settings switches between the three. Published as version 0.1.1; the README's Figure 4-1 is now the ready
   window with the first of them.
+- 13:40: the first report from another Mac (issue 1, filed 11 November: MacBook Pro 16-inch, M5 Max, 64 GB,
+  CrossOver 26.3). Setup stopped at the publisher's installer, which said the RSI Launcher was running and could
+  not be closed. No game run, so no figures from that Mac. The same installer failed on the test machine on
+  8 November in another way (it left at the administrator-rights step) and was unpacked with 7-Zip instead; the
+  by-hand procedure had not said so. Handbook Issue 6 says it. The launcher app never runs that installer. Not
+  verified: the two unpack commands of the handbook with installer 2.19.2, and anything on an M5 Max.
