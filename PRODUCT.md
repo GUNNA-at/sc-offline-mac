@@ -6,13 +6,17 @@
 
 web
 
+Two surfaces. The README on github.com, and since 12 November 2026 a launcher app for macOS on Apple silicon whose interface is a web page shown in a system web view.
+
 ## Stack
 
-GitHub-flavoured Markdown rendered on github.com (README.md and docs/), with static SVG and PNG assets kept in the repository. Given by the surface, not chosen: no CSS, no scripts, light and dark themes.
+The README: GitHub-flavoured Markdown rendered on github.com (README.md and docs/), with static SVG and PNG assets kept in the repository. Given by the surface, not chosen: no CSS, no scripts, light and dark themes.
+
+The launcher (`launcher/`): a Swift program that is both a window and a command-line tool. `Sources/Engine.swift` holds all setup and start logic; the window shows `ui/index.html`, `app.css` and `app.js` in a WKWebView and only passes messages. Default window 1180 by 760, minimum 980 by 680, dark only.
 
 ## Users
 
-Primary (confirmed by the owner, "both, players first"): people who own Star Citizen and a Mac with Apple silicon, any model, and want to play offline, single-player, through CrossOver with the sc-offline mod. They arrive asking three things in order: can my Mac do this, what will it feel like, how do I set it up. The first answer has to be honest: the kit applies to every Mac with Apple silicon and has run on one.
+Primary (confirmed by the owner, "both, players first"): people who own Star Citizen and a Mac with Apple silicon, any model, and want to play offline, single-player, with the sc-offline mod, since 12 November 2026 without CrossOver: the launcher sets up WineHQ's own Mac build. They arrive asking three things in order: can my Mac do this, what will it feel like, how do I set it up. The first answer has to be honest: the kit applies to every Mac with Apple silicon and has run on one.
 
 Secondary: people who work on or tinker with Wine, CrossOver and MoltenVK and want the technical findings and the measurements behind them.
 
@@ -31,7 +35,8 @@ A terminal on the Mac, CrossOver with one bottle, the game installed through its
 ## Capabilities and Constraints
 
 - Offline and single-player only. The kit is never used with the official servers; this is the owner's standing rule.
-- The repository ships no game files, no CrossOver or Wine binaries and no copy of the mod. The reader needs their own copy of the game, CrossOver and the mod.
+- The repository ships no game files, no CrossOver or Wine binaries and no copy of the mod. The launcher downloads Wine, DXVK, the mod and the publisher's launcher from their own sources, each checked against its published checksum; the person needs their own copy of the game. A release carries the compiled launcher with the kit's own parts (the owner's decision, 12 November 2026: "Publish it for everyone now").
+- The launcher never signs in and never accepts the publisher's terms for the person, never presses Launch Game in the publisher's launcher, and refuses to open that launcher while the game runs.
 - For every Mac with Apple silicon (the owner's instruction, 9 November 2026), tested on one: MacBook Pro 16" M4 Pro, 24 GB, macOS 26.2, CrossOver 26.3, game LIVE 4.10.2, sc-offline 0.7.7, MoltenVK 1.4.2. Never write as if the kit were for the M4 Pro or for 24 GB only, and never state a result for a Mac that was not measured. Intel Macs are out of scope.
 - Published for research and education only, non-commercial: nothing is sold and no money is asked for. This is a statement of purpose and a disclaimer. It is not a licence term (GPL-3.0 allows no added restriction) and never a claim that the work complies with anyone's terms or with the law.
 - macfix is tied by address to sc-offline 0.7.7 and does nothing on another build until its offsets are redone.
@@ -43,6 +48,10 @@ A terminal on the Mac, CrossOver with one bottle, the game installed through its
 ## Brand Commitments
 
 Name: sc-offline-mac. No logo. No use of the game's logos, trade dress or in-game interface styling as decoration.
+
+The README keeps the pilot's operating handbook (the owner's choice, 9 November 2026).
+
+The launcher follows the game-launcher standard, played straight: laconic and modern, in the company of the RSI Launcher and CurseForge. This is the owner's standing preference of 12 November 2026, in their words "он должен быть лаконичным, современным, как в самом лаунчере rsi или curse forge", given after an instrument-panel design in the handbook's style was built and rejected. The published app carries no imagery of the game: its backdrop is drawn by the app, and a person may set a picture of their own that stays on their Mac.
 
 ## Evidence on Hand
 

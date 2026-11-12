@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>sc-offline-mac</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body data-phase="checking">
+
+<!-- the icons: one weight, drawn for this app -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-play" viewBox="0 0 20 20"><path d="M6.5 4.2v11.6a.6.6 0 0 0 .92.5l8.9-5.8a.6.6 0 0 0 0-1l-8.9-5.8a.6.6 0 0 0-.92.5Z" fill="currentColor"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10" rx="2" fill="currentColor"/></symbol>
+    <symbol id="i-setup" viewBox="0 0 20 20"><path d="M4 5.5l1.6 1.6L8.4 4.3M4 10.7l1.6 1.6 2.8-2.8M4 15.9l1.6 1.6 2.8-2.8M11.5 5.6h5M11.5 10.8h5M11.5 16h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 20 20"><path d="M3.5 6h6.2M13.3 6h3.2M3.5 14h3.2M10.3 14h6.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="11.5" cy="6" r="1.9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="14" r="1.9" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-log" viewBox="0 0 20 20"><path d="M5 4.5h10M5 8.2h10M5 11.9h6.5M5 15.6h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><path d="M5 10.6l3.3 3.3L15.2 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 20 20"><path d="M10 3.6 17 15.8H3L10 3.6Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 8.4v3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="13.8" r=".9" fill="currentColor"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 6.6v3.8l2.4 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 20 20"><path d="M10 3.4 15.6 5.5v4.3c0 3.3-2.3 5.7-5.6 6.8-3.3-1.1-5.6-3.5-5.6-6.8V5.5L10 3.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-book" viewBox="0 0 20 20"><path d="M4.4 4.6h4.2A1.8 1.8 0 0 1 10 6.2 1.8 1.8 0 0 1 11.4 4.6h4.2v10.2h-4.4a1.4 1.4 0 0 0-1.2.9 1.4 1.4 0 0 0-1.2-.9H4.4V4.6ZM10 6.2v9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-out" viewBox="0 0 20 20"><path d="M8 5.4H5.4v9.2h9.2V12M11 5.4h3.6V9M14.4 5.6 9.4 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<aside class="rail">
+  <p class="brand">sc-offline-mac</p>
+  <nav class="nav" role="tablist" aria-orientation="vertical" aria-label="Pages">
+    <button role="tab" id="tab-play" aria-controls="page-play" aria-selected="true"><svg><use href="#i-play"/></svg>Play</button>
+    <button role="tab" id="tab-setup" aria-controls="page-setup" aria-selected="false" tabindex="-1"><svg><use href="#i-setup"/></svg>Setup<span class="count" id="setup-count" hidden></span></button>
+    <button role="tab" id="tab-settings" aria-controls="page-settings" aria-selected="false" tabindex="-1"><svg><use href="#i-settings"/></svg>Settings</button>
+    <button role="tab" id="tab-log" aria-controls="page-log" aria-selected="false" tabindex="-1"><svg><use href="#i-log"/></svg>Log</button>
+  </nav>
+  <div class="rail-foot">
+    <p><svg><use href="#i-shield"/></svg>Offline only</p>
+    <p><svg><use href="#i-book"/></svg>Research and study</p>
+    <p class="version" id="version"></p>
+  </div>
+</aside>
+
+<main>
+  <!-- PLAY -->
+  <section class="page" id="page-play" role="tabpanel" aria-labelledby="tab-play">
+    <div class="hero">
+      <div class="art" aria-hidden="true">
+        <svg id="scene" viewBox="0 0 960 460" preserveAspectRatio="xMaxYMid slice">
+          <defs>
+            <radialGradient id="g-sky" cx="78%" cy="96%" r="95%"><stop offset="0" stop-color="#16345c"/><stop offset=".45" stop-color="#0f1a2c"/><stop offset="1" stop-color="#0b0d12"/></radialGradient>
+            <radialGradient id="g-body" cx="34%" cy="22%" r="80%"><stop offset="0" stop-color="#1b2a44"/><stop offset=".55" stop-color="#0e1522"/><stop offset="1" stop-color="#090c13"/></radialGradient>
+            <linearGradient id="g-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc9ff"/><stop offset=".5" stop-color="#4c9dff"/><stop offset="1" stop-color="#4c9dff" stop-opacity="0"/></linearGradient>
+            <radialGradient id="g-moon" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#c7d3e4"/><stop offset="1" stop-color="#5b6677"/></radialGradient>
+            <clipPath id="c-disc"><circle cx="722" cy="600" r="410"/></clipPath>
+            <filter id="f-band" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+            <filter id="f-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+          </defs>
+          <rect width="960" height="460" fill="url(#g-sky)"/>
+          <g id="stars" fill="#dfe8f5"></g>
+          <g fill="none" stroke="#ffffff" stroke-opacity=".09" stroke-width="1">
+            <ellipse cx="700" cy="560" rx="560" ry="250" transform="rotate(-14 700 560)"/>
+            <ellipse cx="700" cy="560" rx="690" ry="330" transform="rotate(-14 700 560)"/>
+          </g>
+          <circle cx="722" cy="600" r="418" fill="none" stroke="url(#g-rim)" stroke-width="20" opacity=".5" filter="url(#f-soft)"/>
+          <circle cx="722" cy="600" r="410" fill="url(#g-body)"/>
+          <g clip-path="url(#c-disc)" fill="none" stroke="#bcd7ff" stroke-linecap="round" filter="url(#f-band)">
+            <path d="M300 300 C 520 250, 900 250, 1140 318" stroke-width="20" stroke-opacity=".05"/>
+            <path d="M300 356 C 540 312, 900 310, 1140 372" stroke-width="34" stroke-opacity=".045"/>
+            <path d="M300 424 C 540 388, 900 386, 1140 438" stroke-width="16" stroke-opacity=".06"/>
+          </g>
+          <circle cx="722" cy="600" r="404" fill="none" stroke="url(#g-rim)" stroke-width="14" opacity=".22" clip-path="url(#c-disc)" filter="url(#f-band)"/>
+          <circle cx="722" cy="600" r="410" fill="none" stroke="url(#g-rim)" stroke-width="1.6"/>
+          <circle cx="352" cy="104" r="13" fill="url(#g-moon)"/>
+          <path d="M300 150 C 420 150, 540 165, 640 172" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="1" stroke-dasharray="2 7" stroke-linecap="round"/>
+          <path id="craft" d="M-7 -4.6 7 0 -7 4.6Z" fill="#ffffff" fill-opacity=".72"/>
+        </svg>
+      </div>
+
+      <div class="hero-body">
+        <h1>Star Citizen</h1>
+        <p class="tagline" id="tagline">Offline, on this Mac</p>
+
+        <div class="status">
+          <p class="status-line"><span class="dot" id="dot"></span><span id="status-text" aria-live="polite">Checking</span><span class="status-aside" id="status-aside"></span></p>
+          <div class="bar" id="bar" role="img" aria-label="Progress"><div class="bar-fill" id="bar-fill"></div><div class="bar-marks" id="bar-marks"></div></div>
+          <p class="bar-note" id="bar-note">&nbsp;</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" id="primary" disabled><svg id="primary-icon"><use href="#i-play"/></svg><span id="primary-label">Single player</span></button>
+          <button class="btn ghost" id="mode-multi" disabled aria-describedby="multi-note">Multiplayer<span class="tag" id="multi-note">Soon</span></button>
+        </div>
+      </div>
+
+      <aside class="panel" id="panel" hidden>
+        <div class="notice" id="notice" hidden>
+          <p class="notice-title" id="notice-head"><svg id="notice-icon"><use href="#i-hand"/></svg><span id="notice-title"></span></p>
+          <p class="notice-text" id="notice-text"></p>
+          <p class="notice-actions" id="notice-actions"><button class="btn small" id="notice-action"></button><button class="link" id="notice-other"></button></p>
+        </div>
+        <h2 class="panel-title" id="panel-title">Setup</h2>
+        <ol class="steps" id="steps"></ol>
+      </aside>
+    </div>
+
+    <dl class="tiles" id="tiles"></dl>
+    <p class="measured" id="measured"></p>
+  </section>
+
+  <!-- SETUP -->
+  <section class="page scroll" id="page-setup" role="tabpanel" aria-labelledby="tab-setup" hidden>
+    <header class="page-head">
+      <div><h2>Setup</h2><p>Each part comes from the project that makes it, and every download is checked against its published checksum. The launcher stops only where the step is yours: Apple's licence for Rosetta, the publisher's sign-in and terms, and a game this Mac already has.</p></div>
+      <div class="head-actions"><button class="btn small" id="setup-run">Run setup</button><button class="link" id="setup-folder">Show the folder</button></div>
+    </header>
+    <ol class="sources" id="sources"></ol>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="page scroll" id="page-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+    <header class="page-head"><div><h2>Settings</h2></div></header>
+    <div class="settings">
+      <div class="row">
+        <div class="row-label"><h3 id="l-profile">Graphics profile</h3><p>Applies at the next start.</p></div>
+        <div class="segmented" id="profiles" role="radiogroup" aria-labelledby="l-profile"></div>
+      </div>
+      <div class="row">
+        <div class="row-label"><h3 id="l-sound">Sound</h3><p>Start the game with its sound off.</p></div>
+        <button class="switch" id="mute" role="switch" aria-checked="false" aria-labelledby="l-sound"><span></span></button>
+      </div>
+      <div class="row">
+        <div class="row-label"><h3>Backdrop</h3><p>The picture on the Play page. Yours stays on this Mac.</p></div>
+        <div class="row-actions"><button class="btn small" id="art-pick">Choose a picture</button><button class="link" id="art-reset" hidden>Use the built-in one</button></div>
+      </div>
+      <div class="row">
+        <div class="row-label"><h3>Publisher's launcher</h3><p>For signing in, and for installing, verifying and updating the game. The mod is taken out of the game folder before it opens. Never press Launch Game there: that is the online game.</p></div>
+        <div class="row-actions"><button class="btn small" id="open-launcher">Open it</button></div>
+      </div>
+      <div class="row">
+        <div class="row-label"><h3>Folders</h3></div>
+        <div class="row-actions"><button class="link" id="show-root">Launcher's folder</button><button class="link" id="show-game">Game</button><button class="link" id="show-logs">Logs</button></div>
+      </div>
+      <div class="row">
+        <div class="row-label"><h3>About</h3><p id="about"></p></div>
+        <div class="row-actions"><button class="link" id="about-repo">The project on GitHub<svg><use href="#i-out"/></svg></button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOG -->
+  <section class="page scroll" id="page-log" role="tabpanel" aria-labelledby="tab-log" hidden>
+    <header class="page-head"><div><h2>Log</h2><p>What the launcher did in this session, newest first.</p></div></header>
+    <ol class="log" id="log" reversed></ol>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

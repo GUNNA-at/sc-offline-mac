@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-09T17:46:01Z",
+  "generatedAt": "2026-11-12T11:43:30Z",
   "title": "Design System: sc-offline-mac",
   "extensions": {
     "colorMeta": {
@@ -275,6 +275,517 @@
           "oklch(84% 0.000 90)",
           "oklch(95% 0.000 90)"
         ]
+      },
+      "launcher-bg": {
+        "role": "neutral",
+        "displayName": "Ground (launcher)",
+        "canonical": "#0d0e11",
+        "surface": "launcher",
+        "oklch": "oklch(16.4% 0.007 271)",
+        "tonalRamp": [
+          "oklch(15% 0.007 271)",
+          "oklch(27% 0.007 271)",
+          "oklch(38% 0.007 271)",
+          "oklch(50% 0.007 271)",
+          "oklch(62% 0.007 271)",
+          "oklch(73% 0.007 271)",
+          "oklch(84% 0.007 271)",
+          "oklch(95% 0.007 271)"
+        ]
+      },
+      "launcher-rail": {
+        "role": "neutral",
+        "displayName": "Rail (launcher)",
+        "canonical": "#101216",
+        "surface": "launcher",
+        "oklch": "oklch(18.2% 0.009 264)",
+        "tonalRamp": [
+          "oklch(15% 0.009 264)",
+          "oklch(27% 0.009 264)",
+          "oklch(38% 0.009 264)",
+          "oklch(50% 0.009 264)",
+          "oklch(62% 0.009 264)",
+          "oklch(73% 0.009 264)",
+          "oklch(84% 0.009 264)",
+          "oklch(95% 0.009 264)"
+        ]
+      },
+      "launcher-surface": {
+        "role": "neutral",
+        "displayName": "Surface (launcher)",
+        "canonical": "#16181d",
+        "surface": "launcher",
+        "oklch": "oklch(20.9% 0.010 268)",
+        "tonalRamp": [
+          "oklch(15% 0.010 268)",
+          "oklch(27% 0.010 268)",
+          "oklch(38% 0.010 268)",
+          "oklch(50% 0.010 268)",
+          "oklch(62% 0.010 268)",
+          "oklch(73% 0.010 268)",
+          "oklch(84% 0.010 268)",
+          "oklch(95% 0.010 268)"
+        ]
+      },
+      "launcher-raised": {
+        "role": "neutral",
+        "displayName": "Raised (launcher)",
+        "canonical": "#1d2027",
+        "surface": "launcher",
+        "oklch": "oklch(24.4% 0.014 267)",
+        "tonalRamp": [
+          "oklch(15% 0.014 267)",
+          "oklch(27% 0.014 267)",
+          "oklch(38% 0.014 267)",
+          "oklch(50% 0.014 267)",
+          "oklch(62% 0.014 267)",
+          "oklch(73% 0.014 267)",
+          "oklch(84% 0.014 267)",
+          "oklch(95% 0.014 267)"
+        ]
+      },
+      "launcher-hero-ground": {
+        "role": "neutral",
+        "displayName": "Hero ground (launcher)",
+        "canonical": "#0b0d12",
+        "surface": "launcher",
+        "oklch": "oklch(15.9% 0.011 268)",
+        "tonalRamp": [
+          "oklch(15% 0.011 268)",
+          "oklch(27% 0.011 268)",
+          "oklch(38% 0.011 268)",
+          "oklch(50% 0.011 268)",
+          "oklch(62% 0.011 268)",
+          "oklch(73% 0.011 268)",
+          "oklch(84% 0.011 268)",
+          "oklch(95% 0.011 268)"
+        ]
+      },
+      "launcher-pane": {
+        "role": "neutral",
+        "displayName": "Pane (launcher)",
+        "canonical": "#0f1116",
+        "surface": "launcher",
+        "oklch": "oklch(17.8% 0.011 268)",
+        "tonalRamp": [
+          "oklch(15% 0.011 268)",
+          "oklch(27% 0.011 268)",
+          "oklch(38% 0.011 268)",
+          "oklch(50% 0.011 268)",
+          "oklch(62% 0.011 268)",
+          "oklch(73% 0.011 268)",
+          "oklch(84% 0.011 268)",
+          "oklch(95% 0.011 268)"
+        ]
+      },
+      "launcher-ghost": {
+        "role": "neutral",
+        "displayName": "Ghost fill (launcher)",
+        "canonical": "#121419",
+        "surface": "launcher",
+        "oklch": "oklch(19.1% 0.011 268)",
+        "tonalRamp": [
+          "oklch(15% 0.011 268)",
+          "oklch(27% 0.011 268)",
+          "oklch(38% 0.011 268)",
+          "oklch(50% 0.011 268)",
+          "oklch(62% 0.011 268)",
+          "oklch(73% 0.011 268)",
+          "oklch(84% 0.011 268)",
+          "oklch(95% 0.011 268)"
+        ]
+      },
+      "launcher-control": {
+        "role": "neutral",
+        "displayName": "Control (launcher)",
+        "canonical": "#23262d",
+        "surface": "launcher",
+        "oklch": "oklch(26.9% 0.014 267)",
+        "tonalRamp": [
+          "oklch(15% 0.014 267)",
+          "oklch(27% 0.014 267)",
+          "oklch(38% 0.014 267)",
+          "oklch(50% 0.014 267)",
+          "oklch(62% 0.014 267)",
+          "oklch(73% 0.014 267)",
+          "oklch(84% 0.014 267)",
+          "oklch(95% 0.014 267)"
+        ]
+      },
+      "launcher-control-hover": {
+        "role": "neutral",
+        "displayName": "Control, hover (launcher)",
+        "canonical": "#2d313a",
+        "surface": "launcher",
+        "oklch": "oklch(31.3% 0.017 266)",
+        "tonalRamp": [
+          "oklch(15% 0.017 266)",
+          "oklch(27% 0.017 266)",
+          "oklch(38% 0.017 266)",
+          "oklch(50% 0.017 266)",
+          "oklch(62% 0.017 266)",
+          "oklch(73% 0.017 266)",
+          "oklch(84% 0.017 266)",
+          "oklch(95% 0.017 266)"
+        ]
+      },
+      "launcher-track": {
+        "role": "neutral",
+        "displayName": "Bar track (launcher)",
+        "canonical": "#2a2e37",
+        "surface": "launcher",
+        "oklch": "oklch(30.1% 0.017 266)",
+        "tonalRamp": [
+          "oklch(15% 0.017 266)",
+          "oklch(27% 0.017 266)",
+          "oklch(38% 0.017 266)",
+          "oklch(50% 0.017 266)",
+          "oklch(62% 0.017 266)",
+          "oklch(73% 0.017 266)",
+          "oklch(84% 0.017 266)",
+          "oklch(95% 0.017 266)"
+        ]
+      },
+      "launcher-cut": {
+        "role": "neutral",
+        "displayName": "Bar cut (launcher)",
+        "canonical": "#0d1016",
+        "surface": "launcher",
+        "oklch": "oklch(17.3% 0.013 264)",
+        "tonalRamp": [
+          "oklch(15% 0.013 264)",
+          "oklch(27% 0.013 264)",
+          "oklch(38% 0.013 264)",
+          "oklch(50% 0.013 264)",
+          "oklch(62% 0.013 264)",
+          "oklch(73% 0.013 264)",
+          "oklch(84% 0.013 264)",
+          "oklch(95% 0.013 264)"
+        ]
+      },
+      "launcher-line": {
+        "role": "neutral",
+        "displayName": "Hairline (launcher)",
+        "canonical": "rgba(255, 255, 255, 0.08)",
+        "surface": "launcher",
+        "note": "White at a fixed opacity, laid over the rail or the ground only. No ramp."
+      },
+      "launcher-line-strong": {
+        "role": "neutral",
+        "displayName": "Strong hairline (launcher)",
+        "canonical": "rgba(255, 255, 255, 0.16)",
+        "surface": "launcher",
+        "note": "White at a fixed opacity, laid over the rail or the ground only. No ramp."
+      },
+      "launcher-hover": {
+        "role": "neutral",
+        "displayName": "Hover tint (launcher)",
+        "canonical": "rgba(255, 255, 255, 0.05)",
+        "surface": "launcher",
+        "note": "White at a fixed opacity, laid over the rail or the ground only. No ramp."
+      },
+      "launcher-selected": {
+        "role": "neutral",
+        "displayName": "Selected tint (launcher)",
+        "canonical": "rgba(255, 255, 255, 0.09)",
+        "surface": "launcher",
+        "note": "White at a fixed opacity, laid over the rail or the ground only. No ramp."
+      },
+      "launcher-switch-off": {
+        "role": "neutral",
+        "displayName": "Switch track, off (launcher)",
+        "canonical": "rgba(255, 255, 255, 0.14)",
+        "surface": "launcher",
+        "note": "White at a fixed opacity, laid over the rail or the ground only. No ramp."
+      },
+      "launcher-text": {
+        "role": "neutral",
+        "displayName": "Text (launcher)",
+        "canonical": "#f3f5f8",
+        "surface": "launcher",
+        "oklch": "oklch(96.9% 0.005 258)",
+        "tonalRamp": [
+          "oklch(15% 0.005 258)",
+          "oklch(27% 0.005 258)",
+          "oklch(38% 0.005 258)",
+          "oklch(50% 0.005 258)",
+          "oklch(62% 0.005 258)",
+          "oklch(73% 0.005 258)",
+          "oklch(84% 0.005 258)",
+          "oklch(95% 0.005 258)"
+        ]
+      },
+      "launcher-muted": {
+        "role": "neutral",
+        "displayName": "Muted (launcher)",
+        "canonical": "#a3aab6",
+        "surface": "launcher",
+        "oklch": "oklch(73.6% 0.019 261)",
+        "tonalRamp": [
+          "oklch(15% 0.019 261)",
+          "oklch(27% 0.019 261)",
+          "oklch(38% 0.019 261)",
+          "oklch(50% 0.019 261)",
+          "oklch(62% 0.019 261)",
+          "oklch(73% 0.019 261)",
+          "oklch(84% 0.019 261)",
+          "oklch(95% 0.019 261)"
+        ]
+      },
+      "launcher-faint": {
+        "role": "neutral",
+        "displayName": "Faint (launcher)",
+        "canonical": "#7d8592",
+        "surface": "launcher",
+        "oklch": "oklch(61.4% 0.022 260)",
+        "tonalRamp": [
+          "oklch(15% 0.022 260)",
+          "oklch(27% 0.022 260)",
+          "oklch(38% 0.022 260)",
+          "oklch(50% 0.022 260)",
+          "oklch(62% 0.022 260)",
+          "oklch(73% 0.022 260)",
+          "oklch(84% 0.022 260)",
+          "oklch(95% 0.022 260)"
+        ]
+      },
+      "launcher-accent": {
+        "role": "primary",
+        "displayName": "Action Blue (launcher)",
+        "canonical": "#4c9dff",
+        "surface": "launcher",
+        "oklch": "oklch(69.1% 0.165 255)",
+        "tonalRamp": [
+          "oklch(15% 0.073 255)",
+          "oklch(27% 0.093 255)",
+          "oklch(38% 0.125 255)",
+          "oklch(50% 0.165 255)",
+          "oklch(62% 0.165 255)",
+          "oklch(73% 0.141 255)",
+          "oklch(84% 0.077 255)",
+          "oklch(95% 0.021 255)"
+        ]
+      },
+      "launcher-accent-up": {
+        "role": "primary",
+        "displayName": "Action Blue, hover and focus (launcher)",
+        "canonical": "#74b3ff",
+        "surface": "launcher",
+        "oklch": "oklch(75.5% 0.128 254)",
+        "tonalRamp": [
+          "oklch(15% 0.068 254)",
+          "oklch(27% 0.088 254)",
+          "oklch(38% 0.120 254)",
+          "oklch(50% 0.128 254)",
+          "oklch(62% 0.128 254)",
+          "oklch(73% 0.128 254)",
+          "oklch(84% 0.080 254)",
+          "oklch(95% 0.024 254)"
+        ]
+      },
+      "launcher-on-accent": {
+        "role": "primary",
+        "displayName": "On accent (launcher)",
+        "canonical": "#04121f",
+        "surface": "launcher",
+        "oklch": "oklch(17.7% 0.034 247)",
+        "tonalRamp": [
+          "oklch(15% 0.034 247)",
+          "oklch(27% 0.034 247)",
+          "oklch(38% 0.034 247)",
+          "oklch(50% 0.034 247)",
+          "oklch(62% 0.034 247)",
+          "oklch(73% 0.034 247)",
+          "oklch(84% 0.034 247)",
+          "oklch(95% 0.022 247)"
+        ]
+      },
+      "launcher-ok": {
+        "role": "tertiary",
+        "displayName": "State Green (launcher)",
+        "canonical": "#3ecf8e",
+        "surface": "launcher",
+        "oklch": "oklch(76.2% 0.154 159)",
+        "tonalRamp": [
+          "oklch(15% 0.042 159)",
+          "oklch(27% 0.062 159)",
+          "oklch(38% 0.086 159)",
+          "oklch(50% 0.114 159)",
+          "oklch(62% 0.138 159)",
+          "oklch(73% 0.154 159)",
+          "oklch(84% 0.154 159)",
+          "oklch(95% 0.074 159)"
+        ]
+      },
+      "launcher-warn": {
+        "role": "tertiary",
+        "displayName": "State Amber (launcher)",
+        "canonical": "#f5a524",
+        "surface": "launcher",
+        "oklch": "oklch(78.2% 0.158 72)",
+        "tonalRamp": [
+          "oklch(15% 0.046 72)",
+          "oklch(27% 0.058 72)",
+          "oklch(38% 0.082 72)",
+          "oklch(50% 0.106 72)",
+          "oklch(62% 0.130 72)",
+          "oklch(73% 0.154 72)",
+          "oklch(84% 0.130 72)",
+          "oklch(95% 0.038 72)"
+        ]
+      },
+      "launcher-bad": {
+        "role": "tertiary",
+        "displayName": "State Red (launcher)",
+        "canonical": "#ff6b6f",
+        "surface": "launcher",
+        "oklch": "oklch(71.2% 0.181 21)",
+        "tonalRamp": [
+          "oklch(15% 0.073 21)",
+          "oklch(27% 0.113 21)",
+          "oklch(38% 0.153 21)",
+          "oklch(50% 0.181 21)",
+          "oklch(62% 0.181 21)",
+          "oklch(73% 0.165 21)",
+          "oklch(84% 0.085 21)",
+          "oklch(95% 0.025 21)"
+        ]
+      },
+      "launcher-ok-ground": {
+        "role": "tertiary",
+        "displayName": "Done mark ground (launcher)",
+        "canonical": "#17382b",
+        "surface": "launcher",
+        "oklch": "oklch(31.1% 0.046 165)",
+        "tonalRamp": [
+          "oklch(15% 0.038 165)",
+          "oklch(27% 0.046 165)",
+          "oklch(38% 0.046 165)",
+          "oklch(50% 0.046 165)",
+          "oklch(62% 0.046 165)",
+          "oklch(73% 0.046 165)",
+          "oklch(84% 0.046 165)",
+          "oklch(95% 0.046 165)"
+        ]
+      },
+      "launcher-bad-ground": {
+        "role": "tertiary",
+        "displayName": "Failed mark ground (launcher)",
+        "canonical": "#3f1c1f",
+        "surface": "launcher",
+        "oklch": "oklch(27.8% 0.055 16)",
+        "tonalRamp": [
+          "oklch(15% 0.055 16)",
+          "oklch(27% 0.055 16)",
+          "oklch(38% 0.055 16)",
+          "oklch(50% 0.055 16)",
+          "oklch(62% 0.055 16)",
+          "oklch(73% 0.055 16)",
+          "oklch(84% 0.055 16)",
+          "oklch(95% 0.023 16)"
+        ]
+      },
+      "launcher-notice-warn": {
+        "role": "tertiary",
+        "displayName": "Notice ground, your turn (launcher)",
+        "canonical": "#231d13",
+        "surface": "launcher",
+        "oklch": "oklch(23.4% 0.020 80)",
+        "tonalRamp": [
+          "oklch(15% 0.020 80)",
+          "oklch(27% 0.020 80)",
+          "oklch(38% 0.020 80)",
+          "oklch(50% 0.020 80)",
+          "oklch(62% 0.020 80)",
+          "oklch(73% 0.020 80)",
+          "oklch(84% 0.020 80)",
+          "oklch(95% 0.020 80)"
+        ]
+      },
+      "launcher-notice-warn-line": {
+        "role": "tertiary",
+        "displayName": "Notice ring, your turn (launcher)",
+        "canonical": "#5a4419",
+        "surface": "launcher",
+        "oklch": "oklch(40.1% 0.066 81)",
+        "tonalRamp": [
+          "oklch(15% 0.046 81)",
+          "oklch(27% 0.058 81)",
+          "oklch(38% 0.066 81)",
+          "oklch(50% 0.066 81)",
+          "oklch(62% 0.066 81)",
+          "oklch(73% 0.066 81)",
+          "oklch(84% 0.066 81)",
+          "oklch(95% 0.046 81)"
+        ]
+      },
+      "launcher-notice-bad": {
+        "role": "tertiary",
+        "displayName": "Notice ground, failure (launcher)",
+        "canonical": "#271618",
+        "surface": "launcher",
+        "oklch": "oklch(22.4% 0.028 12)",
+        "tonalRamp": [
+          "oklch(15% 0.028 12)",
+          "oklch(27% 0.028 12)",
+          "oklch(38% 0.028 12)",
+          "oklch(50% 0.028 12)",
+          "oklch(62% 0.028 12)",
+          "oklch(73% 0.028 12)",
+          "oklch(84% 0.028 12)",
+          "oklch(95% 0.024 12)"
+        ]
+      },
+      "launcher-notice-bad-line": {
+        "role": "tertiary",
+        "displayName": "Notice ring, failure (launcher)",
+        "canonical": "#6a2c2f",
+        "surface": "launcher",
+        "oklch": "oklch(38.1% 0.089 19)",
+        "tonalRamp": [
+          "oklch(15% 0.073 19)",
+          "oklch(27% 0.089 19)",
+          "oklch(38% 0.089 19)",
+          "oklch(50% 0.089 19)",
+          "oklch(62% 0.089 19)",
+          "oklch(73% 0.089 19)",
+          "oklch(84% 0.085 19)",
+          "oklch(95% 0.025 19)"
+        ]
+      },
+      "launcher-on-bad": {
+        "role": "tertiary",
+        "displayName": "On red (launcher)",
+        "canonical": "#1c0506",
+        "surface": "launcher",
+        "oklch": "oklch(16.0% 0.042 20)",
+        "tonalRamp": [
+          "oklch(15% 0.042 20)",
+          "oklch(27% 0.042 20)",
+          "oklch(38% 0.042 20)",
+          "oklch(50% 0.042 20)",
+          "oklch(62% 0.042 20)",
+          "oklch(73% 0.042 20)",
+          "oklch(84% 0.042 20)",
+          "oklch(95% 0.022 20)"
+        ]
+      },
+      "launcher-knob-on": {
+        "role": "neutral",
+        "displayName": "Switch knob, on (launcher)",
+        "canonical": "#ffffff",
+        "surface": "launcher",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(27% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(50% 0.000 90)",
+          "oklch(62% 0.000 90)",
+          "oklch(73% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
       }
     },
     "typographyMeta": {
@@ -321,11 +832,149 @@
       "figure-data-quiet": {
         "displayName": "Data",
         "purpose": "Conditions, scale numerals, notes beside a bar."
+      },
+      "launcher-title": {
+        "displayName": "Display (launcher)",
+        "purpose": "The game's name on the hero, once.",
+        "surface": "launcher"
+      },
+      "launcher-title-narrow": {
+        "displayName": "Display, narrow window (launcher)",
+        "purpose": "The same title in a window 1080 wide or less.",
+        "surface": "launcher"
+      },
+      "launcher-title-short": {
+        "displayName": "Display, short window (launcher)",
+        "purpose": "The same title in a window 720 high or less.",
+        "surface": "launcher"
+      },
+      "launcher-page-title": {
+        "displayName": "Headline (launcher)",
+        "purpose": "The title of the Setup, Settings and Log pages.",
+        "surface": "launcher"
+      },
+      "launcher-figure": {
+        "displayName": "Title, tile value (launcher)",
+        "purpose": "The value in a tile.",
+        "surface": "launcher"
+      },
+      "launcher-brand": {
+        "displayName": "Brand (launcher)",
+        "purpose": "The project's name at the top of the sidebar.",
+        "surface": "launcher"
+      },
+      "launcher-lead": {
+        "displayName": "Lead (launcher)",
+        "purpose": "The status line, the large buttons, a row's heading.",
+        "surface": "launcher"
+      },
+      "launcher-tagline": {
+        "displayName": "Tagline (launcher)",
+        "purpose": "The line under the title.",
+        "surface": "launcher"
+      },
+      "launcher-body": {
+        "displayName": "Body (launcher)",
+        "purpose": "The default: descriptions, step names, notice text.",
+        "surface": "launcher"
+      },
+      "launcher-label": {
+        "displayName": "Label (launcher)",
+        "purpose": "Sidebar items and the segmented control.",
+        "surface": "launcher"
+      },
+      "launcher-label-strong": {
+        "displayName": "Label, strong (launcher)",
+        "purpose": "Small buttons, the notice title, the pane's title.",
+        "surface": "launcher"
+      },
+      "launcher-small": {
+        "displayName": "Small (launcher)",
+        "purpose": "Notes: under the bar, tile labels and notes, step states, the sidebar's foot.",
+        "surface": "launcher"
+      },
+      "launcher-small-strong": {
+        "displayName": "Small, strong (launcher)",
+        "purpose": "The Soon tag, the count, the current stage under the bar.",
+        "surface": "launcher"
+      },
+      "launcher-log": {
+        "displayName": "Mono (launcher)",
+        "purpose": "The Log page's lines, and nothing else.",
+        "surface": "launcher"
       }
     },
-    "shadows": [],
-    "motion": [],
-    "breakpoints": [],
+    "shadows": [
+      {
+        "name": "launcher-ring",
+        "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.08)",
+        "purpose": "Launcher only. Not a shadow: the border of a small button and the segmented control."
+      },
+      {
+        "name": "launcher-ring-strong",
+        "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.16)",
+        "purpose": "Launcher only. The border of the Stop button, the unavailable button and the chosen segment."
+      },
+      {
+        "name": "launcher-mark-ring",
+        "value": "inset 0 0 0 1.5px rgba(255, 255, 255, 0.16)",
+        "purpose": "Launcher only. An empty step mark; the same ring in launcher-accent when running and launcher-warn when it is the person's turn."
+      }
+    ],
+    "motion": [
+      {
+        "name": "launcher-ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "The launcher's one easing, for every change of state."
+      },
+      {
+        "name": "launcher-state",
+        "value": "0.15s",
+        "purpose": "Background and text colour of sidebar items, buttons, segments and links."
+      },
+      {
+        "name": "launcher-switch",
+        "value": "0.18s",
+        "purpose": "The switch's track colour and the knob's 18 px travel."
+      },
+      {
+        "name": "launcher-bar-reveal",
+        "value": "clip-path 0.5s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "The bar's fill is revealed with clip-path: inset(0 calc(100% - var(--p) * 100%) 0 0). It is never resized."
+      },
+      {
+        "name": "launcher-press",
+        "value": "transform 0.08s; scale(.98)",
+        "purpose": "A button while pressed."
+      },
+      {
+        "name": "launcher-craft",
+        "value": "offset-distance 2.2s linear",
+        "purpose": "The craft on its course: 8% at rest, 8 to 100% through a start, 100% in flight. Constant speed, because it follows a clock."
+      },
+      {
+        "name": "launcher-flight-rest",
+        "value": "body[data-phase=\"flight\"] *: animation none, transition none",
+        "purpose": "In flight nothing animates or transitions at all."
+      },
+      {
+        "name": "launcher-still",
+        "value": ".still *: animation none, transition none",
+        "purpose": "Set on the root for prefers-reduced-motion and for ?still=1 when pictures are taken."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "launcher-narrow",
+        "value": "max-width: 1080px",
+        "purpose": "Sidebar 188, setup pane 280, title 38, hero inset 24, large buttons 48 high."
+      },
+      {
+        "name": "launcher-short",
+        "value": "max-height: 720px",
+        "purpose": "Top inset 42, title 36, status block, action row and tiles close up."
+      }
+    ],
     "themes": {
       "source": "docs/assets/src/build.py THEMES",
       "light": {
@@ -434,7 +1083,127 @@
       "link colour",
       "alert colours and icons",
       "column width and breakpoints"
-    ]
+    ],
+    "surfaces": {
+      "note": "Two surfaces, two systems. Tokens, rules and components without the launcher- prefix bind the README only. Everything with the prefix, or marked surface: launcher, binds the app only.",
+      "readme": {
+        "northStar": "The Pilot's Operating Handbook",
+        "source": "docs/assets/src/build.py",
+        "themes": "light and dark",
+        "interactive": false,
+        "tokens": "every token without the launcher- prefix"
+      },
+      "launcher": {
+        "northStar": "The Launcher, Played Straight",
+        "source": "launcher/ui/app.css, launcher/ui/index.html, launcher/ui/app.js",
+        "themes": "dark only",
+        "interactive": true,
+        "tokens": "every token with the launcher- prefix",
+        "window": "1180 by 760 by default, 980 by 680 at least, title bar transparent over the page",
+        "fontFamily": "-apple-system, BlinkMacSystemFont, \"SF Pro Text\", system-ui, \"Helvetica Neue\", sans-serif",
+        "monoFamily": "ui-monospace, \"SF Mono\", Menlo, monospace",
+        "fontSizes": [
+          "12px",
+          "13px",
+          "15px",
+          "20px",
+          "22px",
+          "44px",
+          "38px",
+          "36px"
+        ],
+        "radii": [
+          "3px",
+          "6px",
+          "8px",
+          "10px",
+          "12px",
+          "13px",
+          "14px",
+          "50%"
+        ]
+      }
+    },
+    "launcherMeasures": [
+      {
+        "name": "sidebar",
+        "value": "208 (188 in a narrow window)",
+        "purpose": "The left column: name, four pages, standing rules, version."
+      },
+      {
+        "name": "setup-pane",
+        "value": "318 (280 in a narrow window)",
+        "purpose": "Docked to the hero's right edge while there is setup to do."
+      },
+      {
+        "name": "page-inset",
+        "value": "46 top, 22 sides, 16 bottom; 28 sides on pages that scroll",
+        "purpose": "The top inset clears the window's title bar controls."
+      },
+      {
+        "name": "status-block",
+        "value": "at most 480 wide",
+        "purpose": "The status line, the bar and its note."
+      },
+      {
+        "name": "tiles",
+        "value": "4 equal columns, 10 apart",
+        "purpose": "Always four."
+      },
+      {
+        "name": "rows",
+        "value": "Setup at most 900 wide, Settings at most 860",
+        "purpose": "Flat rows divided by hairlines."
+      },
+      {
+        "name": "bar",
+        "value": "6 high; cuts 2 wide; limit mark 2 wide, 3 above and below",
+        "purpose": "Setup in ninths, a start at 0.27, 0.65 and 0.81, in flight memory against installed memory."
+      },
+      {
+        "name": "icons",
+        "value": "20 grid, 1.6 round stroke; shown at 18, 16, 15, 13 to 14",
+        "purpose": "Authored line icons of one weight."
+      }
+    ],
+    "launcherStates": {
+      "phases": [
+        "checking",
+        "setup",
+        "working",
+        "launcher",
+        "hold",
+        "failed",
+        "ready",
+        "start",
+        "flight"
+      ],
+      "dot": {
+        "checking and setup": "launcher-faint",
+        "working, start, downloading": "launcher-accent",
+        "hold, publisher's launcher open": "launcher-warn",
+        "failed, the game stopped": "launcher-bad",
+        "ready, flight": "launcher-ok"
+      },
+      "step": [
+        "todo",
+        "running",
+        "hold",
+        "done",
+        "failed"
+      ],
+      "primaryButton": [
+        "Single player",
+        "Set up",
+        "Continue setup",
+        "Try again",
+        "the step that is the person's",
+        "Setting up (disabled)",
+        "Launcher open (disabled)",
+        "Stop",
+        "Stop the game? (armed for 3.5 s)"
+      ]
+    }
   },
   "components": [
     {
@@ -500,6 +1269,87 @@
       "description": "Figure 6-1: a solid ink bar from zero with its reading inside, the measured spread continued at 0.38 opacity, crossed by the red line at the installed limit. Rendered here with live Helvetica/Courier as an approximation; the shipped figure draws the lettering as outlines. Not interactive: no hover or focus state exists.",
       "html": "<div class=\"ds-load\"><div class=\"ds-load-head\"><b>WASTE REMOVED</b><code>10 to 30 FPS</code></div><div class=\"ds-load-track\"><span class=\"ds-load-solid\">needs 26 to 33 GB</span><span class=\"ds-load-spread\"></span><i class=\"ds-load-limit\"></i></div></div>",
       "css": ".ds-load { width: 560px; font: 17px Helvetica, Arial, sans-serif; color: #1f2328; } .ds-load-head { display: flex; justify-content: space-between; margin-bottom: 8px; } .ds-load-head b { letter-spacing: 0.05em; } .ds-load-head code { font: 700 17px Courier, 'Courier New', monospace; } .ds-load-track { position: relative; height: 34px; } .ds-load-solid { position: absolute; left: 0; width: 43.33%; height: 34px; background: #1f2328; color: #ffffff; font: 700 17px/34px Courier, 'Courier New', monospace; padding-left: 12px; box-sizing: border-box; white-space: nowrap; } .ds-load-spread { position: absolute; left: 43.33%; width: 11.67%; height: 34px; background: #1f2328; opacity: 0.38; } .ds-load-limit { position: absolute; left: 40%; top: -10px; bottom: -10px; width: 2.6px; background: #cf222e; }"
+    },
+    {
+      "name": "Launcher: primary button",
+      "kind": "button",
+      "refersTo": "launcher-button-primary",
+      "surface": "launcher",
+      "description": "The one bright control on the Play page. Its label is always the next thing to do.",
+      "html": "<button class=\"ds-l-primary\"><svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\"><path d=\"M6.5 4.2v11.6a.6.6 0 0 0 .92.5l8.9-5.8a.6.6 0 0 0 0-1l-8.9-5.8a.6.6 0 0 0-.92.5Z\" fill=\"currentColor\"/></svg><span>Single player</span></button>",
+      "css": ".ds-l-primary { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 52px; min-width: 196px; padding: 0 26px; border: 0; border-radius: 12px; background: #4c9dff; color: #04121f; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 15px; font-weight: 600; white-space: nowrap; transition: background-color .15s cubic-bezier(.16, 1, .3, 1), transform .08s; } .ds-l-primary:hover { background: #74b3ff; } .ds-l-primary:active { transform: scale(.98); } .ds-l-primary:focus-visible { outline: 2px solid #74b3ff; outline-offset: 3px; } .ds-l-primary:disabled { background: #23262d; color: #a3aab6; }"
+    },
+    {
+      "name": "Launcher: Stop, and Stop armed",
+      "kind": "button",
+      "refersTo": "launcher-button-stop",
+      "surface": "launcher",
+      "description": "The primary button while the game starts or runs: quiet, then red for 3.5 seconds after one press, asking for a second.",
+      "html": "<div class=\"ds-l-stoprow\"><button class=\"ds-l-stop\"><svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\"><rect x=\"5\" y=\"5\" width=\"10\" height=\"10\" rx=\"2\" fill=\"currentColor\"/></svg><span>Stop</span></button><button class=\"ds-l-stop ds-l-stop-armed\"><svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\"><rect x=\"5\" y=\"5\" width=\"10\" height=\"10\" rx=\"2\" fill=\"currentColor\"/></svg><span>Stop the game?</span></button></div>",
+      "css": ".ds-l-stoprow { display: flex; gap: 10px; } .ds-l-stop { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 52px; min-width: 196px; padding: 0 26px; border: 0; border-radius: 12px; background: #23262d; color: #f3f5f8; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 15px; font-weight: 600; white-space: nowrap; transition: background-color .15s cubic-bezier(.16, 1, .3, 1), transform .08s; } .ds-l-stop:hover { background: #2d313a; } .ds-l-stop:active { transform: scale(.98); } .ds-l-stop:focus-visible { outline: 2px solid #74b3ff; outline-offset: 3px; } .ds-l-stop-armed, .ds-l-stop-armed:hover { background: #ff6b6f; color: #1c0506; box-shadow: none; }"
+    },
+    {
+      "name": "Launcher: Multiplayer, unavailable, with the Soon tag",
+      "kind": "button",
+      "refersTo": "launcher-button-unavailable",
+      "surface": "launcher",
+      "description": "Disabled, beside the primary button, the same size. The only use of the tag.",
+      "html": "<button class=\"ds-l-ghost\" disabled>Multiplayer<span class=\"ds-l-tag\">Soon</span></button>",
+      "css": ".ds-l-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 52px; padding: 0 26px; border: 0; border-radius: 12px; background: #121419; color: #a3aab6; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 15px; font-weight: 600; white-space: nowrap; } .ds-l-tag { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 8px; background: #23262d; color: #a3aab6; }"
+    },
+    {
+      "name": "Launcher: status line with dot, bar and note",
+      "kind": "custom",
+      "refersTo": "launcher-bar",
+      "surface": "launcher",
+      "description": "The signature, shown in flight: the game's memory, a mark where this Mac's installed memory ends, amber past it. The reading here is an example, not a measurement.",
+      "html": "<div class=\"ds-l-status\"><p class=\"ds-l-status-line\"><span class=\"ds-l-dot\"></span><span>In flight</span><span class=\"ds-l-aside\">6:52</span></p><div class=\"ds-l-bar\"><div class=\"ds-l-bar-fill\"></div><i class=\"ds-l-bar-limit\"></i></div><p class=\"ds-l-bar-note\"><span>25.7 GB in use by the game</span><b>1.7 GB past this Mac's 24 GB</b></p></div>",
+      "css": ".ds-l-status { width: 480px; padding: 16px; background: #0b0d12; color: #f3f5f8; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; } .ds-l-status p { margin: 0; } .ds-l-status-line { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; } .ds-l-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ecf8e; flex: none; } .ds-l-aside { margin-left: auto; color: #a3aab6; font-weight: 400; font-size: 13px; font-variant-numeric: tabular-nums; } .ds-l-bar { position: relative; height: 6px; margin-top: 12px; border-radius: 3px; background: #2a2e37; } .ds-l-bar-fill { position: absolute; inset: 0; border-radius: 3px; background: linear-gradient(90deg, #4c9dff 0 66.67%, #f5a524 66.67% 100%); clip-path: inset(0 calc(100% - 71.4%) 0 0); transition: clip-path .5s cubic-bezier(.16, 1, .3, 1); } .ds-l-bar-limit { position: absolute; top: -3px; bottom: -3px; left: 66.67%; width: 2px; margin-left: -1px; background: #f3f5f8; } .ds-l-bar-note { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; color: #a3aab6; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-l-bar-note b { color: #f3f5f8; font-weight: 600; }"
+    },
+    {
+      "name": "Launcher: sidebar navigation",
+      "kind": "nav",
+      "refersTo": "launcher-nav-item",
+      "surface": "launcher",
+      "description": "Vertical tabs with an icon, a name and, on Setup, the count of steps left.",
+      "html": "<nav class=\"ds-l-nav\"><button class=\"ds-l-nav-item ds-l-nav-on\"><svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\"><path d=\"M6.5 4.2v11.6a.6.6 0 0 0 .92.5l8.9-5.8a.6.6 0 0 0 0-1l-8.9-5.8a.6.6 0 0 0-.92.5Z\" fill=\"currentColor\"/></svg>Play</button><button class=\"ds-l-nav-item\"><svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\"><path d=\"M4 5.5l1.6 1.6L8.4 4.3M4 10.7l1.6 1.6 2.8-2.8M4 15.9l1.6 1.6 2.8-2.8M11.5 5.6h5M11.5 10.8h5M11.5 16h5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Setup<span class=\"ds-l-count\">3</span></button></nav>",
+      "css": ".ds-l-nav { display: grid; gap: 2px; width: 184px; padding: 12px; background: #101216; } .ds-l-nav-item { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border: 0; border-radius: 10px; background: none; color: #a3aab6; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 500; text-align: left; transition: background-color .15s cubic-bezier(.16, 1, .3, 1), color .15s cubic-bezier(.16, 1, .3, 1); } .ds-l-nav-item:hover { background: rgba(255, 255, 255, .05); color: #f3f5f8; } .ds-l-nav-item:focus-visible { outline: 2px solid #74b3ff; outline-offset: 3px; } .ds-l-nav-on, .ds-l-nav-on:hover { background: rgba(255, 255, 255, .09); color: #f3f5f8; } .ds-l-count { margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: #1d2027; color: #a3aab6; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; display: grid; place-items: center; }"
+    },
+    {
+      "name": "Launcher: tile",
+      "kind": "card",
+      "refersTo": "launcher-tile",
+      "surface": "launcher",
+      "description": "One of four: a label, a value, a note. Only the frame rate takes a state colour. The readings here are examples, not measurements.",
+      "html": "<dl class=\"ds-l-tiles\"><div><dt>Frame rate</dt><dd class=\"ds-l-go\">36 FPS</dd><dd class=\"ds-l-tile-note\">target 25</dd></div><div><dt>Swap</dt><dd>11.5 GB</dd><dd class=\"ds-l-tile-note\">written to disk</dd></div></dl>",
+      "css": ".ds-l-tiles { display: grid; grid-template-columns: repeat(2, 200px); gap: 10px; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; } .ds-l-tiles div { background: #16181d; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px 14px; display: grid; gap: 2px; } .ds-l-tiles dt { color: #a3aab6; font-size: 12px; } .ds-l-tiles dd { margin: 0; color: #f3f5f8; font-size: 20px; font-weight: 650; letter-spacing: -0.015em; font-variant-numeric: tabular-nums; } .ds-l-tiles dd.ds-l-go { color: #3ecf8e; } .ds-l-tiles dd.ds-l-tile-note { font-size: 12px; font-weight: 400; letter-spacing: 0; color: #a3aab6; }"
+    },
+    {
+      "name": "Launcher: notice and step rows",
+      "kind": "custom",
+      "refersTo": "launcher-notice",
+      "surface": "launcher",
+      "description": "The setup pane: the notice in its amber kind (the other is red, for a failure), then step rows done, held for the person and not yet started.",
+      "html": "<div class=\"ds-l-pane\"><div class=\"ds-l-notice\"><p class=\"ds-l-notice-title\"><svg viewBox=\"0 0 20 20\" width=\"16\" height=\"16\"><circle cx=\"10\" cy=\"10\" r=\"6.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"M10 6.6v3.8l2.4 1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Your turn</p><p class=\"ds-l-notice-text\">Moving it here is a rename: nothing is copied.</p></div><ol class=\"ds-l-steps\"><li><span class=\"ds-l-mark ds-l-mark-done\"><svg viewBox=\"0 0 20 20\" width=\"13\" height=\"13\"><path d=\"M5 10.6l3.3 3.3L15.2 6.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span>Wine</span><span class=\"ds-l-state\"></span></li><li><span class=\"ds-l-mark ds-l-mark-hold\"></span><span>Game</span><span class=\"ds-l-state ds-l-state-hold\">Your turn</span></li><li><span class=\"ds-l-mark\"></span><span class=\"ds-l-todo\">sc-offline mod</span><span class=\"ds-l-state\"></span></li></ol></div>",
+      "css": ".ds-l-pane { width: 282px; padding: 18px; background: #0f1116; color: #f3f5f8; display: grid; gap: 12px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.45; } .ds-l-pane p { margin: 0; } .ds-l-notice { padding: 12px; border-radius: 10px; background: #231d13; box-shadow: inset 0 0 0 1px #5a4419; display: grid; gap: 6px; } .ds-l-notice-title { display: flex; align-items: center; gap: 7px; font-weight: 600; color: #f5a524; } .ds-l-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; } .ds-l-steps li { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; column-gap: 10px; align-items: center; min-height: 30px; } .ds-l-mark { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.16); } .ds-l-mark-done { background: #17382b; box-shadow: none; color: #3ecf8e; } .ds-l-mark-hold { box-shadow: inset 0 0 0 1.5px #f5a524; } .ds-l-mark-hold::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #f5a524; } .ds-l-todo { color: #a3aab6; } .ds-l-state { color: #a3aab6; font-size: 12px; font-variant-numeric: tabular-nums; } .ds-l-state-hold { color: #f5a524; }"
+    },
+    {
+      "name": "Launcher: segmented control",
+      "kind": "input",
+      "refersTo": "launcher-segmented",
+      "surface": "launcher",
+      "description": "One choice among a few, as for the graphics profile.",
+      "html": "<div class=\"ds-l-seg\" role=\"radiogroup\"><button role=\"radio\" aria-checked=\"false\">fast</button><button role=\"radio\" aria-checked=\"false\">lean</button><button role=\"radio\" aria-checked=\"true\">pretty</button></div>",
+      "css": ".ds-l-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: #16181d; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); } .ds-l-seg button { height: 30px; padding: 0 14px; border: 0; border-radius: 8px; background: none; color: #a3aab6; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 500; transition: background-color .15s cubic-bezier(.16, 1, .3, 1), color .15s; } .ds-l-seg button:hover { color: #f3f5f8; } .ds-l-seg button:focus-visible { outline: 2px solid #74b3ff; outline-offset: 3px; } .ds-l-seg button[aria-checked='true'] { background: #1d2027; color: #f3f5f8; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16); }"
+    },
+    {
+      "name": "Launcher: switch, small button and link",
+      "kind": "input",
+      "refersTo": "launcher-switch-on",
+      "surface": "launcher",
+      "description": "The controls at the right of a Settings row: the switch off and on, a small button, a link.",
+      "html": "<div class=\"ds-l-ctl\"><button class=\"ds-l-switch\" role=\"switch\" aria-checked=\"false\"><span></span></button><button class=\"ds-l-switch\" role=\"switch\" aria-checked=\"true\"><span></span></button><button class=\"ds-l-small\">Choose a picture</button><button class=\"ds-l-link\">Logs</button></div>",
+      "css": ".ds-l-ctl { display: flex; align-items: center; gap: 16px; padding: 16px; background: #0d0e11; } .ds-l-switch { width: 44px; height: 26px; border: 0; padding: 0; border-radius: 13px; background: rgba(255, 255, 255, .14); position: relative; transition: background-color .18s cubic-bezier(.16, 1, .3, 1); } .ds-l-switch span { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #f3f5f8; transition: transform .18s cubic-bezier(.16, 1, .3, 1); } .ds-l-switch[aria-checked='true'] { background: #4c9dff; } .ds-l-switch[aria-checked='true'] span { transform: translateX(18px); background: #fff; } .ds-l-small { height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: #23262d; color: #f3f5f8; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 600; transition: background-color .15s cubic-bezier(.16, 1, .3, 1); } .ds-l-small:hover { background: #2d313a; } .ds-l-link { height: 36px; border: 0; padding: 0; background: none; color: #a3aab6; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', sans-serif; font-size: 13px; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .22); text-underline-offset: 4px; transition: color .15s; } .ds-l-link:hover { color: #f3f5f8; text-decoration-color: currentColor; } .ds-l-switch:focus-visible, .ds-l-small:focus-visible, .ds-l-link:focus-visible { outline: 2px solid #74b3ff; outline-offset: 3px; }"
     }
   ],
   "narrative": {
@@ -517,37 +1367,116 @@
       {
         "name": "The Marking Code Rule",
         "body": "Green, yellow and red are instrument markings, not accents. A colour may appear in a figure only where it encodes a measured range, a target or a limit, and the figure must say in words what it means (GREEN: 25 AND ABOVE, RED LINE: TEST MACHINE, 24 GB). Everything else is ink on paper.",
-        "section": "colors"
+        "section": "colors",
+        "surface": "readme"
       },
       {
         "name": "The Two Reds Rule",
         "body": "Limit Red marks a number the machine cannot exceed. Emergency Red marks Section 3 and only Section 3: its tab and the hatched rule under its heading. Neither is used for emphasis.",
-        "section": "colors"
+        "section": "colors",
+        "surface": "readme"
       },
       {
         "name": "The One Tint Rule",
         "body": "Ink at 0.38 opacity has a single meaning: the measured spread at the end of a bar, where the true value lies somewhere inside. A dashed ink outline with no fill means not in memory or not part of the kit's result (data in swap, the as-found row). No other tints or fills exist.",
-        "section": "colors"
+        "section": "colors",
+        "surface": "readme"
       },
       {
         "name": "The One Size Rule",
         "body": "Inside a figure every piece of lettering is 17. Hierarchy comes from face, weight, capitals and ink against muted, never from a second size. The cover is the only plate with a scale, and its smallest lettering is 24.",
-        "section": "typography"
+        "section": "typography",
+        "surface": "readme"
       },
       {
         "name": "The Phone Floor Rule",
         "body": "Lettering is sized by what it becomes in a 360 px column: drawn size times 0.6 for a figure, times 0.41 for the cover, and the result stays at about 10 px. A new figure keeps the 600 measure and the 17 lettering rather than adding detail that needs smaller type.",
-        "section": "typography"
+        "section": "typography",
+        "surface": "readme"
       },
       {
         "name": "The Outline Rule",
         "body": "Every letter in a figure is a path produced by `textpath` from Helvetica or Courier. No `<text>` elements, no font references, so each figure carries its full reading in the `aria-label` and `<title>` and again in the `alt` of the image.",
-        "section": "typography"
+        "section": "typography",
+        "surface": "readme"
       },
       {
         "name": "The Written Range Rule",
         "body": "A measured range is written with the word \"to\" (16 to 25 FPS), in prose, tables and figures alike. An en dash in a table cell means not measured.",
-        "section": "typography"
+        "section": "typography",
+        "surface": "readme"
+      },
+      {
+        "name": "The One Accent Rule",
+        "body": "One blue (`launcher-accent`) marks the action a person can take now and the progress of what is under way: the primary button, the bar's fill, the running step, the busy dot, the switch that is on, and in its lighter step the focus ring. There is no second accent, and blue never says that something is good or bad.",
+        "section": "colors",
+        "surface": "launcher"
+      },
+      {
+        "name": "The State Colour Rule",
+        "body": "Green, amber and red only say what state something is in. Green: ready, done, in flight, a frame rate at or above the target. Amber: the person's turn, a frame rate below the target, memory past what this Mac has installed. Red: a failure, the game stopped, the armed Stop. Each stands beside words that say the same thing, and none is decoration.",
+        "section": "colors",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Solid Fill Rule",
+        "body": "Nothing of the backdrop shows through a control, a box or a pane. Everything laid on the hero has an opaque fill: the buttons, the tag, the bar's track, the setup pane, both notices. The title and the status line stand on the backdrop itself, behind a veil that darkens it from the left and from below. No blur and no glass. The white tints (`launcher-hover`, `launcher-selected`, `launcher-switch-off`) are used only over the rail and the ground, never over the picture.",
+        "section": "colors",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Three Small Steps Rule",
+        "body": "All running interface text is 12, 13 or 15. 13 is the default, 12 is for notes and states, 15 is for a line that leads: the status line, a large button, a row's heading, the tagline. Above them are three sizes with one job each: 20 for a tile's value, 22 for a page title, 44 for the game's name. Inside a step, hierarchy comes from weight (400, 500, 600, 650, 700) and from text against muted against faint.",
+        "section": "typography",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Everything is in sentence case at normal tracking. Capitals are not a style here and no label is tracked out. Negative tracking belongs only to the four largest settings: the brand at 15, the tile value at 20, the page title at 22 and the title at 44.",
+        "section": "typography",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Tabular Numerals Rule",
+        "body": "Any number that can change while a person watches is set in tabular numerals, so the line does not shift: the figure at the right of the status line, the note under the bar, tile values and notes, step states, the count in the sidebar, the version.",
+        "section": "typography",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Said Once Rule",
+        "body": "The status line says the state once: a dot, one sentence, one figure at its right. Nothing else on the page repeats that sentence. The command a person needs is on the primary button and is not repeated in the notice beside it.",
+        "section": "components",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Source On This Mac Rule",
+        "body": "No number without a source on this Mac. Every figure the launcher shows is read from the machine it runs on, or says where it was measured. A reading that does not exist yet is an en dash, never an estimate. Opened without the app, the page says \"Simulated readings.\" in front of the line that names the one Mac measured, and the version reads \"simulator\".",
+        "section": "components",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Own Picture Rule",
+        "body": "The launcher carries no imagery, logo or interface styling of the game. The backdrop is a scene the app draws itself, or a picture the person chose, which stays on their Mac.",
+        "section": "components",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Corrected In Place Rule",
+        "body": "When the engine reports, a row, a tile or a control is corrected where it stands. Nothing is rebuilt and nothing moves without cause; the row that needs the person is scrolled into view.",
+        "section": "components",
+        "surface": "launcher"
+      },
+      {
+        "name": "The Reveal Rule",
+        "body": "The bar's fill always spans the whole track and is revealed with a clip-path over 0.5 s. It is never resized, so its two colours stay where they belong on the scale.",
+        "section": "components",
+        "surface": "launcher"
+      },
+      {
+        "name": "The At Rest In Flight Rule",
+        "body": "While the game runs, nothing animates and nothing transitions: every transition and animation in the window is switched off for the flight phase, because the game needs the machine. Readings still change; they change in place.",
+        "section": "components",
+        "surface": "launcher"
       }
     ],
     "dos": [
@@ -569,6 +1498,43 @@
       "Don't add badges, logos, emoji bullets or a screenshot carousel, and do not use the game's logos, trade dress or interface styling.",
       "Don't invent approvals, stamps, serial numbers or signatures. The handbook borrows the form of an aircraft manual, not its authority.",
       "Don't add a fourth kind of notice or use an alert for anything but its defined meaning."
-    ]
+    ],
+    "scope": "northStar, overview, keyCharacteristics, dos and donts at this level describe the README and bind the README only. The launcher's are under narrative.launcher. In rules, each entry says which surface it binds.",
+    "launcher": {
+      "northStar": "The Launcher, Played Straight",
+      "overview": "The launcher is a modern game launcher and nothing else: one calm dark window, a panel with a backdrop, one bright action and one line of status under the title. It keeps the company its owner named, the RSI Launcher and CurseForge, and it refuses two things: the costume of an instrument panel, and anything a person has to read before they can press the button. A first launcher built in the handbook's style was rejected by the owner on 12 November 2026; this system replaces it for the app and leaves the README as it was.\n\nThe surface is a web page in a system web view inside a macOS window on Apple silicon: 1180 by 760 by default, never smaller than 980 by 680, dark only, with the window's title bar transparent over the page. Every token of the launcher is a value in `launcher/ui/app.css`. The named values are custom properties on `:root`; the remaining fills are written in place in that stylesheet and are named here.\n\nIt is an app someone operates, so its materials are the ordinary ones of a desktop app: the system typeface, real controls with hover, focus, pressed and disabled states, and state colours that say ready, your turn and failed. It runs beside a game that needs the whole machine, so in flight the window holds still.",
+      "keyCharacteristics": [
+        "A neutral charcoal ground with three tonal layers above it, hairline borders and no drop shadows.",
+        "One blue for the action and for progress. Green, amber and red only for state, always beside words.",
+        "The system typeface in sentence case: 12, 13 and 15 for the interface, then 20, 22 and 44, each with one job.",
+        "Rounded: 10 for controls, 12 for cards and the large buttons, 14 for the hero panel.",
+        "Opaque fills on everything laid over the backdrop. No blur, no glass.",
+        "A backdrop the app draws itself, or the person's own picture. No imagery or logos of the game.",
+        "Authored line icons of one weight.",
+        "In flight nothing animates and nothing transitions."
+      ],
+      "dos": [
+        "Do take every launcher colour from the `launcher-` tokens, and give a new surface a named value in `launcher/ui/app.css` before using it.",
+        "Do keep one bright button on the Play page: `launcher-accent` with `launcher-on-accent` lettering, 52 high, radius 12.",
+        "Do give every control its hover, focus, pressed and disabled state, and keep the focus ring: 2 px of `launcher-accent-up`, 3 px off the control.",
+        "Do pair every state colour with words: a dot with its sentence, a coloured value with its note.",
+        "Do set changing numbers in tabular numerals, and show an en dash where there is no reading yet.",
+        "Do use the one easing, cubic-bezier(.16, 1, .3, 1), for a change of state, at 0.15 to 0.18 s, and transition only colour, transform, clip-path and the craft's place on its course.",
+        "Do draw a new icon on the 20 grid with a 1.6 round stroke in the current text colour.",
+        "Do write ranges with the word \"to\" here as in the README, and label any reading that is simulated."
+      ],
+      "donts": [
+        "Don't carry the handbook into the launcher: no Helvetica and Courier lettering, no tracked capitals, no thumb tabs, placards, dot leaders or hatching, no square ruled frames.",
+        "Don't use green, amber or red for emphasis or decoration, and don't use blue to mean good.",
+        "Don't add a second accent or a second bright button.",
+        "Don't put a translucent or blurred fill over the backdrop.",
+        "Don't use imagery, logos, trade dress or interface styling of the game.",
+        "Don't add drop shadows. A ring is an inset line of 1 px, or 1.5 px on a step mark.",
+        "Don't repeat the status sentence elsewhere on the page, and don't show a number that was not read from this Mac without saying where it was measured.",
+        "Don't animate anything while the game runs, and don't add a looping animation in any state.",
+        "Don't set the interface in monospace. The monospace face belongs to the Log page.",
+        "Don't add a size between the steps: the ramp is 12, 13, 15, 20, 22 and 44."
+      ]
+    }
   }
 }

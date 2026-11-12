@@ -12,6 +12,7 @@
 !/Star Citizen Offline.command
 !/config/
 !/docs/
+!/launcher/
 !/macfix/
 !/mvkshim/
 !/patches/
@@ -37,6 +38,8 @@
 /tools/whiteness
 /tools/winlist
 /winegrid/balloon
+/launcher/build/
+/launcher/icon/icon-1024.png
 /winegrid/fbtest
 /winegrid/grid_test
 /mvkshim/superseded-pagefix/pagefix_test
@@ -53,3 +56,6 @@
 
 # review captures of the README, regenerated on demand
 /.impeccable/review/
+
+# the decision pages of design rounds: working state, not for publishing
+/.impeccable/questions/
